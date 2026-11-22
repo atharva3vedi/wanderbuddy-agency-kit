@@ -1,0 +1,57 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  :root{
+    --page:#F3F6F9; --subtle:#E5EEF5; --surface:#FFFFFF; --primary:#1E88D6; --onp:#fff;
+    --accent:#E0972A; --teal:#1FA89A; --muted:#5E7386; --text:#0C1622; --border:#CFDCE6;
+    --chip:#E4F1EC; --chipT:#0A3D38;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+  html,body{width:1080px}
+  body{font-family:'Inter',Segoe UI,Roboto,Helvetica,Arial,sans-serif;height:1920px;
+       background:var(--page);color:var(--text);overflow:hidden}
+  .sb{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 44px 0 52px;color:#0C1622;font-weight:700}
+  .sb.d{color:#E7F1FA}
+  .sb-time{font-size:30px;letter-spacing:.5px}
+  .sb-ic{display:flex;align-items:center;gap:12px}
+  .appbar{height:104px;display:flex;align-items:center;gap:20px;padding:0 40px;font-size:40px;font-weight:800}
+  .appbar .back{font-size:44px;font-weight:500;opacity:.9}
+  .appbar .sp{flex:1}
+  .appbar .act{font-size:34px;opacity:.7}
+  .tabs{display:flex;gap:36px;padding:6px 40px 0;overflow:hidden;border-bottom:1.5px solid var(--border);white-space:nowrap}
+  .tab{font-size:29px;font-weight:600;color:var(--muted);padding:20px 2px 24px;position:relative;flex:0 0 auto}
+  .tab.on{color:var(--primary)}
+  .tab.on:after{content:"";position:absolute;left:0;right:0;bottom:-1.5px;height:5px;border-radius:3px;background:var(--primary)}
+  .wrap{padding:34px 40px}
+  .card{background:var(--surface);border:1.5px solid var(--border);border-radius:30px;box-shadow:0 6px 22px rgba(20,45,70,.06)}
+  .chip{display:inline-flex;align-items:center;background:var(--chip);color:var(--chipT);font-size:24px;font-weight:600;padding:10px 22px;border-radius:999px}
+  .btn{background:var(--primary);color:#fff;font-weight:700;border-radius:999px;display:flex;align-items:center;justify-content:center}
+  .muted{color:var(--muted)}
+  h1.big{font-size:58px;font-weight:800;letter-spacing:-1px}
+  .avrow{display:flex}
+  .av{width:56px;height:56px;border-radius:50%;border:3px solid #fff;background:#cbd7e2;margin-left:-14px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:24px}
+</style></head><body>
+
+<div class="sb ">
+  <div class="sb-time">9:41</div>
+  <div class="sb-ic">
+    <svg width="34" height="20" viewBox="0 0 34 20"><g fill="currentColor"><rect x="0" y="9" width="4" height="9" rx="1"/><rect x="6" y="6" width="4" height="12" rx="1"/><rect x="12" y="3" width="4" height="15" rx="1"/><rect x="18" y="0" width="4" height="18" rx="1"/></g></svg>
+    <svg width="26" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 18.5a1.7 1.7 0 100 3.4 1.7 1.7 0 000-3.4zM4 10.7l1.9 1.9a8.6 8.6 0 0112.2 0L20 10.7a11.3 11.3 0 00-16 0zM.6 7.3L2.5 9.2a14 14 0 0119 0l1.9-1.9a16.7 16.7 0 00-22.7 0z"/></svg>
+    <svg width="40" height="20" viewBox="0 0 40 20"><rect x="1" y="3" width="32" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3.5" y="5.5" width="25" height="9" rx="2" fill="currentColor"/><rect x="35" y="7" width="3" height="6" rx="1.5" fill="currentColor"/></svg>
+  </div>
+</div>
+<div class="appbar"><span class="back">‹</span>Safety<span class="sp"></span></div>
+<div class="wrap" style="padding-top:20px">
+  <div class="sos"><div class="sos-i">🆘</div><div><div style="font-size:40px;font-weight:800">Emergency SOS</div><div style="font-size:27px;opacity:.9">Call local services & alert your crew</div></div></div>
+  <div class="srow card"><div class="it-ic">📞</div><div style="flex:1"><div class="it-ti">Local emergency</div><div class="muted it-sub">Iceland · Police, Fire, Ambulance</div></div><div class="call">112</div></div>
+  <div class="srow card"><div class="it-ic">🏥</div><div style="flex:1"><div class="it-ti">Nearest hospital</div><div class="muted it-sub">Landspítali · 2.4 km</div></div><div class="act2">Go</div></div>
+  <div class="srow card"><div class="it-ic">🏛️</div><div style="flex:1"><div class="it-ti">Your embassy</div><div class="muted it-sub">Reykjavík · consular contacts</div></div><div class="act2">View</div></div>
+  <div class="srow card"><div class="it-ic">📵</div><div style="flex:1"><div class="it-ti">Stolen-phone checklist</div><div class="muted it-sub">Lock, wipe, report — step by step</div></div><div class="act2">Open</div></div>
+</div>
+<style>.sos{display:flex;align-items:center;gap:28px;background:linear-gradient(135deg,#E5484D,#B4262B);color:#fff;border-radius:30px;padding:40px 40px;margin-bottom:34px;box-shadow:0 12px 30px rgba(200,40,45,.32)}
+.sos-i{font-size:64px}
+.srow{display:flex;align-items:center;gap:26px;padding:30px 34px;margin-bottom:24px}
+.it-ic{width:80px;height:80px;border-radius:22px;background:var(--subtle);display:flex;align-items:center;justify-content:center;font-size:40px}
+.it-ti{font-size:33px;font-weight:700}.it-sub{font-size:25px;margin-top:6px}
+.call{background:#E5484D;color:#fff;font-weight:800;font-size:34px;padding:16px 34px;border-radius:999px}
+.act2{color:var(--primary);font-weight:700;font-size:30px}</style></body></html>

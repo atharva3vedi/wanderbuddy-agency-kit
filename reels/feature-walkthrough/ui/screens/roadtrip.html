@@ -1,0 +1,72 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  :root{
+    --page:#F3F6F9; --subtle:#E5EEF5; --surface:#FFFFFF; --primary:#1E88D6; --onp:#fff;
+    --accent:#E0972A; --teal:#1FA89A; --muted:#5E7386; --text:#0C1622; --border:#CFDCE6;
+    --chip:#E4F1EC; --chipT:#0A3D38;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+  html,body{width:1080px}
+  body{font-family:'Inter',Segoe UI,Roboto,Helvetica,Arial,sans-serif;height:1920px;
+       background:var(--page);color:var(--text);overflow:hidden}
+  .sb{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 44px 0 52px;color:#0C1622;font-weight:700}
+  .sb.d{color:#E7F1FA}
+  .sb-time{font-size:30px;letter-spacing:.5px}
+  .sb-ic{display:flex;align-items:center;gap:12px}
+  .appbar{height:104px;display:flex;align-items:center;gap:20px;padding:0 40px;font-size:40px;font-weight:800}
+  .appbar .back{font-size:44px;font-weight:500;opacity:.9}
+  .appbar .sp{flex:1}
+  .appbar .act{font-size:34px;opacity:.7}
+  .tabs{display:flex;gap:36px;padding:6px 40px 0;overflow:hidden;border-bottom:1.5px solid var(--border);white-space:nowrap}
+  .tab{font-size:29px;font-weight:600;color:var(--muted);padding:20px 2px 24px;position:relative;flex:0 0 auto}
+  .tab.on{color:var(--primary)}
+  .tab.on:after{content:"";position:absolute;left:0;right:0;bottom:-1.5px;height:5px;border-radius:3px;background:var(--primary)}
+  .wrap{padding:34px 40px}
+  .card{background:var(--surface);border:1.5px solid var(--border);border-radius:30px;box-shadow:0 6px 22px rgba(20,45,70,.06)}
+  .chip{display:inline-flex;align-items:center;background:var(--chip);color:var(--chipT);font-size:24px;font-weight:600;padding:10px 22px;border-radius:999px}
+  .btn{background:var(--primary);color:#fff;font-weight:700;border-radius:999px;display:flex;align-items:center;justify-content:center}
+  .muted{color:var(--muted)}
+  h1.big{font-size:58px;font-weight:800;letter-spacing:-1px}
+  .avrow{display:flex}
+  .av{width:56px;height:56px;border-radius:50%;border:3px solid #fff;background:#cbd7e2;margin-left:-14px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:24px}
+</style></head><body>
+
+<div class="sb d">
+  <div class="sb-time">9:41</div>
+  <div class="sb-ic">
+    <svg width="34" height="20" viewBox="0 0 34 20"><g fill="currentColor"><rect x="0" y="9" width="4" height="9" rx="1"/><rect x="6" y="6" width="4" height="12" rx="1"/><rect x="12" y="3" width="4" height="15" rx="1"/><rect x="18" y="0" width="4" height="18" rx="1"/></g></svg>
+    <svg width="26" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 18.5a1.7 1.7 0 100 3.4 1.7 1.7 0 000-3.4zM4 10.7l1.9 1.9a8.6 8.6 0 0112.2 0L20 10.7a11.3 11.3 0 00-16 0zM.6 7.3L2.5 9.2a14 14 0 0119 0l1.9-1.9a16.7 16.7 0 00-22.7 0z"/></svg>
+    <svg width="40" height="20" viewBox="0 0 40 20"><rect x="1" y="3" width="32" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3.5" y="5.5" width="25" height="9" rx="2" fill="currentColor"/><rect x="35" y="7" width="3" height="6" rx="1.5" fill="currentColor"/></svg>
+  </div>
+</div>
+<div class="appbar" style="color:#E7F1FA"><span class="back">‹</span>Road-trip mode<span class="sp"></span><span class="live">● LIVE</span></div>
+<div class="map">
+  <svg class="route" viewBox="0 0 1080 1500" preserveAspectRatio="none">
+    <path d="M180 1280 C 360 1120, 260 900, 470 820 S 760 700, 700 470 S 820 240, 900 180" stroke="#3FA7E6" stroke-width="14" fill="none" stroke-linecap="round" opacity=".95"/>
+  </svg>
+  <div class="wp" style="left:900px;top:180px">🏁</div>
+  <div class="me" style="left:470px;top:820px"><div class="ping"></div><b>You</b></div>
+  <div class="mem b" style="left:700px;top:470px"><span></span>Ana</div>
+  <div class="mem o" style="left:300px;top:1150px"><span></span>Marco</div>
+  <div class="panel">
+    <div class="pr"><div class="pd" style="background:#35C9BC"></div>Ana<span class="sp2"></span><b>4.2 km ahead</b> · 6 min</div>
+    <div class="pr me2"><div class="pd" style="background:#3FA7E6"></div>You<span class="sp2"></span><b>on route</b></div>
+    <div class="pr"><div class="pd" style="background:#E0972A"></div>Marco<span class="sp2"></span><b>2.1 km behind</b> · 3 min</div>
+    <div class="nx">🏁 Next stop · Vík — 38 km to go</div>
+  </div>
+</div>
+<style>body{background:#0B141F}
+.map{position:absolute;inset:104px 0 0;background:radial-gradient(1100px 900px at 60% 25%,#16293b,#0B141F 72%);overflow:hidden}
+.route{position:absolute;inset:0;width:100%;height:100%}
+.wp{position:absolute;font-size:52px;transform:translate(-50%,-50%)}
+.me,.mem{position:absolute;transform:translate(-50%,-50%);color:#fff;font-size:26px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:8px;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+.me .ping{width:38px;height:38px;border-radius:50%;background:#3FA7E6;box-shadow:0 0 0 12px rgba(63,167,230,.28)}
+.mem span{width:34px;height:34px;border-radius:50%;display:block}
+.mem.b span{background:#35C9BC;box-shadow:0 0 0 9px rgba(53,201,188,.25)}
+.mem.o span{background:#E0972A;box-shadow:0 0 0 9px rgba(224,151,42,.25)}
+.panel{position:absolute;left:36px;right:36px;bottom:54px;background:#17293B;border:1.5px solid #25394C;border-radius:30px;padding:34px 40px;color:#E7F1FA}
+.pr{display:flex;align-items:center;gap:20px;font-size:31px;padding:16px 0;border-bottom:1px solid #22374a}
+.pr.me2{color:#8FB8D8}.pr b{font-weight:800}.pd{width:26px;height:26px;border-radius:50%}.sp2{flex:1}
+.nx{margin-top:20px;font-size:30px;font-weight:700;color:#3FA7E6}
+.live{color:#E5484D;font-size:26px;font-weight:800}</style></body></html>

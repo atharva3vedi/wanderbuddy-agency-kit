@@ -1,0 +1,61 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  :root{
+    --page:#F3F6F9; --subtle:#E5EEF5; --surface:#FFFFFF; --primary:#1E88D6; --onp:#fff;
+    --accent:#E0972A; --teal:#1FA89A; --muted:#5E7386; --text:#0C1622; --border:#CFDCE6;
+    --chip:#E4F1EC; --chipT:#0A3D38;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+  html,body{width:1080px}
+  body{font-family:'Inter',Segoe UI,Roboto,Helvetica,Arial,sans-serif;height:1920px;
+       background:var(--page);color:var(--text);overflow:hidden}
+  .sb{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 44px 0 52px;color:#0C1622;font-weight:700}
+  .sb.d{color:#E7F1FA}
+  .sb-time{font-size:30px;letter-spacing:.5px}
+  .sb-ic{display:flex;align-items:center;gap:12px}
+  .appbar{height:104px;display:flex;align-items:center;gap:20px;padding:0 40px;font-size:40px;font-weight:800}
+  .appbar .back{font-size:44px;font-weight:500;opacity:.9}
+  .appbar .sp{flex:1}
+  .appbar .act{font-size:34px;opacity:.7}
+  .tabs{display:flex;gap:36px;padding:6px 40px 0;overflow:hidden;border-bottom:1.5px solid var(--border);white-space:nowrap}
+  .tab{font-size:29px;font-weight:600;color:var(--muted);padding:20px 2px 24px;position:relative;flex:0 0 auto}
+  .tab.on{color:var(--primary)}
+  .tab.on:after{content:"";position:absolute;left:0;right:0;bottom:-1.5px;height:5px;border-radius:3px;background:var(--primary)}
+  .wrap{padding:34px 40px}
+  .card{background:var(--surface);border:1.5px solid var(--border);border-radius:30px;box-shadow:0 6px 22px rgba(20,45,70,.06)}
+  .chip{display:inline-flex;align-items:center;background:var(--chip);color:var(--chipT);font-size:24px;font-weight:600;padding:10px 22px;border-radius:999px}
+  .btn{background:var(--primary);color:#fff;font-weight:700;border-radius:999px;display:flex;align-items:center;justify-content:center}
+  .muted{color:var(--muted)}
+  h1.big{font-size:58px;font-weight:800;letter-spacing:-1px}
+  .avrow{display:flex}
+  .av{width:56px;height:56px;border-radius:50%;border:3px solid #fff;background:#cbd7e2;margin-left:-14px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:24px}
+</style></head><body>
+
+<div class="sb ">
+  <div class="sb-time">9:41</div>
+  <div class="sb-ic">
+    <svg width="34" height="20" viewBox="0 0 34 20"><g fill="currentColor"><rect x="0" y="9" width="4" height="9" rx="1"/><rect x="6" y="6" width="4" height="12" rx="1"/><rect x="12" y="3" width="4" height="15" rx="1"/><rect x="18" y="0" width="4" height="18" rx="1"/></g></svg>
+    <svg width="26" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 18.5a1.7 1.7 0 100 3.4 1.7 1.7 0 000-3.4zM4 10.7l1.9 1.9a8.6 8.6 0 0112.2 0L20 10.7a11.3 11.3 0 00-16 0zM.6 7.3L2.5 9.2a14 14 0 0119 0l1.9-1.9a16.7 16.7 0 00-22.7 0z"/></svg>
+    <svg width="40" height="20" viewBox="0 0 40 20"><rect x="1" y="3" width="32" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3.5" y="5.5" width="25" height="9" rx="2" fill="currentColor"/><rect x="35" y="7" width="3" height="6" rx="1.5" fill="currentColor"/></svg>
+  </div>
+</div>
+<div style="text-align:center;padding:56px 40px 6px">
+<svg width="72" height="72" viewBox="0 0 100 100" fill="none">
+  <path d="M50 22 L74 62 H26 Z" fill="#1E88D6"/>
+  <path d="M50 40 L62 62 H38 Z" fill="#1E88D6" opacity=".55"/>
+  <path d="M22 70 q8 -8 16 0 t16 0 t16 0" stroke="#1E88D6" stroke-width="5" fill="none" stroke-linecap="round"/>
+</svg><h1 class="big" style="margin-top:20px">Go Premium</h1><div class="muted" style="font-size:30px;margin-top:12px">Cancel anytime · No ads, ever</div></div>
+<div class="wrap" style="padding-top:34px">
+  <div class="plan"><div><div class="pt">Monthly</div><div class="ps muted">Billed monthly</div></div><div class="pp">$6.99<span>/mo</span></div></div>
+  <div class="plan best"><div class="badge">BEST VALUE · SAVE 28%</div><div><div class="pt">Yearly</div><div class="ps">Just $5.00 / month</div></div><div class="pp">$59.99<span>/yr</span></div></div>
+  <div class="plan"><div><div class="pt">Lifetime</div><div class="ps muted">Pay once, yours forever</div></div><div class="pp">$100<span></span></div></div>
+  <div class="btn cta">Start 7-day free trial</div>
+  <div class="muted" style="text-align:center;font-size:26px;margin-top:24px">Then your plan renews. Cancel in one tap.</div>
+</div>
+<style>.plan{background:#fff;border:2px solid var(--border);border-radius:28px;padding:38px 40px;margin-bottom:26px;display:flex;align-items:center;position:relative}
+.plan .pt{font-size:38px;font-weight:800}.plan .ps{font-size:27px;margin-top:8px;color:#1FA89A;font-weight:700}
+.plan .pp{margin-left:auto;font-size:52px;font-weight:800}.plan .pp span{font-size:28px;color:var(--muted);font-weight:600}
+.plan.best{border-color:#1E88D6;background:#F1F8FE;box-shadow:0 14px 34px rgba(30,136,214,.16)}
+.badge{position:absolute;top:-22px;left:40px;background:#1E88D6;color:#fff;font-size:22px;font-weight:800;letter-spacing:.5px;padding:9px 22px;border-radius:999px}
+.cta{height:120px;font-size:38px;margin-top:16px;box-shadow:0 14px 30px rgba(30,136,214,.3)}</style></body></html>

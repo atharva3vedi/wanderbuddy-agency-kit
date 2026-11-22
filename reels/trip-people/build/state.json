@@ -1,0 +1,377 @@
+{
+  "P1_00": {
+    "task_id": "cgt-20261012163220-9bms7",
+    "status": "succeeded",
+    "submitted": 1791793941.6295378,
+    "tokens": 87300,
+    "seed": 38853
+  },
+  "P1_01": {
+    "task_id": "cgt-20261012161708-rjxyt",
+    "status": "succeeded",
+    "submitted": 1791793029.0573366,
+    "tokens": 173700,
+    "seed": 11766
+  },
+  "P1_05": {
+    "task_id": "cgt-20261012161708-8jawl",
+    "status": "succeeded",
+    "submitted": 1791793029.323307,
+    "tokens": 216900,
+    "seed": 48053
+  },
+  "P1_06": {
+    "task_id": "cgt-20261012161709-5erno",
+    "status": "succeeded",
+    "submitted": 1791793029.6570346,
+    "tokens": 130500,
+    "seed": 38154
+  },
+  "P2_01": {
+    "task_id": "cgt-20261012161709-1lb6c",
+    "status": "succeeded",
+    "submitted": 1791793030.5560489,
+    "tokens": 195300,
+    "seed": 6728
+  },
+  "P2_02": {
+    "task_id": "cgt-20261012161710-u4djm",
+    "status": "succeeded",
+    "submitted": 1791793030.9045715,
+    "tokens": 173700,
+    "seed": 75409
+  },
+  "P2_03a": {
+    "task_id": "cgt-20261012161710-s41md",
+    "status": "succeeded",
+    "submitted": 1791793031.157048,
+    "tokens": 173700,
+    "seed": 27733
+  },
+  "P2_03b": {
+    "task_id": "cgt-20261012161710-xh2do",
+    "status": "succeeded",
+    "submitted": 1791793031.5016282,
+    "tokens": 108900,
+    "seed": 13092
+  },
+  "P2_04": {
+    "task_id": "cgt-20261012161711-yyij0",
+    "status": "succeeded",
+    "submitted": 1791793031.8893788,
+    "tokens": 195300,
+    "seed": 91122
+  },
+  "P2_05": {
+    "task_id": "cgt-20261012161711-lgh90",
+    "status": "succeeded",
+    "submitted": 1791793032.7190182,
+    "tokens": 195300,
+    "seed": 32514
+  },
+  "P2_06": {
+    "status": "submit_failed",
+    "error": "{\"error\":{\"code\":\"InputTextSensitiveContentDetected\",\"message\":\"The request failed because the input text 'content[0]' may contain sensitive information. Request id: 0217917930322720eb6750cc7dc4c5e11333efa00d940ee396895\",\"param\":\"content[0]\",\"type\":\"BadRequest\"}}"
+  },
+  "P3_01": {
+    "task_id": "cgt-20261012161712-wgs6z",
+    "status": "succeeded",
+    "submitted": 1791793034.1175454,
+    "tokens": 173700,
+    "seed": 58707
+  },
+  "P3_02": {
+    "task_id": "cgt-20261012161713-i1908",
+    "status": "succeeded",
+    "submitted": 1791793034.3449776,
+    "tokens": 152100,
+    "seed": 47712
+  },
+  "P3_03": {
+    "task_id": "cgt-20261012161713-5tbls",
+    "status": "succeeded",
+    "submitted": 1791793034.5790489,
+    "tokens": 216900,
+    "seed": 46789
+  },
+  "P3_04": {
+    "task_id": "cgt-20261012161714-02imj",
+    "status": "succeeded",
+    "submitted": 1791793035.4402916,
+    "tokens": 173700,
+    "seed": 42834
+  },
+  "P3_05": {
+    "task_id": "cgt-20261012161715-o0opn",
+    "status": "succeeded",
+    "submitted": 1791793035.7133422,
+    "tokens": 108900,
+    "seed": 21004
+  },
+  "P1_02b": {
+    "task_id": "cgt-20261012163745-xoob4",
+    "status": "succeeded",
+    "submitted": 1791794269.5239155,
+    "tokens": 173700,
+    "seed": 89732
+  },
+  "P1_03": {
+    "task_id": "cgt-20261012163749-w0vfm",
+    "status": "succeeded",
+    "submitted": 1791794273.5029745,
+    "tokens": 303300,
+    "seed": 47078
+  },
+  "PLUG": {
+    "task_id": "cgt-20261012163753-71b6y",
+    "status": "succeeded",
+    "submitted": 1791794277.5584846,
+    "tokens": 476100,
+    "seed": 7628
+  },
+  "P2_00": {
+    "task_id": "cgt-20261012163757-h4ap6",
+    "status": "succeeded",
+    "submitted": 1791794281.0469737,
+    "tokens": 173700,
+    "seed": 10373
+  },
+  "INS_B": {
+    "task_id": "cgt-20261012163800-i3680",
+    "status": "succeeded",
+    "submitted": 1791794285.064906,
+    "tokens": 173700,
+    "seed": 75764
+  },
+  "P3_00": {
+    "task_id": "cgt-20261012163804-b4ql3",
+    "status": "succeeded",
+    "submitted": 1791794289.0163803,
+    "tokens": 173700,
+    "seed": 11054
+  },
+  "P3_06": {
+    "task_id": "cgt-20261012163808-6kelh",
+    "status": "succeeded",
+    "submitted": 1791794292.6790183,
+    "tokens": 216900,
+    "seed": 46498
+  },
+  "MUSIC_A": {
+    "task_id": "cgt-20261012172549-16sod",
+    "status": "succeeded",
+    "submitted": 1791797150.280675,
+    "tokens": 144512,
+    "seed": 17615
+  },
+  "MUSIC_B": {
+    "task_id": "cgt-20261012172549-n8qb8",
+    "status": "succeeded",
+    "submitted": 1791797150.5064607,
+    "tokens": 144512,
+    "seed": 20890
+  },
+  "P1_03v2": {
+    "task_id": "cgt-20261012172529-oahdy",
+    "status": "succeeded",
+    "submitted": 1791797133.5476584,
+    "tokens": 303300,
+    "seed": 20244
+  },
+  "P3_05b": {
+    "task_id": "cgt-20261012172533-iui35",
+    "status": "succeeded",
+    "submitted": 1791797137.468284,
+    "tokens": 216900,
+    "seed": 86990
+  },
+  "P3_05c": {
+    "task_id": "cgt-20261012172537-1e0q5",
+    "status": "succeeded",
+    "submitted": 1791797141.0631614,
+    "tokens": 216900,
+    "seed": 72944
+  },
+  "PL1a": {
+    "task_id": "cgt-20261012172540-kzgy9",
+    "status": "succeeded",
+    "submitted": 1791797145.039542,
+    "tokens": 195300,
+    "seed": 29251
+  },
+  "PL1b": {
+    "task_id": "cgt-20261012172544-eqv7f",
+    "status": "succeeded",
+    "submitted": 1791797148.957407,
+    "tokens": 216900,
+    "seed": 61542
+  },
+  "PL2a": {
+    "task_id": "cgt-20261012172548-9jt07",
+    "status": "succeeded",
+    "submitted": 1791797152.819667,
+    "tokens": 195300,
+    "seed": 64975
+  },
+  "PL2b": {
+    "task_id": "cgt-20261012172552-6f8hf",
+    "status": "succeeded",
+    "submitted": 1791797156.7890103,
+    "tokens": 216900,
+    "seed": 34845
+  },
+  "PL3a": {
+    "task_id": "cgt-20261012172556-mub15",
+    "status": "succeeded",
+    "submitted": 1791797160.6774666,
+    "tokens": 195300,
+    "seed": 5183
+  },
+  "PL3b": {
+    "task_id": "cgt-20261012172600-cdo4v",
+    "status": "succeeded",
+    "submitted": 1791797165.8512485,
+    "tokens": 389700,
+    "seed": 34732
+  },
+  "P1_F": {
+    "task_id": "cgt-20261012184554-fmx1m",
+    "status": "succeeded",
+    "submitted": 1791801955.7429183,
+    "tokens": 130500,
+    "seed": 74464
+  },
+  "P1_A": {
+    "task_id": "cgt-20261012195929-qjrpn",
+    "status": "succeeded",
+    "submitted": 1791806370.8402066,
+    "tokens": 130500,
+    "seed": 26865
+  },
+  "P1_T": {
+    "task_id": "cgt-20261012195930-zko4j",
+    "status": "succeeded",
+    "submitted": 1791806371.3679845,
+    "tokens": 130500,
+    "seed": 53801
+  },
+  "P2_01v3": {
+    "task_id": "cgt-20261012195930-5j6yv",
+    "status": "succeeded",
+    "submitted": 1791806372.361932,
+    "tokens": 130500,
+    "seed": 24271
+  },
+  "P2_03v3": {
+    "task_id": "cgt-20261012195931-of0yi",
+    "status": "succeeded",
+    "submitted": 1791806372.7701192,
+    "tokens": 130500,
+    "seed": 85336
+  },
+  "E1": {
+    "task_id": "cgt-20261012221437-x4dxg",
+    "status": "succeeded",
+    "submitted": 1791814479.6321359,
+    "tokens": 152100,
+    "seed": 16727
+  },
+  "E2": {
+    "task_id": "cgt-20261012221438-vsvmp",
+    "status": "succeeded",
+    "submitted": 1791814479.8585024,
+    "tokens": 130500,
+    "seed": 47901
+  },
+  "E3": {
+    "task_id": "cgt-20261012221439-4gr0a",
+    "status": "succeeded",
+    "submitted": 1791814480.2784348,
+    "tokens": 152100,
+    "seed": 58547
+  },
+  "P1_D": {
+    "task_id": "cgt-20261012223310-85u6p",
+    "status": "succeeded",
+    "submitted": 1791815591.99233,
+    "tokens": 152100,
+    "seed": 88636
+  },
+  "P3_R": {
+    "task_id": "cgt-20261012232600-fhee9",
+    "status": "succeeded",
+    "submitted": 1791818761.4776251,
+    "tokens": 195300,
+    "seed": 99615
+  },
+  "P3_FL": {
+    "task_id": "cgt-20261012221440-4bno9",
+    "status": "succeeded",
+    "submitted": 1791814481.397475,
+    "tokens": 152100,
+    "seed": 5892
+  },
+  "P3_FG": {
+    "task_id": "cgt-20261012221440-qzmk3",
+    "status": "succeeded",
+    "submitted": 1791814481.8618999,
+    "tokens": 173700,
+    "seed": 39769
+  },
+  "PL1c": {
+    "task_id": "cgt-20261012221437-cldg0",
+    "status": "succeeded",
+    "submitted": 1791814485.108474,
+    "tokens": 216900,
+    "seed": 95112
+  },
+  "B_BREAKFAST": {
+    "task_id": "cgt-20261012223412-ltuts",
+    "status": "succeeded",
+    "submitted": 1791815653.5155504,
+    "tokens": 87300,
+    "seed": 30215
+  },
+  "B_TEMPLE": {
+    "task_id": "cgt-20261012223412-4gdmg",
+    "status": "succeeded",
+    "submitted": 1791815653.983808,
+    "tokens": 87300,
+    "seed": 84042
+  },
+  "B_BEACH": {
+    "task_id": "cgt-20261012224115-vescp",
+    "status": "succeeded",
+    "submitted": 1791816076.1477702,
+    "tokens": 87300,
+    "seed": 2270
+  },
+  "B_SUNSET": {
+    "task_id": "cgt-20261012223414-n3if4",
+    "status": "succeeded",
+    "submitted": 1791815655.6058342,
+    "tokens": 87300,
+    "seed": 73580
+  },
+  "B_CLIFF": {
+    "task_id": "cgt-20261012223414-b53wl",
+    "status": "succeeded",
+    "submitted": 1791815656.4685931,
+    "tokens": 87300,
+    "seed": 89564
+  },
+  "B_FILMING": {
+    "task_id": "cgt-20261012223415-e9scc",
+    "status": "succeeded",
+    "submitted": 1791815656.9560556,
+    "tokens": 87300,
+    "seed": 54833
+  },
+  "B_POOLBAR": {
+    "task_id": "cgt-20261012224115-oh38f",
+    "status": "succeeded",
+    "submitted": 1791816076.5783346,
+    "tokens": 87300,
+    "seed": 94225
+  }
+}

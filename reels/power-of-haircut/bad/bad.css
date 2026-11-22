@@ -1,0 +1,29 @@
+/* Deliberately poor "first MVP" styling: default fonts, clashing flat colours,
+   hard borders, cramped and uneven spacing. No effects. */
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 430px; height: 932px; overflow: hidden; }
+body { background: #d9d9d9; font-family: "Times New Roman", serif; font-size: 15px; color: #222; }
+.top { background: #1e7b7b; color: #ffef5a; padding: 50px 8px 10px; font-family: Arial, sans-serif; }
+.top h1 { margin: 0; font-size: 26px; font-weight: bold; text-align: center; }
+.top .sub { color: #bfe; font-size: 12px; text-align: center; font-family: Verdana, sans-serif; }
+.back { float: left; color: #fff; font-size: 22px; line-height: 26px; }
+.tabs { display: flex; background: #c0c0c0; border-bottom: 2px solid #000; }
+.tabs a { flex: 1; text-align: center; padding: 7px 0; font-size: 13px; color: #00e; text-decoration: underline;
+  border-right: 1px solid #888; font-family: Arial, sans-serif; }
+.tabs a.on { background: #fff; color: #000; font-weight: bold; text-decoration: none; }
+.box { background: #fff; border: 2px solid #000; margin: 8px 6px; padding: 5px 7px; }
+.box h2 { margin: 0 0 4px; font-size: 19px; color: #a0005a; font-family: Georgia, serif; }
+.btn { display: inline-block; background: linear-gradient(#f4f4f4, #cfcfcf); border: 2px outset #bbb;
+  padding: 4px 10px; font-family: Arial, sans-serif; font-size: 13px; color: #000; }
+.btn.big { display: block; text-align: center; margin: 8px 6px; font-size: 16px; padding: 9px; }
+.lnk { color: #00e; text-decoration: underline; }
+table { width: 100%; border-collapse: collapse; }
+td { border: 1px solid #999; padding: 4px 5px; font-size: 14px; }
+.ok { color: #00a000; font-weight: bold; font-family: Arial, sans-serif; }
+.no { color: #e00000; font-weight: bold; font-family: Arial, sans-serif; }
+.grey { color: #9a9a9a; font-size: 12px; }
+.nav { position: absolute; bottom: 0; left: 0; right: 0; background: #1e7b7b; color: #fff;
+  text-align: center; padding: 12px 0 22px; font-family: Arial, sans-serif; font-size: 14px; }
+.nav a { color: #ffef5a; text-decoration: underline; margin: 0 6px; }
+.fab { position: absolute; right: 12px; bottom: 70px; background: #ff7f00; color: #fff; border: 2px solid #000;
+  font-family: Arial, sans-serif; font-weight: bold; padding: 10px 12px; font-size: 14px; }

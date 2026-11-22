@@ -1,0 +1,101 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  :root{
+    --page:#F3F6F9; --subtle:#E5EEF5; --surface:#FFFFFF; --primary:#1E88D6; --onp:#fff;
+    --accent:#E0972A; --teal:#1FA89A; --muted:#5E7386; --text:#0C1622; --border:#CFDCE6;
+    --chip:#E4F1EC; --chipT:#0A3D38;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+  html,body{width:1080px}
+  body{font-family:'Inter',Segoe UI,Roboto,Helvetica,Arial,sans-serif;height:2380px;
+       background:var(--page);color:var(--text);overflow:hidden}
+  .sb{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 44px 0 52px;color:#0C1622;font-weight:700}
+  .sb.d{color:#E7F1FA}
+  .sb-time{font-size:30px;letter-spacing:.5px}
+  .sb-ic{display:flex;align-items:center;gap:12px}
+  .appbar{height:104px;display:flex;align-items:center;gap:20px;padding:0 40px;font-size:40px;font-weight:800}
+  .appbar .back{font-size:44px;font-weight:500;opacity:.9}
+  .appbar .sp{flex:1}
+  .appbar .act{font-size:34px;opacity:.7}
+  .tabs{display:flex;gap:36px;padding:6px 40px 0;overflow:hidden;border-bottom:1.5px solid var(--border);white-space:nowrap}
+  .tab{font-size:29px;font-weight:600;color:var(--muted);padding:20px 2px 24px;position:relative;flex:0 0 auto}
+  .tab.on{color:var(--primary)}
+  .tab.on:after{content:"";position:absolute;left:0;right:0;bottom:-1.5px;height:5px;border-radius:3px;background:var(--primary)}
+  .wrap{padding:34px 40px}
+  .card{background:var(--surface);border:1.5px solid var(--border);border-radius:30px;box-shadow:0 6px 22px rgba(20,45,70,.06)}
+  .chip{display:inline-flex;align-items:center;background:var(--chip);color:var(--chipT);font-size:24px;font-weight:600;padding:10px 22px;border-radius:999px}
+  .btn{background:var(--primary);color:#fff;font-weight:700;border-radius:999px;display:flex;align-items:center;justify-content:center}
+  .muted{color:var(--muted)}
+  h1.big{font-size:58px;font-weight:800;letter-spacing:-1px}
+  .avrow{display:flex}
+  .av{width:56px;height:56px;border-radius:50%;border:3px solid #fff;background:#cbd7e2;margin-left:-14px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:24px}
+</style></head><body>
+
+<div class="sb ">
+  <div class="sb-time">9:41</div>
+  <div class="sb-ic">
+    <svg width="34" height="20" viewBox="0 0 34 20"><g fill="currentColor"><rect x="0" y="9" width="4" height="9" rx="1"/><rect x="6" y="6" width="4" height="12" rx="1"/><rect x="12" y="3" width="4" height="15" rx="1"/><rect x="18" y="0" width="4" height="18" rx="1"/></g></svg>
+    <svg width="26" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 18.5a1.7 1.7 0 100 3.4 1.7 1.7 0 000-3.4zM4 10.7l1.9 1.9a8.6 8.6 0 0112.2 0L20 10.7a11.3 11.3 0 00-16 0zM.6 7.3L2.5 9.2a14 14 0 0119 0l1.9-1.9a16.7 16.7 0 00-22.7 0z"/></svg>
+    <svg width="40" height="20" viewBox="0 0 40 20"><rect x="1" y="3" width="32" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3.5" y="5.5" width="25" height="9" rx="2" fill="currentColor"/><rect x="35" y="7" width="3" height="6" rx="1.5" fill="currentColor"/></svg>
+  </div>
+</div>
+<div class="appbar"><span class="back">‹</span>Iceland Ring Road <span class="sp"></span><span class="act">⋯</span></div>
+<div style="padding:20px 40px 8px;display:flex;align-items:center;gap:24px">
+  <div style="font-size:30px" class="muted">🇮🇸 Reykjavík · Sep 20 – Sep 29</div>
+  <div class="sp" style="flex:1"></div>
+  <div class="avrow"><div class="av" style="background:#1E88D6">A</div><div class="av" style="background:#1FA89A">M</div><div class="av" style="background:#E0972A">P</div><div class="av" style="background:#7A8CA3;font-size:22px">+9</div></div>
+</div>
+<div class="tabs"><div class="tab on">Itinerary</div><div class="tab ">Budget</div><div class="tab ">Chat</div><div class="tab ">Members</div><div class="tab ">Photos</div><div class="tab ">Translate</div><div class="tab ">WanderBuddy</div></div>
+<div class="wrap" style="padding-top:24px">
+  <div class="dayhdr">Day 1 · Sep 20</div>
+  
+<div class="it">
+  <div class="it-t">08:30</div>
+  <div class="it-rail"><div class="dot"></div><div class="ln"></div></div>
+  <div class="it-c card"><div class="it-ic">✈️</div><div><div class="it-ti">Flight to Keflavík</div><div class="muted it-sub">KEF · Icelandair 682</div></div></div>
+</div>
+  
+<div class="it">
+  <div class="it-t">11:00</div>
+  <div class="it-rail"><div class="dot"></div><div class="ln"></div></div>
+  <div class="it-c card"><div class="it-ic">🚐</div><div><div class="it-ti">Pick up camper van</div><div class="muted it-sub">Blue Car Rental</div></div></div>
+</div>
+  
+<div class="it">
+  <div class="it-t">14:00</div>
+  <div class="it-rail"><div class="dot"></div><div class="ln"></div></div>
+  <div class="it-c card"><div class="it-ic">🏨</div><div><div class="it-ti">Check in · Reykjavík Loft</div><div class="muted it-sub">Bankastræti 7</div></div></div>
+</div>
+  
+<div class="it">
+  <div class="it-t">17:00</div>
+  <div class="it-rail"><div class="dot"></div></div>
+  <div class="it-c card"><div class="it-ic">🌅</div><div><div class="it-ti">Sun Voyager & harbour walk</div><div class="muted it-sub">Sæbraut</div></div></div>
+</div>
+  <div class="dayhdr">Day 2 · Sep 21</div>
+  
+<div class="it">
+  <div class="it-t">09:00</div>
+  <div class="it-rail"><div class="dot"></div><div class="ln"></div></div>
+  <div class="it-c card"><div class="it-ic">💧</div><div><div class="it-ti">Þingvellir National Park</div><div class="muted it-sub">Golden Circle</div></div></div>
+</div>
+  
+<div class="it">
+  <div class="it-t">12:30</div>
+  <div class="it-rail"><div class="dot"></div></div>
+  <div class="it-c card"><div class="it-ic">♨️</div><div><div class="it-ti">Geysir & Gullfoss falls</div><div class="muted it-sub">Haukadalur</div></div></div>
+</div>
+</div>
+<style>
+  .dayhdr{font-size:34px;font-weight:800;color:var(--primary);margin:14px 6px 22px}
+  .it{display:grid;grid-template-columns:120px 44px 1fr;gap:10px;align-items:stretch}
+  .it-t{font-size:27px;font-weight:700;color:var(--muted);padding-top:34px;text-align:right}
+  .it-rail{position:relative;display:flex;justify-content:center}
+  .it-rail .dot{width:26px;height:26px;border-radius:50%;background:var(--primary);margin-top:34px;box-shadow:0 0 0 7px #DCEBF8}
+  .it-rail .ln{position:absolute;top:60px;bottom:-18px;width:5px;background:var(--border);border-radius:3px}
+  .it-c{display:flex;align-items:center;gap:24px;padding:26px 30px;margin-bottom:26px}
+  .it-ic{width:74px;height:74px;border-radius:20px;background:var(--subtle);display:flex;align-items:center;justify-content:center;font-size:38px;flex:0 0 auto}
+  .it-ti{font-size:33px;font-weight:700}
+  .it-sub{font-size:26px;margin-top:6px}
+</style></body></html>

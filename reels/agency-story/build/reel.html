@@ -1,0 +1,367 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- The overlay for "How we got to revenue": captions, accent words, cut-in cards. Transparent wherever the
+     footage (footage.mp4, cut by cut.py from edl.json) shows through. Every frame is a function of time:
+     window.__seek(t). render.mjs composites it over the footage. -->
+<style>
+@font-face{font-family:WbSans;src:url(img/WbSans-Bold.ttf);font-weight:700}
+@font-face{font-family:WbSans;src:url(img/WbSans-SemiBold.ttf);font-weight:600}
+@font-face{font-family:InstrumentSerif;src:url(img/InstrumentSerif-Italic.ttf);font-style:italic}
+:root{--ink:#0C1622;--ink2:#26394B;--muted:#5E7386;--page:#F3F6F9;--subtle:#E5EEF5;--primary:#1A6FB0;--vivid:#1E88D6;
+  --azure:#3FA7E6;--teal:#14756B;--teal2:#35C9BC;--line:#CFDCE6;--line2:#25394C;--blue:#1F71B7}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent;font-family:WbSans,sans-serif;-webkit-font-smoothing:antialiased}
+.scene{position:absolute;inset:0;display:none;overflow:hidden}
+.abs{position:absolute}
+.serif{font-family:InstrumentSerif;font-style:italic;font-weight:400;letter-spacing:-.01em;line-height:1}
+.shadow{text-shadow:0 6px 40px rgba(0,0,0,.55),0 2px 10px rgba(0,0,0,.45)}
+svg.draw{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible}
+svg.draw path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.phone{position:absolute;background:var(--ink);border-radius:58px;padding:14px;box-shadow:0 40px 80px -30px rgba(12,22,34,.45)}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:46px;display:block}
+.card{position:absolute;background:#fff;border-radius:30px;box-shadow:0 26px 60px -26px rgba(12,22,34,.38),0 0 0 2px rgba(12,22,34,.05)}
+.pill{position:absolute;background:#fff;border-radius:60px;color:var(--ink);font-weight:600;font-size:44px;padding:22px 40px;
+  display:flex;align-items:center;gap:18px;box-shadow:0 20px 44px -22px rgba(12,22,34,.45);white-space:nowrap}
+.pill i{width:22px;height:22px;border-radius:50%;display:inline-block}
+.browser{position:absolute;background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 40px 90px -36px rgba(12,22,34,.5),0 0 0 2px rgba(12,22,34,.06)}
+.browser .bar{height:44px;background:#EEF2F6;display:flex;align-items:center;gap:10px;padding-left:20px}
+.browser .bar b{width:14px;height:14px;border-radius:50%;background:#C9D4DE}
+.browser .view{position:absolute;left:0;right:0;top:44px;bottom:0;overflow:hidden}
+.browser .view img{position:absolute;left:0;top:0;transform-origin:0 0}
+#cc{position:absolute;left:50px;right:50px;text-align:center;font-weight:700;font-size:70px;line-height:1.08;letter-spacing:-.015em}
+#cc span{display:inline-block}
+#cc.dark{color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.6),0 2px 6px rgba(0,0,0,.55)}
+#cc.light{color:var(--ink)}
+.cell{position:absolute;border-radius:12px}
+.bub{background:#E9F6EF;border-radius:22px;padding:14px 22px;font-size:36px;font-weight:600;color:var(--ink2);margin-top:12px;display:inline-block}
+.hdr{font-size:32px;font-weight:700;letter-spacing:.01em}
+.av{position:absolute;width:118px;height:118px;border-radius:50%;color:#fff;font-weight:700;font-size:46px;display:flex;align-items:center;justify-content:center;border:6px solid #fff;box-shadow:0 14px 30px -14px rgba(12,22,34,.5)}
+</style>
+<script src="edl.js"></script>
+<script src="s1_tl.js"></script>
+<script src="s1_caps.js"></script>
+</head><body>
+<div id="root"></div>
+<div id="cc"><span id="ccs"></span></div>
+<script>
+const E = window.EDL, WORDS = window.WORDS, CAPS = window.CAPS;
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const P = (t, a, d) => clamp((t - a) / d);                    // 0..1 progress from a over d seconds
+const eo = x => 1 - Math.pow(1 - x, 3);
+const eb = x => { const c = 1.9; return x <= 0 ? 0 : x >= 1 ? 1 : 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const lerp = (a, b, x) => a + (b - a) * x;
+// time a word is spoken: wt('money') or wt('one', 3) for the word in narration line 3
+const wt = (k, line) => { const w = WORDS.find(w => w.k === k && (line === undefined || w.i === line)); if (!w) throw Error('word ' + k); return w.t0; };
+const shot = id => E.shots.find(s => s.id === id);
+const SFX = []; const sfx = (t, kind, gain = 1) => SFX.push({ t: +t.toFixed(3), kind, gain });
+const root = document.getElementById('root');
+const el = (html, parent = root) => { const d = document.createElement('div'); d.innerHTML = html.trim(); const n = d.firstElementChild; parent.appendChild(n); return n; };
+// seeded randomness so every render is the same
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+// a hand-drawn stroke: dash-animated SVG path
+function draw(path, x) { const L = path.__len || (path.__len = path.getTotalLength()); path.style.strokeDasharray = L; path.style.strokeDashoffset = L * (1 - x); path.style.opacity = x > 0 ? 1 : 0; }
+const ARROW_HEAD = (x, y, ang, s = 34) => { const a1 = ang + 2.6, a2 = ang - 2.6;
+  return `M${x + Math.cos(a1) * s},${y + Math.sin(a1) * s} L${x},${y} L${x + Math.cos(a2) * s},${y + Math.sin(a2) * s}`; };
+const pop = (n, x, extra = '') => { n.style.opacity = clamp(x * 3); n.style.transform = `${extra} scale(${lerp(.6, 1, eb(x))})`; };
+
+const scenes = {};
+function scene(id, ground, build) {
+  const s = shot(id); const node = el(`<div class="scene" id="sc_${id}" style="${ground ? 'background:' + ground : ''}"></div>`);
+  scenes[id] = { s, node, draw: build(node, s) };
+}
+
+// ---------- 1 hook: footage, one headline from frame 0 ----------
+scene('hook', '', (n, s) => {
+  el(`<div class="abs shadow" style="left:0;right:0;top:250px;text-align:center;color:#fff;font-weight:700;font-size:96px;letter-spacing:-.03em;line-height:1.02">
+      Four months to<br><span class="serif" style="font-size:150px">revenue</span></div>`, n);
+  const g = el(`<svg class="draw"><path d="M300,520 C420,490 600,540 790,500" stroke="#3FA7E6" stroke-width="16"/></svg>`, n);
+  const sw = g.querySelector('path'); sfx(.45, 'glow', .7);
+  return t => draw(sw, eo(P(t, .35, .55)));
+});
+
+// ---------- 2 not the app: phone with the app, "the app" crossed out ----------
+scene('notapp', 'var(--page)', (n, s) => {
+  const ph = el(`<div class="phone" style="left:355px;top:290px;width:370px;height:800px"><img src="img/home-light.png"></div>`, n);
+  const lab = el(`<div class="abs serif" style="left:44px;top:360px;font-size:118px;color:var(--primary)">the app</div>`, n);
+  const g = el(`<svg class="draw"><path id="a" d="M150,500 C170,600 240,650 330,660" stroke="#1A6FB0" stroke-width="9"/>
+     <path id="h" d="${ARROW_HEAD(330, 660, 0.15)}" stroke="#1A6FB0" stroke-width="9"/>
+     <path id="x" d="M30,440 C120,420 220,450 360,405" stroke="#0C1622" stroke-width="12"/></svg>`, n);
+  const [a, h, x] = ['a', 'h', 'x'].map(k => g.querySelector('#' + k));
+  const tNot = wt('not', 1); sfx(s.t0, 'slide', .8); sfx(tNot + .05, 'swish', .9);
+  return t => { const l = t - s.t0;
+    ph.style.opacity = eo(P(l, 0, .3)); ph.style.transform = `translateY(${lerp(90, 0, eo(P(l, 0, .4)))}px) rotate(${lerp(-6, -2, eo(P(l, 0, .5)))}deg)`;
+    lab.style.opacity = eo(P(l, .25, .25)); draw(a, eo(P(l, .3, .4))); draw(h, eo(P(l, .68, .15)));
+    draw(x, eo(P(t, tNot + .05, .3))); };
+});
+
+// ---------- 3 June: the polaroid ----------
+scene('june', '', (n, s) => {
+  const [x, y, w, h] = s.box, B = 24;
+  el(`<div class="abs" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;box-shadow:0 0 0 2400px var(--subtle)"></div>`, n);
+  el(`<div class="abs" style="left:${x - B}px;top:${y - B}px;width:${w + 2 * B}px;height:${h + 2 * B}px;border:${B}px solid #fff;border-radius:6px;box-shadow:0 30px 70px -30px rgba(12,22,34,.45)"></div>`, n);
+  const cover = el(`<div class="abs" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:#fff"></div>`, n);
+  const lab = el(`<div class="abs serif" style="left:70px;top:150px;font-size:124px;color:var(--ink)">Atharva</div>`, n);
+  const g = el(`<svg class="draw"><path id="a" d="M470,230 C560,250 600,330 560,450" stroke="#1A6FB0" stroke-width="9"/>
+     <path id="h" d="${ARROW_HEAD(560, 450, 1.9)}" stroke="#1A6FB0" stroke-width="9"/></svg>`, n);
+  const [a, hd] = ['a', 'h'].map(k => g.querySelector('#' + k)); sfx(s.t0, 'lift', .7);
+  return t => { const l = t - s.t0;
+    cover.style.opacity = 1 - eo(P(l, .05, .35));
+    lab.style.opacity = eo(P(l, .45, .25)); draw(a, eo(P(l, .55, .4))); draw(hd, eo(P(l, .93, .15))); };
+});
+
+// ---------- 4 one trip: footage + accent ----------
+scene('trip', '', (n, s) => {
+  const acc = el(`<div class="abs serif shadow" style="left:0;right:0;top:300px;text-align:center;color:#fff;font-size:200px">one trip</div>`, n);
+  const g = el(`<svg class="draw"><path d="M250,560 C400,520 650,580 840,530" stroke="#3FA7E6" stroke-width="16"/></svg>`, n);
+  const sw = g.querySelector('path'), t1 = wt('one', 3) - .05; sfx(t1, 'tick', .8);
+  return t => { pop(acc, P(t, t1, .3)); draw(sw, eo(P(t, t1 + .15, .4))); };
+});
+
+// ---------- 5 the volcano, the night before: pixel volcano under stars ----------
+scene('volcano', 'var(--ink)', (n, s) => {
+  const stars = []; for (let i = 0; i < 46; i++) stars.push(el(`<div class="abs" style="left:${rnd() * 1080}px;top:${60 + rnd() * 760}px;width:${3 + rnd() * 5}px;height:${3 + rnd() * 5}px;border-radius:50%;background:#E7F1FA"></div>`, n));
+  el(`<div class="abs" style="left:790px;top:260px;width:120px;height:120px;border-radius:50%;background:#E7F1FA"></div>`, n);
+  el(`<div class="abs" style="left:822px;top:244px;width:120px;height:120px;border-radius:50%;background:var(--ink)"></div>`, n);
+  const C = 40, base = 1180, rows = [23, 21, 19, 17, 15, 13, 11, 9, 7], cells = [];
+  const cols = ['#0F5E57', '#14756B', '#14756B', '#1A6FB0', '#1A6FB0', '#1E88D6', '#1E88D6', '#3FA7E6', '#3FA7E6'];
+  rows.forEach((cnt, r) => { for (let k = 0; k < cnt; k++) {
+    if (r === rows.length - 1 && k >= 2 && k <= 4) continue;            // the crater
+    const x = 540 - cnt * C / 2 + k * C, y = base - (r + 1) * C;
+    cells.push({ n: el(`<div class="cell" style="left:${x}px;top:${y}px;width:${C - 4}px;height:${C - 4}px;border-radius:6px;background:${cols[r]}"></div>`, n), d: r * .07 + rnd() * .12 }); } });
+  const smoke = []; for (let i = 0; i < 6; i++) smoke.push({ n: el(`<div class="cell" style="width:30px;height:30px;border-radius:6px;background:#CFDCE6"></div>`, n), x: 520 + (rnd() - .5) * 60, d: .9 + i * .18 });
+  const lab = el(`<div class="abs serif" style="left:70px;top:430px;font-size:104px;color:var(--azure)">the hike</div>`, n);
+  const g = el(`<svg class="draw"><path id="a" d="M300,560 C380,620 440,700 500,790" stroke="#3FA7E6" stroke-width="9"/>
+     <path id="h" d="${ARROW_HEAD(500, 790, 1.0)}" stroke="#3FA7E6" stroke-width="9"/></svg>`, n);
+  const [a, hd] = ['a', 'h'].map(k => g.querySelector('#' + k)); sfx(s.t0 + .05, 'whoosh', .6); sfx(s.t0 + 1.0, 'tick', .6);
+  return t => { const l = t - s.t0;
+    stars.forEach((st, i) => st.style.opacity = .35 + .45 * Math.sin(t * 2.2 + i * 1.7));
+    cells.forEach(c => { const x = P(l, c.d, .22); c.n.style.opacity = x > 0 ? 1 : 0; c.n.style.transform = `scale(${eb(x)})`; });
+    smoke.forEach(sm => { const x = P(l, sm.d, 1.6); sm.n.style.opacity = x > 0 ? .7 * (1 - x) : 0; sm.n.style.left = sm.x + Math.sin(x * 4) * 14 + 'px'; sm.n.style.top = (base - 9 * C - 40 - x * 260) + 'px'; });
+    lab.style.opacity = eo(P(l, .9, .25)); draw(a, eo(P(l, 1.0, .4))); draw(hd, eo(P(l, 1.38, .15))); };
+});
+
+// ---------- 6 drunk / 7 group: footage only ----------
+scene('drunk', '', () => () => {}); scene('group', '', () => () => {});
+
+// ---------- 8 the agency's tech: three empty boxes ----------
+scene('notech', 'var(--page)', (n, s) => {
+  const head = el(`<div class="abs" style="left:90px;top:300px;font-size:78px;font-weight:700;color:var(--ink);letter-spacing:-.025em">The agency's tech</div>`, n);
+  const items = ['Booking system', 'A CRM', 'An app for travellers'].map((txt, i) => el(`<div class="abs" style="left:90px;top:${470 + i * 140}px;display:flex;align-items:center;gap:34px">
+     <div style="width:78px;height:78px;border:7px solid var(--line);border-radius:18px;background:#fff"></div>
+     <div style="font-size:60px;font-weight:600;color:var(--ink2)">${txt}</div></div>`, n));
+  const none = el(`<div class="abs serif" style="left:520px;top:880px;font-size:190px;color:var(--primary);transform-origin:left center">none.</div>`, n);
+  const tNo = wt('no', 5); items.forEach((_, i) => sfx(s.t0 + .35 + i * .3, 'pop', .7)); sfx(tNo, 'swish', .9);
+  return t => { const l = t - s.t0;
+    head.style.opacity = eo(P(l, 0, .25)); head.style.transform = `translateY(${lerp(30, 0, eo(P(l, 0, .3)))}px)`;
+    items.forEach((it, i) => { const x = P(l, .35 + i * .3, .3); it.style.opacity = eo(x); it.style.transform = `translateX(${lerp(-60, 0, eo(x))}px)`; });
+    pop(none, P(t, tNo, .3), 'rotate(-7deg)'); };
+});
+
+// ---------- 9 both app stores: the real app in a phone ----------
+scene('stores', '', (n, s) => {
+  const [x, y, w, h] = s.box, B = 16;
+  const wrap = el(`<div class="abs" style="inset:0"></div>`, n);
+  el(`<div class="abs" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;box-shadow:0 0 0 2400px var(--subtle)"></div>`, wrap);
+  const bez = el(`<div class="abs" style="left:${x - B}px;top:${y - B}px;width:${w + 2 * B}px;height:${h + 2 * B}px;border:${B}px solid var(--ink);border-radius:44px;box-shadow:0 40px 80px -30px rgba(12,22,34,.45)"></div>`, wrap);
+  const cover = el(`<div class="abs" style="left:${x - B}px;top:${y - B}px;width:${w + 2 * B}px;height:${h + 2 * B}px;background:var(--subtle)"></div>`, wrap);
+  const c1 = el(`<div class="pill" style="left:110px;top:1235px"><i style="background:var(--teal)"></i>Google Play</div>`, n);
+  const c2 = el(`<div class="pill" style="left:580px;top:1235px"><i style="background:var(--primary)"></i>App Store</div>`, n);
+  const t1 = wt('live', 6), t2 = wt('both', 6); sfx(s.t0, 'slide', .7); sfx(t1, 'pop', .8); sfx(t2 + .1, 'pop', .8);
+  return t => { const l = t - s.t0;
+    cover.style.opacity = 1 - eo(P(l, 0, .3)); bez.style.transform = `translateY(${lerp(60, 0, eo(P(l, 0, .4)))}px)`;
+    pop(c1, P(t, t1, .3)); pop(c2, P(t, t2 + .1, .3)); };
+});
+
+// ---------- 10 / 12 a year of weeks: three lit for a traveller, all 52 for an agency ----------
+function weeks(n, lit) {
+  const cells = []; const CW = 62, G = 12, L = (1080 - (13 * CW + 12 * G)) / 2, T = 520;
+  for (let i = 0; i < 52; i++) { const r = Math.floor(i / 13), c = i % 13;
+    cells.push(el(`<div class="cell" style="left:${L + c * (CW + G)}px;top:${T + r * (CW + G)}px;width:${CW}px;height:${CW}px;border:4px solid var(--line2)"></div>`, n)); }
+  return cells;
+}
+const LIT = [9, 30, 46];
+scene('grid1', 'var(--ink)', (n, s) => {
+  const cells = weeks(n);
+  const lab = el(`<div class="abs serif" style="left:0;right:0;top:890px;text-align:center;font-size:112px;color:var(--teal2)">a traveller's year</div>`, n);
+  const tt = [wt('two', 7), wt('two', 7) + .22, wt('three', 7)]; tt.forEach(x => sfx(x, 'tick', .7));
+  return t => { const l = t - s.t0;
+    cells.forEach((c, i) => { const x = P(l, i * .012, .2); c.style.opacity = x; c.style.transform = `scale(${lerp(.5, 1, eo(x))})`; c.style.background = 'transparent'; c.style.boxShadow = 'none'; });
+    LIT.forEach((k, j) => { const x = P(t, tt[j], .25); if (x > 0) { cells[k].style.background = 'var(--teal2)'; cells[k].style.borderColor = 'var(--teal2)';
+      cells[k].style.boxShadow = `0 0 ${40 * (1 - x) + 18}px rgba(53,201,188,.55)`; cells[k].style.transform = `scale(${eb(x)})`; } else cells[k].style.borderColor = 'var(--line2)'; });
+    lab.style.opacity = eo(P(l, .5, .3)); };
+});
+scene('grid2', 'var(--ink)', (n, s) => {
+  const cells = weeks(n);
+  const lab1 = el(`<div class="abs serif" style="left:0;right:0;top:890px;text-align:center;font-size:112px;color:var(--teal2)">a traveller's year</div>`, n);
+  const lab2 = el(`<div class="abs serif" style="left:0;right:0;top:890px;text-align:center;font-size:112px;color:var(--azure)">an agency's year</div>`, n);
+  const t0 = wt('every', 9) - .1; sfx(t0, 'whoosh', .75);
+  return t => {
+    cells.forEach((c, i) => { const lit = LIT.includes(i), x = P(t, t0 + i * .014, .2);
+      c.style.opacity = 1; c.style.background = x > 0 ? 'var(--azure)' : lit ? 'var(--teal2)' : 'transparent';
+      c.style.borderColor = x > 0 ? 'var(--azure)' : lit ? 'var(--teal2)' : 'var(--line2)';
+      c.style.transform = `scale(${x > 0 ? eb(x) : 1})`; c.style.boxShadow = x > 0 && x < 1 ? `0 0 30px rgba(63,167,230,${.6 * (1 - x)})` : 'none'; });
+    const x = P(t, t0 + .2, .35); lab1.style.opacity = 1 - x; lab2.style.opacity = x; };
+});
+
+// ---------- 11 the hard truth: B&W footage + accent ----------
+scene('hard', '', (n, s) => {
+  const [x, y, w, h] = s.box;     // the clip as a 16:9 strip on ink
+  el(`<div class="abs" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;box-shadow:0 0 0 2400px var(--ink)"></div>`, n);
+  const acc = el(`<div class="abs serif" style="left:0;right:0;top:330px;text-align:center;color:#fff;font-size:168px">twice a year</div>`, n);
+  const t1 = wt('twice', 8); sfx(s.t0, 'thud', .5);
+  return t => pop(acc, P(t, t1 - .05, .3));
+});
+
+// ---------- 13 the chaos: chats, sheets, Word invoices ----------
+const CHAOS = [
+  { x: 60, y: 250, r: -4, w: 560, html: `<div class="hdr" style="color:#128C7E">WhatsApp</div><div class="bub">is the deposit paid?</div><br><div class="bub">send the itinerary pls</div><br><div class="bub">which hotel again??</div>` },
+  { x: 560, y: 540, r: 5, w: 460, html: `<div class="hdr" style="color:#C13584">Instagram DMs</div><div class="bub" style="background:#F6EAF1">price for 6 people?</div>` },
+  { x: 90, y: 790, r: 3, w: 520, html: `<div class="hdr" style="color:var(--teal)">payments_FINAL_v3.xlsx</div><div style="margin-top:16px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px">${Array.from({ length: 20 }, (_, i) => `<div style="height:34px;border-radius:5px;background:${[3, 8, 14].includes(i) ? '#F8D7D3' : '#EDF2F6'}"></div>`).join('')}</div>` },
+  { x: 610, y: 930, r: -6, w: 410, html: `<div class="hdr" style="color:var(--primary)">invoice_final2.docx</div>${[90, 70, 84, 55].map(w => `<div style="height:20px;width:${w}%;border-radius:10px;background:#E3EAF1;margin-top:18px"></div>`).join('')}` },
+  { x: 330, y: 1130, r: -3, w: 330, bg: '#DCEBF8', html: `<div class="serif" style="font-size:66px;color:var(--ink)">who paid??</div>` },
+];
+function chaosCards(n) { return CHAOS.map(c => el(`<div class="card" style="left:${c.x}px;top:${c.y}px;width:${c.w}px;padding:26px 30px;${c.bg ? 'background:' + c.bg : ''}">${c.html}</div>`, n)); }
+scene('chaos', 'var(--page)', (n, s) => {
+  const cards = chaosCards(n);
+  const tw = wt('whatsapp', 10), ts = wt('spreadsheets', 10), ti = wt('invoices', 10), tW = wt('word', 10);
+  const at = [tw - .05, tw + .3, ts - .05, ti, tW]; at.forEach((x, i) => sfx(x, i < 2 ? 'msg' : 'pop', .75));
+  return t => cards.forEach((c, i) => { const x = P(t, at[i], .3);
+    pop(c, x, `translateY(${Math.sin(t * 1.4 + i * 1.9) * 7}px) rotate(${CHAOS[i].r}deg)`); });
+});
+
+// ---------- 14 narrow: the chaos collapses into one line, the line opens into the CRM ----------
+scene('narrow', 'var(--page)', (n, s) => {
+  const cards = chaosCards(n);
+  const line = el(`<div class="abs" style="left:536px;top:560px;width:8px;height:680px;border-radius:4px;background:var(--azure);transform-origin:center"></div>`, n);
+  const word = el(`<div class="abs serif" style="left:0;right:0;top:250px;text-align:center;font-size:210px;color:var(--ink)">narrow</div>`, n);
+  const g = el(`<svg class="draw"><path d="M300,470 C430,440 640,490 790,450" stroke="#3FA7E6" stroke-width="16"/></svg>`, n);
+  const sw = g.querySelector('path');
+  const br = el(`<div class="browser" style="left:40px;top:560px;width:1000px;height:669px;transform-origin:center"><div class="bar"><b></b><b></b><b></b></div>
+     <div class="view"><img src="img/home.png" style="width:1000px"></div></div>`, n);
+  const tn = wt('narrow', 11), tb = wt('built', 11); sfx(s.t0, 'swish', .8); sfx(tn, 'glow', .7); sfx(tb, 'slide', .8);
+  return t => { const l = t - s.t0;
+    cards.forEach((c, i) => { const x = eo(P(l, i * .04, .5)), C = CHAOS[i];
+      const dx = (540 - (C.x + C.w / 2)) * x, dy = (900 - (C.y + 150)) * x;
+      c.style.opacity = 1 - P(l, .3 + i * .04, .2); c.style.transform = `translate(${dx}px,${dy}px) rotate(${C.r * (1 - x)}deg) scale(${lerp(1, .1, x)})`; });
+    const lx = eo(P(l, .35, .35)); const bx = eo(P(t, tb, .45));
+    line.style.opacity = bx > .15 ? 0 : 1; line.style.transform = `scaleY(${lx})`;
+    br.style.opacity = bx > 0 ? 1 : 0; br.style.transform = `scaleX(${lerp(.008, 1, bx)}) scaleY(${lerp(.9, 1, bx)})`;
+    pop(word, P(t, tn - .05, .3)); draw(sw, eo(P(t, tn + .12, .4))); };
+});
+
+// ---------- 15 one inbox ----------
+scene('inbox', 'var(--subtle)', (n, s) => {
+  const br = el(`<div class="browser" style="left:40px;top:250px;width:1000px;height:960px"><div class="bar"><b></b><b></b><b></b></div>
+     <div class="view"><img src="img/inbox.png" style="width:1500px"></div></div>`, n);
+  const img = br.querySelector('img');
+  const c1 = el(`<div class="pill" style="left:110px;top:1150px"><i style="background:#25D366"></i>WhatsApp</div>`, n);
+  const c2 = el(`<div class="pill" style="left:590px;top:1150px"><i style="background:#E1306C"></i>Instagram</div>`, n);
+  const t1 = wt('whatsapp', 12), t2 = wt('instagram', 12); sfx(t1, 'msg', .8); sfx(t2, 'msg', .8);
+  return t => { const l = t - s.t0, d = s.t1 - s.t0, x = eo(P(l, 0, d));
+    br.style.opacity = eo(P(l, 0, .25)); br.style.transform = `translateY(${lerp(50, 0, eo(P(l, 0, .35)))}px)`;
+    img.style.transform = `translate(${lerp(-150, -470, x)}px, ${lerp(0, -40, x)}px) scale(${lerp(1, 1.14, x)})`;
+    const a = P(t, t1, .4), b = P(t, t2, .4);
+    c1.style.opacity = clamp(a * 3); c1.style.transform = `translateX(${lerp(-500, 0, eo(a))}px)`;
+    c2.style.opacity = clamp(b * 3); c2.style.transform = `translateX(${lerp(500, 0, eo(b))}px)`; };
+});
+
+// ---------- 16 itineraries in their own design, invoices, payment plans ----------
+scene('pdfs', 'var(--ink)', (n, s) => {
+  const pages = [['pdf_lantern_00', 200, -3], ['pdf_lantern_02', 430, 2.5], ['pdf_lantern_04', 660, -1.5]].map(([f, y, r]) =>
+    ({ n: el(`<div class="abs" style="left:90px;top:${y}px;width:900px;height:506px;border-radius:18px;overflow:hidden;box-shadow:0 34px 70px -24px rgba(0,0,0,.7)"><img src="img/${f}.png" style="width:100%;height:100%;display:block"></div>`, n), r }));
+  const c1 = el(`<div class="pill" style="left:120px;top:1180px">Invoices</div>`, n);
+  const c2 = el(`<div class="pill" style="left:470px;top:1180px">Payment plans</div>`, n);
+  const ti = wt('itineraries', 13), tv = wt('invoices', 13), tp = wt('payment', 13);
+  const pt = [s.t0 + .02, ti - .1 + .35, ti - .1 + .7];     // the first page is already arriving on the cut
+  pt.forEach(x => sfx(x, 'pop', .7)); sfx(tv, 'tick', .7); sfx(tp, 'tick', .7);
+  return t => {
+    pages.forEach((p, i) => { const x = P(t, pt[i], .4);
+      p.n.style.opacity = clamp(x * 3); p.n.style.transform = `translateX(${lerp(700, 0, eo(x))}px) rotate(${p.r}deg)`; });
+    pop(c1, P(t, tv, .3)); pop(c2, P(t, tp, .3)); };
+});
+
+// ---------- 17 an agency paid: notification over the waterfall ----------
+scene('paid', '', (n, s) => {
+  const note = el(`<div class="abs" style="left:50px;top:170px;width:980px;padding:30px 34px;border-radius:44px;background:rgba(255,255,255,.94);display:flex;gap:28px;align-items:center;box-shadow:0 30px 70px -30px rgba(0,0,0,.6)">
+     <img src="img/app_icon.png" style="width:112px;height:112px;border-radius:26px">
+     <div style="flex:1"><div style="display:flex;justify-content:space-between;font-size:32px;font-weight:600;color:var(--muted)"><span>WanderBuddy</span><span>now</span></div>
+       <div style="font-size:50px;font-weight:700;color:var(--ink);margin-top:4px">Payment received</div>
+       <div style="font-size:38px;font-weight:600;color:var(--ink2);margin-top:2px">A travel agency paid its invoice</div></div></div>`, n);
+  const lab = el(`<div class="abs serif shadow" style="left:90px;top:520px;font-size:150px;color:#fff;transform-origin:left center">first revenue</div>`, n);
+  const g = el(`<svg class="draw"><path id="a" d="M800,520 C850,470 860,440 830,400" stroke="#fff" stroke-width="9"/>
+     <path id="h" d="${ARROW_HEAD(830, 400, -1.9)}" stroke="#fff" stroke-width="9"/></svg>`, n);
+  const [a, hd] = ['a', 'h'].map(k => g.querySelector('#' + k));
+  const tp = wt('paying', 14); sfx(tp - .35, 'msg', 1); sfx(tp + .35, 'glow', .8);
+  return t => { const x = P(t, tp - .35, .45);
+    note.style.opacity = clamp(x * 3); note.style.transform = `translateY(${lerp(-300, 0, eb(x))}px)`;
+    pop(lab, P(t, tp + .35, .3), 'rotate(-4deg)'); draw(a, eo(P(t, tp + .55, .3))); draw(hd, eo(P(t, tp + .83, .12))); };
+});
+
+// ---------- 18 every trip they run: three panels ----------
+scene('tri', '', (n, s) => {
+  const [x0, y, w, h] = s.box; const covers = [];
+  for (let k = 0; k < 3; k++) { const x = x0 + k * (w + x0);
+    el(`<div class="abs" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;border-radius:2px;box-shadow:0 0 0 ${k === 1 ? 0 : 0}px transparent"></div>`, n);
+    covers.push(el(`<div class="abs" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:var(--ink);transform-origin:top"></div>`, n)); }
+  // ground around the panels (cut.py paints ink there already; this keeps the page honest if the footage changes)
+  [0, 1, 2].forEach(k => sfx(s.t0 + k * .2, 'tick', .55));
+  return t => { const l = t - s.t0; covers.forEach((c, k) => c.style.transform = `scaleY(${1 - eo(P(l, k * .2, .45))})`); };
+});
+
+// ---------- 19 travellers come into the app ----------
+scene('members', 'var(--page)', (n, s) => {
+  const ph = el(`<div class="phone" style="left:355px;top:300px;width:370px;height:800px"><img src="img/members-light.png"></div>`, n);
+  const AV = [['M', '#1A6FB0', 120, 420], ['J', '#14756B', 860, 380], ['K', '#1E88D6', 90, 820], ['S', '#26394B', 880, 760], ['L', '#3FA7E6', 470, 1140]];
+  const avs = AV.map(([c, bg, x, y]) => el(`<div class="av" style="left:${x - 59}px;top:${y - 59}px;background:${bg}">${c}</div>`, n));
+  AV.forEach((_, i) => sfx(s.t0 + .2 + i * .17, 'pop', .6));
+  return t => { const l = t - s.t0;
+    ph.style.opacity = eo(P(l, 0, .25)); ph.style.transform = `translateY(${lerp(60, 0, eo(P(l, 0, .35)))}px)`;
+    avs.forEach((a, i) => { const [, , x, y] = AV[i]; const pin = P(l, .2 + i * .17, .25), fly = eo(P(l, .75 + i * .12, .45));
+      a.style.opacity = pin > 0 ? 1 - fly * .9 : 0;
+      a.style.transform = `translate(${(540 - x) * fly}px,${(700 - y) * fly}px) scale(${eb(pin) * lerp(1, .35, fly)})`; }); };
+});
+
+// ---------- 20 the question, over the road ----------
+scene('cta1', '', (n, s) => {
+  el(`<div class="abs" style="left:0;right:0;top:0;height:900px;background:linear-gradient(rgba(12,22,34,.6),rgba(12,22,34,0))"></div>`, n);
+  const words = ['Run', 'a', 'travel', 'agency', 'on', 'WhatsApp', 'and', 'Word?'];
+  const box = el(`<div class="abs shadow" style="left:70px;right:70px;top:250px;text-align:center;color:#fff;font-weight:700;font-size:104px;line-height:1.04;letter-spacing:-.03em"></div>`, n);
+  const sp = words.map((w, i) => el(`<span style="display:inline-block;margin:0 .12em" class="${i === 7 ? 'serif' : ''}">${w}</span>`, box));
+  sp[7].style.fontSize = '150px'; sp[7].style.fontWeight = 400;
+  const tw = words.map((w, i) => WORDS.filter(x => x.i === 16)[i].t0); sfx(s.t0, 'lift', .7);
+  return t => sp.forEach((x, i) => { const a = P(t, tw[i] - .04, .2); x.style.opacity = a; x.style.transform = `translateY(${lerp(26, 0, eo(a))}px)`; });
+});
+
+// ---------- 21 end card ----------
+scene('end', 'var(--blue)', (n, s) => {
+  const mark = el(`<img class="abs" src="img/mark_t.png" style="left:280px;top:430px;width:520px">`, n);
+  const word = el(`<img class="abs" src="img/layer-word.png" style="left:0;top:-150px;width:1080px">`, n);
+  const url = el(`<div class="abs" style="left:0;right:0;top:1130px;text-align:center"><span style="display:inline-block;background:#fff;color:var(--blue);font-weight:700;font-size:54px;padding:26px 50px;border-radius:70px;letter-spacing:-.01em">wanderbuddyapp.com/partners</span></div>`, n);
+  const tu = WORDS.filter(x => x.i === 17).slice(-1)[0].t0; sfx(s.t0 + .1, 'glow', .8); sfx(tu, 'tick', .8);
+  return t => { const l = t - s.t0;
+    const m = P(l, .05, .5); mark.style.opacity = clamp(m * 2); mark.style.transform = `translateY(${lerp(60, 0, eo(m))}px) scale(${lerp(.85, 1, eb(m))})`;
+    word.style.opacity = eo(P(l, .35, .4)); pop(url, P(t, tu - .1, .35)); };
+});
+
+// ---------- captions ----------
+const cc = document.getElementById('cc'), ccs = document.getElementById('ccs');
+const LIGHT = ['notapp', 'june', 'notech', 'stores', 'chaos', 'narrow', 'inbox', 'members'];
+const CC_TOP = { stores: 1400, chaos: 1395, inbox: 1330, june: 1500 };
+const NO_CC = ['cta1', 'end'];
+const showCC = new URLSearchParams(location.search).get('cc') !== '0';
+
+window.__seek = t => {
+  const cur = E.shots.find(s => t >= s.t0 && t < s.t1) || E.shots[E.shots.length - 1];
+  for (const id in scenes) { const sc = scenes[id], on = sc.s === cur; sc.node.style.display = on ? 'block' : 'none'; if (on) sc.draw(t); }
+  const ch = CAPS.find(c => t >= c.t0 - .04 && t < c.t1);
+  if (!showCC || !ch || NO_CC.includes(cur.id)) { cc.style.display = 'none'; return; }
+  cc.style.display = 'block'; cc.className = LIGHT.includes(cur.id) ? 'light' : 'dark';
+  cc.style.top = (CC_TOP[cur.id] || 1330) + 'px';
+  ccs.textContent = ch.text; const x = P(t, ch.t0 - .04, .12);
+  ccs.style.opacity = clamp(x * 1.5); ccs.style.transform = `scale(${lerp(.9, 1, eo(x))})`;
+};
+window.SFX = SFX.sort((a, b) => a.t - b.t); window.__dur = E.duration; window.TL = window.TL;
+Promise.all([document.fonts.ready, ...[...document.images].map(i => i.complete ? 1 : new Promise(r => { i.onload = i.onerror = r; }))])
+  .then(() => { window.__seek(0); window.__ready = true; });
+</script>
+</body></html>

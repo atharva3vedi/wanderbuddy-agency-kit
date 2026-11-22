@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WanderBuddy — group trip explainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B141F; --ink2:#12202E; --surface:#17293B; --border:#25394C;
+    --azure:#3FA7E6; --azureLt:#7CC6F2; --amber:#F0A431; --teal:#35C9BC;
+    --violet:#A98BE0; --coral:#E0655F; --text:#E7F1FA; --muted:#8DA7BC; --red:#F05555;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#0B141F;}
+  #stage{position:relative;width:1080px;height:1920px;overflow:hidden;
+    background:radial-gradient(120% 90% at 50% 22%, #12243a 0%, #0B141F 60%, #070e16 100%);
+    font-family:'Montserrat',system-ui,sans-serif; color:var(--text);}
+  .fill{position:absolute;inset:0;}
+  #vignette{background:radial-gradient(120% 100% at 50% 45%, rgba(0,0,0,0) 40%, rgba(0,0,0,.55) 100%);pointer-events:none;z-index:70;}
+  #flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:65;pointer-events:none;}
+  /* map */
+  #mapLayer{position:absolute;left:-40px;top:-64px;width:1160px;z-index:1;opacity:0;}
+  #mapLayer img{width:1160px;display:block;}
+  #mapTint{position:absolute;inset:0;background:linear-gradient(180deg, rgba(11,20,31,.5), rgba(11,20,31,.8));z-index:2;}
+  /* route (scene G) */
+  #route{position:absolute;inset:0;z-index:15;opacity:0;}
+  .stop{position:absolute;z-index:16;width:66px;height:66px;border-radius:50%;display:grid;place-items:center;
+    background:var(--amber);color:#3A2606;font-weight:900;font-size:30px;border:4px solid #fff;
+    box-shadow:0 8px 20px rgba(0,0,0,.5);opacity:0;transform:scale(.4);}
+  /* crew avatars */
+  .av{position:absolute;z-index:20;width:104px;height:104px;border-radius:50%;display:grid;place-items:center;
+    font-weight:800;font-size:44px;box-shadow:0 10px 30px rgba(0,0,0,.45);border:4px solid rgba(255,255,255,.92);}
+  .av .ring{position:absolute;inset:-14px;border-radius:50%;border:3px solid currentColor;opacity:0;}
+  .av.you{background:var(--azure);color:var(--azure);}
+  .av.maya{background:var(--coral);color:var(--coral);}
+  .av.leo{background:var(--teal);color:var(--teal);}
+  .av.priya{background:var(--violet);color:var(--violet);}
+  .av b{position:relative;z-index:2;color:#06121c;}
+  #meetPin{position:absolute;z-index:22;width:100px;height:130px;opacity:0;}
+  .pulse{position:absolute;width:56px;height:56px;border-radius:50%;border:4px solid var(--amber);z-index:21;opacity:0;}
+  /* phones */
+  .phone{position:absolute;z-index:30;left:50%;top:300px;width:372px;transform:translateX(-50%);opacity:0;}
+  .phone .bezel{position:relative;width:372px;height:800px;border-radius:52px;background:#050b12;
+    border:3px solid #2b4257;box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 0 2px rgba(63,167,230,.12);padding:12px;overflow:hidden;}
+  .phone .scr{position:relative;width:100%;height:100%;border-radius:40px;overflow:hidden;background:#0B141F;}
+  .phone .scr img{position:absolute;left:0;top:0;width:100%;display:block;}
+  .phone .glow{position:absolute;inset:-3px;border-radius:52px;box-shadow:0 0 60px 6px rgba(63,167,230,.35);pointer-events:none;}
+  .notch{position:absolute;left:50%;top:12px;transform:translateX(-50%);width:120px;height:26px;border-radius:0 0 18px 18px;background:#050b12;z-index:3;}
+  .hl{position:absolute;z-index:4;border-radius:16px;border:3px solid var(--amber);box-shadow:0 0 24px 3px rgba(240,164,49,.5);opacity:0;}
+  /* stickers */
+  .sticker{position:absolute;z-index:40;width:150px;height:150px;opacity:0;filter:drop-shadow(0 14px 22px rgba(0,0,0,.5));}
+  .sticker svg{width:100%;height:100%;display:block;}
+  /* AI gag */
+  #aiGhost{position:absolute;left:50%;top:470px;transform:translateX(-50%);width:220px;height:220px;z-index:41;opacity:0;}
+  #aiGhost svg{width:100%;height:100%;}
+  #slash{position:absolute;left:50%;top:470px;transform:translateX(-50%);width:240px;height:240px;z-index:42;opacity:0;}
+  #slash svg{width:100%;height:100%;}
+  /* vote card */
+  #voteCard{position:absolute;left:90px;right:90px;top:470px;z-index:44;opacity:0;
+    background:linear-gradient(180deg,#183042,#12202E);border:2px solid var(--border);border-radius:34px;padding:38px 36px 34px;
+    box-shadow:0 30px 70px rgba(0,0,0,.5);}
+  #voteCard .vhdr{font-weight:900;font-size:52px;letter-spacing:-.01em;margin-bottom:26px;}
+  #voteCard .vhdr span{color:var(--amber);}
+  .vrow{position:relative;height:96px;border-radius:20px;background:#0e1b28;border:2px solid #223span;
+    border:2px solid #22384c;margin-bottom:18px;overflow:hidden;display:flex;align-items:center;padding:0 24px;}
+  .vrow .vfill{position:absolute;left:0;top:0;bottom:0;width:100%;transform:scaleX(0);transform-origin:left;
+    background:linear-gradient(90deg,rgba(63,167,230,.35),rgba(63,167,230,.12));z-index:1;}
+  .vrow.win .vfill{background:linear-gradient(90deg,rgba(240,164,49,.45),rgba(240,164,49,.15));}
+  .vrow .vlabel{position:relative;z-index:2;font-weight:800;font-size:38px;color:var(--text);}
+  .vrow .vdots{position:relative;z-index:2;margin-left:auto;display:flex;gap:8px;}
+  .vrow .vdots i{width:44px;height:44px;border-radius:50%;border:3px solid #fff;opacity:0;transform:scale(.3);display:inline-block;
+    font-style:normal;text-align:center;line-height:40px;font-weight:800;font-size:22px;color:#06121c;}
+  .vrow .vcheck{position:relative;z-index:2;margin-left:14px;font-weight:900;font-size:40px;color:var(--amber);opacity:0;}
+  .dY{background:var(--azure);} .dM{background:var(--coral);} .dL{background:var(--teal);} .dP{background:var(--violet);}
+  /* captions */
+  .cap{position:absolute;z-index:50;left:60px;right:60px;text-align:center;}
+  .cap .cl{display:block;line-height:1.02;letter-spacing:-.01em;}
+  .cap .w{display:inline-block;opacity:0;transform:translateY(22px);margin-right:.26em;}
+  .cap .hlw{color:var(--amber);}
+  .cap.big .cl{font-weight:900;font-size:104px;}
+  .cap.med .cl{font-weight:800;font-size:80px;}
+  .cap.sm .cl{font-weight:800;font-size:62px;}
+  /* wordmark + hook pill */
+  #wm{position:absolute;z-index:55;left:0;right:0;top:96px;text-align:center;opacity:0;}
+  #wm .lg{display:inline-block;width:46px;height:46px;vertical-align:middle;margin-right:16px;}
+  #wm span{font-weight:800;font-size:44px;letter-spacing:.14em;vertical-align:middle;}
+  #hookPill{position:absolute;z-index:52;left:0;right:0;top:660px;text-align:center;opacity:0;}
+  #hookPill em{font-style:normal;display:inline-block;background:rgba(63,167,230,.14);border:2px solid rgba(63,167,230,.5);
+    color:var(--azureLt);font-weight:700;font-size:38px;padding:14px 30px;border-radius:999px;letter-spacing:.02em;}
+  /* CTA */
+  #cta{position:absolute;inset:0;z-index:58;display:grid;place-content:center;justify-items:center;opacity:0;}
+  #cta .logo{width:200px;height:200px;}
+  #cta .logo svg{width:100%;height:100%;filter:drop-shadow(0 20px 50px rgba(30,136,214,.5));}
+  #cta .name{margin-top:44px;font-weight:900;font-size:96px;letter-spacing:-.01em;}
+  #cta .name b{color:var(--azure);}
+  #cta .tag{margin-top:14px;font-weight:800;font-size:50px;color:var(--text);}
+  #cta .url{margin-top:40px;font-weight:800;font-size:40px;color:var(--amber);border:2px solid rgba(240,164,49,.55);
+    background:rgba(240,164,49,.10);padding:14px 34px;border-radius:999px;letter-spacing:.02em;}
+</style>
+</head>
+<body>
+<div id="stage" data-composition-id="wb">
+
+  <!-- MAP + ROUTE + CREW -->
+  <div id="mapLayer"><img src="assets/map_bg.png" alt=""><div id="mapTint"></div></div>
+  <svg id="route" viewBox="0 0 1080 1920" preserveAspectRatio="none">
+    <path id="routePath" d="M300,560 L620,720 L760,1080 L440,1320" fill="none" stroke="#3FA7E6" stroke-width="10"
+      stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 22" opacity="0.95"/>
+  </svg>
+  <div class="stop" id="s1" style="left:267px;top:527px;">1</div>
+  <div class="stop" id="s2" style="left:587px;top:687px;">2</div>
+  <div class="stop" id="s3" style="left:727px;top:1047px;">3</div>
+  <div class="stop" id="s4" style="left:407px;top:1287px;">4</div>
+
+  <div class="av you"   id="avY"><span class="ring"></span><b>Y</b></div>
+  <div class="av maya"  id="avM"><span class="ring"></span><b>M</b></div>
+  <div class="av leo"   id="avL"><span class="ring"></span><b>L</b></div>
+  <div class="av priya" id="avP"><span class="ring"></span><b>P</b></div>
+  <div class="pulse" id="pulse"></div>
+  <div class="sticker" id="meetPin">
+    <svg viewBox="0 0 100 130"><path d="M50 4C26 4 7 23 7 47c0 30 43 79 43 79s43-49 43-79C93 23 74 4 50 4z" fill="#F0A431" stroke="#fff" stroke-width="6"/><circle cx="50" cy="46" r="17" fill="#0B141F"/></svg>
+  </div>
+
+  <!-- PHONES -->
+  <div class="phone" id="phChat"><div class="bezel"><div class="notch"></div><div class="scr"><img src="assets/chat.png" alt=""></div><div class="glow"></div><div class="hl" id="hlChat" style="left:20px;top:640px;right:20px;height:96px;"></div></div></div>
+  <div class="phone" id="phPlan"><div class="bezel"><div class="notch"></div><div class="scr"><img src="assets/itinerary.png" alt=""></div><div class="glow"></div></div></div>
+  <div class="phone" id="phBudget"><div class="bezel"><div class="notch"></div><div class="scr"><img src="assets/budget.png" alt=""></div><div class="glow"></div><div class="hl" id="hlBudget" style="left:20px;top:405px;right:20px;height:82px;"></div></div></div>
+
+  <!-- STICKERS -->
+  <div class="sticker" id="stChat">
+    <svg viewBox="0 0 130 120"><rect x="8" y="12" width="114" height="80" rx="24" fill="#35C9BC" stroke="#fff" stroke-width="7"/><path d="M40 90l-4 24 30-20z" fill="#35C9BC" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><circle cx="45" cy="52" r="7" fill="#06322e"/><circle cx="66" cy="52" r="7" fill="#06322e"/><circle cx="87" cy="52" r="7" fill="#06322e"/></svg>
+  </div>
+  <div class="sticker" id="stCoins">
+    <svg viewBox="0 0 130 120"><ellipse cx="65" cy="86" rx="46" ry="18" fill="#E0972A" stroke="#fff" stroke-width="7"/><ellipse cx="65" cy="64" rx="46" ry="18" fill="#F0A431" stroke="#fff" stroke-width="7"/><ellipse cx="65" cy="42" rx="46" ry="18" fill="#F7B84E" stroke="#fff" stroke-width="7"/><text x="65" y="52" font-family="Montserrat" font-weight="900" font-size="26" fill="#4A2E08" text-anchor="middle">B</text></svg>
+  </div>
+  <div class="sticker" id="stPeople">
+    <svg viewBox="0 0 140 120"><circle cx="45" cy="42" r="20" fill="#3FA7E6" stroke="#fff" stroke-width="7"/><path d="M14 108c0-20 14-34 31-34s31 14 31 34z" fill="#3FA7E6" stroke="#fff" stroke-width="7"/><circle cx="95" cy="46" r="17" fill="#A98BE0" stroke="#fff" stroke-width="7"/><path d="M70 108c0-17 12-29 25-29s25 12 25 29z" fill="#A98BE0" stroke="#fff" stroke-width="7"/></svg>
+  </div>
+
+  <!-- LOGO sticker (scene B) -->
+  <div class="sticker" id="stApp" style="width:180px;height:180px;">
+    <svg viewBox="0 0 120 120"><rect x="4" y="4" width="112" height="112" rx="28" fill="#1E88D6"/><path d="M24 76 L48 44 L58 57 L70 34 L96 76 Z" fill="#fff"/><path d="M24 82 C33 78 41 78 50 82 C59 86 67 86 76 82 C83 79 89 80 96 82 L96 94 L24 94 Z" fill="#fff"/></svg>
+  </div>
+
+  <!-- AI gag -->
+  <div id="aiGhost">
+    <svg viewBox="0 0 120 120"><path d="M60 8l13 34 34 13-34 13-13 34-13-34L13 55l34-13z" fill="#3FA7E6" stroke="#fff" stroke-width="6" stroke-linejoin="round"/></svg>
+  </div>
+  <div id="slash">
+    <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="#F05555" stroke-width="12"/><line x1="26" y1="26" x2="94" y2="94" stroke="#F05555" stroke-width="12" stroke-linecap="round"/></svg>
+  </div>
+
+  <!-- VOTE CARD -->
+  <div id="voteCard">
+    <div class="vhdr">Where to <span>first?</span></div>
+    <div class="vrow" id="vr1"><div class="vfill"></div><span class="vlabel">Wat Arun</span><div class="vdots"><i class="dY">Y</i><i class="dM">M</i><i class="dL">L</i></div><span class="vcheck">&#10003;</span></div>
+    <div class="vrow" id="vr2"><div class="vfill"></div><span class="vlabel">Rooftop sunset</span><div class="vdots"><i class="dP">P</i></div></div>
+    <div class="vrow" id="vr3" style="margin-bottom:0;"><div class="vfill"></div><span class="vlabel">Night market</span><div class="vdots"></div></div>
+  </div>
+
+  <!-- WORDMARK + hook pill -->
+  <div id="wm"><span class="lg"><svg viewBox="0 0 120 120"><rect x="4" y="4" width="112" height="112" rx="28" fill="#1E88D6"/><path d="M24 76 L48 44 L58 57 L70 34 L96 76 Z" fill="#fff"/><path d="M24 82 C33 78 41 78 50 82 C59 86 67 86 76 82 C83 79 89 80 96 82 L96 94 L24 94 Z" fill="#fff"/></svg></span><span>WANDERBUDDY</span></div>
+  <div id="hookPill"><em>one app for group travel</em></div>
+
+  <div id="caps"></div>
+
+  <!-- CTA -->
+  <div id="cta">
+    <div class="logo"><svg viewBox="0 0 120 120"><rect x="4" y="4" width="112" height="112" rx="30" fill="#1E88D6"/><path d="M24 76 L48 44 L58 57 L70 34 L96 76 Z" fill="#fff"/><path d="M24 82 C33 78 41 78 50 82 C59 86 67 86 76 82 C83 79 89 80 96 82 L96 94 L24 94 Z" fill="#fff"/></svg></div>
+    <div class="name">Wander<b>Buddy</b></div>
+    <div class="tag">Plan your group trip, together.</div>
+    <div class="url">wanderbuddyapp.com</div>
+  </div>
+
+  <div class="fill" id="flash"></div>
+  <div class="fill" id="vignette"></div>
+</div>
+
+<script src="assets/gsap.min.js"></script>
+<script>
+(function(){
+  var D = 31.0;
+  var L = {
+    l1:0.50, l2:3.97, l3:6.85, l4:8.82, l5:12.51, l6:14.95,
+    l7:17.44, l8:19.85, l9:22.44, l10:24.21, l11:26.35
+  };
+  var S = {
+    A:[0.0,3.95], B:[3.95,6.85], C:[6.85,8.82], D:[8.82,12.45],
+    E:[12.45,17.44], F:[17.44,19.85], G:[19.85,26.35], H:[26.35,31.0]
+  };
+
+  var capDefs = [
+    {in:0.0,    out:S.A[1], pre:true, pos:{top:'300px'},  cls:'big', lines:['GROUP TRIPS,','MINUS THE {CHAOS}']},
+    {in:L.l2,   out:S.B[1],           pos:{top:'640px'},  cls:'med', lines:['{WANDERBUDDY}','PUTS YOUR WHOLE TRIP','IN {ONE APP}']},
+    {in:L.l3,   out:S.C[1],           pos:{top:'1180px'}, cls:'med', lines:['EVERYONE IN','{ONE THREAD}']},
+    {in:L.l4,   out:S.D[1],           pos:{top:'1170px'}, cls:'med', lines:['{AI} PLANS YOUR DAYS','AND {BOOKS} IT']},
+    {in:L.l5,   out:14.82,            pos:{top:'760px'},  cls:'big', lines:['NOT INTO AI?','{SAME.}']},
+    {in:L.l6,   out:S.E[1],           pos:{top:'1150px'}, cls:'med', lines:['PUT IT TO A','{GROUP VOTE}']},
+    {in:L.l7,   out:S.F[1],           pos:{top:'1180px'}, cls:'med', lines:['SPLIT COSTS,','{SETTLE UP} FAST']},
+    {in:L.l8,   out:22.34,            pos:{top:'300px'},  cls:'med', lines:['YOUR ITINERARY,','{ON THE MAP}']},
+    {in:L.l9,   out:24.12,            pos:{top:'300px'},  cls:'med', lines:['FOLLOW THE CREW,','{LIVE}']},
+    {in:L.l10,  out:S.G[1],           pos:{top:'1250px'}, cls:'big', lines:['ONE APP.','{EVERYONE} TOGETHER.']}
+  ];
+
+  var capsRoot = document.getElementById('caps');
+  function buildCap(def){
+    var cap=document.createElement('div'); cap.className='cap '+def.cls;
+    for(var k in def.pos) cap.style[k]=def.pos[k];
+    var words=[];
+    def.lines.forEach(function(line){
+      var cl=document.createElement('span'); cl.className='cl';
+      var re=/\{([^}]*)\}|([^{}]+)/g,m;
+      while((m=re.exec(line))){
+        var hl=m[1]!==undefined; var text=hl?m[1]:m[2];
+        text.split(/\s+/).forEach(function(tok){ if(tok==='')return;
+          var w=document.createElement('span'); w.className='w'+(hl?' hlw':''); w.textContent=tok;
+          cl.appendChild(w); words.push(w); });
+      }
+      cap.appendChild(cl);
+    });
+    capsRoot.appendChild(cap); return {el:cap,words:words};
+  }
+  var capNodes=capDefs.map(buildCap);
+
+  // initial states
+  gsap.set(['#phChat','#phPlan','#phBudget'],{autoAlpha:0,y:70});
+  gsap.set(['#stChat','#stCoins','#stPeople','#stApp','#aiGhost'],{autoAlpha:0,scale:0.4,rotation:-8,transformOrigin:'50% 60%'});
+  gsap.set('#slash',{autoAlpha:0,scale:1.6,transformOrigin:'50% 50%'});
+  gsap.set('#voteCard',{autoAlpha:0,y:40,scale:0.94,transformOrigin:'50% 50%'});
+  gsap.set('.vrow .vfill',{scaleX:0});
+  gsap.set('.vrow .vdots i',{autoAlpha:0,scale:0.3});
+  gsap.set('.vrow .vcheck',{autoAlpha:0});
+  gsap.set(['.hl'],{autoAlpha:0});
+  gsap.set('#route',{autoAlpha:0});
+  gsap.set('.stop',{autoAlpha:0,scale:0.4,transformOrigin:'50% 50%'});
+  gsap.set('#flash',{autoAlpha:0});
+  gsap.set('#cta',{autoAlpha:0});
+  gsap.set('#cta .logo',{scale:0.6,y:20,transformOrigin:'50% 50%'});
+  gsap.set('#cta .name',{autoAlpha:0,y:24});
+  gsap.set('#cta .tag',{autoAlpha:0,y:20});
+  gsap.set('#cta .url',{autoAlpha:0,scale:0.8,transformOrigin:'50% 50%'});
+  // route dash draw
+  var rp=document.getElementById('routePath');
+  var rlen=rp.getTotalLength();
+  gsap.set(rp,{strokeDasharray:rlen,strokeDashoffset:rlen});
+
+  var scatter={avY:[170,880],avM:[840,900],avL:[810,1330],avP:[190,1280]};
+  var gPos   ={avY:[260,540],avM:[690,700],avL:[720,1120],avP:[380,1330]};
+  var cluster={avY:[520,690],avM:[700,690],avL:[520,850],avP:[700,850]};
+
+  // meet pin / pulse follow stop 2 (620,720)
+  gsap.set('#meetPin',{left:'570px',top:'640px',autoAlpha:0,scale:1,rotation:0,transformOrigin:'50% 90%'});
+  gsap.set('#pulse',{left:'592px',top:'692px',autoAlpha:0,scale:0.5,transformOrigin:'50% 50%'});
+
+  // PRE-FORM HOOK at t0
+  gsap.set('#mapLayer',{autoAlpha:1,y:0});
+  gsap.set('#wm',{autoAlpha:1,y:0});
+  gsap.set('#hookPill',{autoAlpha:1,y:0});
+  ['avY','avM','avL','avP'].forEach(function(id){ gsap.set('#'+id,{autoAlpha:1,scale:1,x:scatter[id][0],y:scatter[id][1]}); });
+  capDefs.forEach(function(def,i){ gsap.set(capNodes[i].words, def.pre?{autoAlpha:1,y:0}:{autoAlpha:0,y:22}); });
+
+  var tl=gsap.timeline({paused:true});
+  function capIn(i){ if(capDefs[i].pre)return; tl.to(capNodes[i].words,{autoAlpha:1,y:0,duration:0.42,ease:'back.out(2)',stagger:0.05}, capDefs[i].in-0.05); }
+  function capOut(i){ tl.to(capNodes[i].words,{autoAlpha:0,y:-8,duration:0.28,ease:'power2.out'}, capDefs[i].out-0.30); }
+  capDefs.forEach(function(d,i){ capIn(i); capOut(i); });
+
+  // === A HOOK ===
+  tl.to('#mapLayer',{y:22,duration:S.A[1],ease:'none'},0.0);
+  ['avY','avM','avL','avP'].forEach(function(id,i){ tl.to('#'+id,{y:'+=20',duration:1.15,ease:'sine.inOut',yoyo:true,repeat:1},0.2+i*0.12); });
+  tl.to(['#hookPill','#wm','#avY','#avM','#avL','#avP','#mapLayer'],{autoAlpha:0,duration:0.34,ease:'power2.out'},S.A[1]-0.18);
+
+  // === B WHAT IT IS (logo) ===
+  gsap.set('#stApp',{left:'50%',top:'420px',xPercent:-50});
+  tl.to('#stApp',{autoAlpha:1,scale:1,rotation:0,duration:0.55,ease:'back.out(1.9)'},S.B[0]-0.22);
+  tl.to('#stApp',{y:'+=16',duration:1.2,ease:'sine.inOut',yoyo:true,repeat:2},S.B[0]+0.6);
+  tl.to('#stApp',{autoAlpha:0,scale:0.6,duration:0.28,ease:'power2.out'},S.B[1]-0.26);
+
+  // === C CHAT ===
+  phoneScene('#phChat',S.C);
+  sticker('#stChat','690px','250px',8,S.C);
+  tl.fromTo('#hlChat',{autoAlpha:0,scale:0.96},{autoAlpha:1,scale:1,duration:0.4,ease:'power2.out',immediateRender:false},S.C[0]+0.7);
+  tl.to('#hlChat',{autoAlpha:0,duration:0.2},S.C[1]-0.26);
+
+  // === D AI PLAN + BOOK ===
+  phoneScene('#phPlan',S.D);
+  // reuse aiGhost sparkle as the beat sticker in D too (small, top-right)
+  gsap.set('#aiGhost',{});
+  tl.fromTo('#aiGhost',{autoAlpha:0,scale:0.4,rotation:-8,left:'700px',top:'250px',xPercent:0},{autoAlpha:1,scale:0.62,rotation:-6,duration:0.42,ease:'back.out(2.2)',immediateRender:false},S.D[0]+0.3);
+  tl.to('#aiGhost',{rotation:'+=12',duration:1.1,ease:'sine.inOut',yoyo:true,repeat:1},S.D[0]+0.8);
+  // hold the sparkle into the pivot: move it to CENTER as D ends
+  tl.to('#phPlan',{autoAlpha:0,y:-40,duration:0.3,ease:'power2.out'},S.D[1]-0.24);
+
+  // === E PIVOT ===
+  // E1: sparkle recenters, red slash slams, flash
+  tl.to('#aiGhost',{left:'50%',top:'470px',xPercent:-50,scale:1.0,rotation:0,duration:0.4,ease:'power3.out'},S.E[0]-0.05);
+  tl.to('#flash',{autoAlpha:0.6,duration:0.08,ease:'power1.out'},L.l5-0.06);
+  tl.to('#flash',{autoAlpha:0,duration:0.25,ease:'power2.out'},L.l5+0.02);
+  tl.fromTo('#slash',{autoAlpha:0,scale:1.6,rotation:-30},{autoAlpha:1,scale:1,rotation:0,duration:0.32,ease:'back.out(2.4)',immediateRender:false},L.l5-0.02);
+  tl.to('#aiGhost',{filter:'grayscale(1)',opacity:0.5,duration:0.3},L.l5+0.02);
+  // exit E1 gag
+  tl.to(['#aiGhost','#slash'],{autoAlpha:0,scale:0.7,duration:0.28,ease:'power2.out'},14.72);
+  // E2: vote card
+  tl.to('#voteCard',{autoAlpha:1,y:0,scale:1,duration:0.5,ease:'back.out(1.7)'},14.80);
+  // rows fill + votes pop (Wat Arun 3, Rooftop 1)
+  tl.to('#vr1 .vfill',{scaleX:0.92,duration:0.6,ease:'power2.out'},15.15);
+  tl.to('#vr2 .vfill',{scaleX:0.34,duration:0.6,ease:'power2.out'},15.35);
+  tl.to('#vr3 .vfill',{scaleX:0.10,duration:0.6,ease:'power2.out'},15.5);
+  tl.to('#vr1 .vdots i',{autoAlpha:1,scale:1,duration:0.3,ease:'back.out(2.4)',stagger:0.12},15.2);
+  tl.to('#vr2 .vdots i',{autoAlpha:1,scale:1,duration:0.3,ease:'back.out(2.4)'},15.5);
+  tl.call(function(){var e=document.getElementById('vr1'); if(e) e.classList.add('win');},null,16.1);
+  tl.to('#vr1 .vcheck',{autoAlpha:1,duration:0.3,ease:'back.out(2)'},16.15);
+  tl.to('#voteCard',{y:'-=8',duration:0.5,ease:'sine.inOut',yoyo:true,repeat:1},16.2);
+  tl.to('#voteCard',{autoAlpha:0,scale:0.94,duration:0.3,ease:'power2.out'},S.E[1]-0.26);
+
+  // === F BUDGET ===
+  phoneScene('#phBudget',S.F);
+  sticker('#stCoins','690px','250px',7,S.F);
+  tl.fromTo('#hlBudget',{autoAlpha:0,scale:0.96},{autoAlpha:1,scale:1,duration:0.4,ease:'power2.out',immediateRender:false},S.F[0]+0.6);
+  tl.to('#hlBudget',{autoAlpha:0,duration:0.2},S.F[1]-0.26);
+
+  // === G MAP: itinerary route + crew + converge ===
+  tl.to('#mapLayer',{autoAlpha:1,duration:0.4,ease:'power2.out'},S.G[0]-0.2);
+  tl.fromTo('#mapLayer',{y:0},{y:22,duration:S.G[1]-S.G[0]+0.2,ease:'none',immediateRender:false},S.G[0]-0.2);
+  tl.to('#route',{autoAlpha:1,duration:0.2},S.G[0]);
+  tl.to(rp,{strokeDashoffset:0,duration:1.6,ease:'power1.inOut'},S.G[0]);
+  ['s1','s2','s3','s4'].forEach(function(id,i){ tl.to('#'+id,{autoAlpha:1,scale:1,duration:0.4,ease:'back.out(2.2)'},S.G[0]+0.2+i*0.32); });
+  // crew appear (L9) near stops, drifting
+  ['avY','avM','avL','avP'].forEach(function(id,i){
+    tl.to('#'+id,{autoAlpha:1,scale:1,x:gPos[id][0],y:gPos[id][1],duration:0.45,ease:'back.out(1.8)'},L.l9-0.15+i*0.08);
+  });
+  // converge (L10) onto stop 2 — clear the numbered stops + route so the payoff caption is clean
+  tl.to(['#route','#s1','#s3','#s4'],{autoAlpha:0,duration:0.4,ease:'power2.out'},L.l10-0.1);
+  tl.to('#s2',{autoAlpha:0,duration:0.4,ease:'power2.out'},L.l10-0.1);
+  ['avY','avM','avL','avP'].forEach(function(id){ tl.to('#'+id,{x:cluster[id][0],y:cluster[id][1],duration:0.7,ease:'power3.inOut'},L.l10-0.05); });
+  tl.to('#meetPin',{autoAlpha:0.95,duration:0.4,ease:'back.out(2)'},L.l10+0.1);
+  tl.fromTo('#pulse',{autoAlpha:0.85,scale:0.5},{autoAlpha:0,scale:3.0,duration:1.1,ease:'power2.out',immediateRender:false},L.l10+0.15);
+  ['avY','avM','avL','avP'].forEach(function(id){ tl.to('#'+id+' .ring',{opacity:0.9,duration:0.3},L.l10+0.5); });
+  gsap.set('#stPeople',{left:'50%',xPercent:-50,top:'1090px'});
+  tl.to('#stPeople',{autoAlpha:1,scale:1,rotation:0,duration:0.4,ease:'back.out(2.2)'},L.l10+0.5);
+  // exit G
+  tl.to(['#avY','#avM','#avL','#avP','#meetPin','#mapLayer','#route','#s1','#s2','#s3','#s4','#stPeople'],{autoAlpha:0,duration:0.3,ease:'power2.out'},S.G[1]-0.26);
+
+  // === H CTA ===
+  tl.to('#cta',{autoAlpha:1,duration:0.35,ease:'power2.out'},S.H[0]);
+  tl.to('#cta .logo',{scale:1,y:0,duration:0.55,ease:'back.out(1.9)'},S.H[0]+0.05);
+  tl.to('#cta .name',{autoAlpha:1,y:0,duration:0.5,ease:'power3.out'},S.H[0]+0.35);
+  tl.to('#cta .tag',{autoAlpha:1,y:0,duration:0.5,ease:'power3.out'},S.H[0]+0.65);
+  tl.to('#cta .url',{autoAlpha:1,scale:1,duration:0.5,ease:'back.out(2)'},S.H[0]+1.0);
+  tl.to('#cta .logo',{y:'-=10',duration:1.2,ease:'sine.inOut',yoyo:true,repeat:2},S.H[0]+1.4);
+
+  function phoneScene(sel,win){
+    tl.to(sel,{autoAlpha:1,y:0,duration:0.5,ease:'back.out(1.7)'},win[0]-0.18);
+    tl.to(sel,{y:'-=12',duration:1.3,ease:'sine.inOut',yoyo:true,repeat:1},win[0]+0.6);
+    tl.to(sel,{autoAlpha:0,y:-40,duration:0.3,ease:'power2.out'},win[1]-0.24);
+  }
+  function sticker(sel,left,top,rot,win){
+    gsap.set(sel,{left:left,top:top});
+    tl.to(sel,{autoAlpha:1,scale:1,rotation:rot,duration:0.42,ease:'back.out(2.2)'},win[0]+0.2);
+    tl.to(sel,{y:'+=14',duration:1.0,ease:'sine.inOut',yoyo:true,repeat:1},win[0]+0.7);
+    tl.to(sel,{autoAlpha:0,scale:0.5,duration:0.24,ease:'power2.out'},win[1]-0.24);
+  }
+
+  window.__DURATION=D;
+  window.__seek=function(t){ tl.time(Math.max(0,Math.min(D,t))); };
+  window.__seek(0);
+  window.__ready=true;
+})();
+</script>
+</body>
+</html>
