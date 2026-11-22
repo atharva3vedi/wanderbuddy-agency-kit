@@ -1,0 +1,148 @@
+{
+ "notes": [
+  {
+   "t": 0.0,
+   "note": "G2",
+   "gain_db": -6.0
+  },
+  {
+   "t": 0.02,
+   "note": "D3",
+   "gain_db": -8.0
+  },
+  {
+   "t": 1.5,
+   "note": "D6",
+   "gain_db": -16.0
+  },
+  {
+   "t": 4.0,
+   "note": "B5",
+   "gain_db": -16.0
+  },
+  {
+   "t": 6.5,
+   "note": "G5",
+   "gain_db": -16.0
+  },
+  {
+   "t": 9.25,
+   "note": "G4",
+   "gain_db": -14.0
+  },
+  {
+   "t": 9.38,
+   "note": "B4",
+   "gain_db": -14.0
+  },
+  {
+   "t": 9.51,
+   "note": "D5",
+   "gain_db": -14.0
+  },
+  {
+   "t": 9.64,
+   "note": "G5",
+   "gain_db": -14.0
+  },
+  {
+   "t": 9.77,
+   "note": "B5",
+   "gain_db": -14.0
+  },
+  {
+   "t": 9.9,
+   "note": "D6",
+   "gain_db": -14.0
+  },
+  {
+   "t": 10.03,
+   "note": "B5",
+   "gain_db": -14.0
+  },
+  {
+   "t": 16.333,
+   "note": "G4",
+   "gain_db": -9.5
+  },
+  {
+   "t": 16.345,
+   "note": "D5",
+   "gain_db": -9.5
+  },
+  {
+   "t": 18.0,
+   "note": "B4",
+   "gain_db": -14.0
+  },
+  {
+   "t": 18.833,
+   "note": "G4",
+   "gain_db": -9.5
+  },
+  {
+   "t": 18.845,
+   "note": "D5",
+   "gain_db": -9.5
+  },
+  {
+   "t": 21.37,
+   "note": "G4",
+   "gain_db": -9.0
+  },
+  {
+   "t": 21.455,
+   "note": "B4",
+   "gain_db": -9.0
+  },
+  {
+   "t": 21.54,
+   "note": "D5",
+   "gain_db": -9.0
+  },
+  {
+   "t": 21.625,
+   "note": "G5",
+   "gain_db": -9.0
+  },
+  {
+   "t": 22.25,
+   "note": "B4",
+   "gain_db": -12.0
+  },
+  {
+   "t": 22.25,
+   "note": "D3",
+   "gain_db": -8.0
+  },
+  {
+   "t": 22.25,
+   "note": "G2",
+   "gain_db": -6.0
+  },
+  {
+   "t": 22.25,
+   "note": "G4",
+   "gain_db": -10.0
+  }
+ ],
+ "bed": {
+  "file": "musicalmix2020-bossa-nova-summer-instrumental-brazil-7969.mp3",
+  "lands": 10.0,
+  "gain": 4.5,
+  "bar": 0
+ },
+ "reverb_wet": 0.38,
+ "loudnorm_pass1": {
+  "input_i": "-11.41",
+  "input_tp": "1.62",
+  "input_lra": "20.60",
+  "input_thresh": "-22.76",
+  "output_i": "-13.77",
+  "output_tp": "-2.00",
+  "output_lra": "12.60",
+  "output_thresh": "-24.69",
+  "normalization_type": "dynamic",
+  "target_offset": "-0.23"
+ }
+}

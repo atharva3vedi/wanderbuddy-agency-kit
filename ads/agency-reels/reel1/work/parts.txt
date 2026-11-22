@@ -1,0 +1,3 @@
+file 'C:/Users/PC/Videos/WanderBuddy_Ad/b2b-reels/reel1/work/seg_00.mkv'
+file 'C:/Users/PC/Videos/WanderBuddy_Ad/b2b-reels/reel1/work/seg_01.mkv'
+file 'C:/Users/PC/Videos/WanderBuddy_Ad/b2b-reels/reel1/work/seg_02.mkv'

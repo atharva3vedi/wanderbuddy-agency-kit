@@ -1,0 +1,6 @@
+{"fps": 24, "w": 1080, "h": 1920, "lens": 28.125, "total": 84,
+ "shots": [{"id": "end", "start": 0, "end": 84}],
+ "layout": {"end": {"m": 150, "mm": 178, "y": 110, "lines": [
+   {"text": "You run the trips.", "font": "bold", "size": 58, "y": -100, "color": "#FFFFFF", "f": [18, 29]},
+   {"text": "WanderBuddy runs the rest.", "font": "bold", "size": 58, "y": -176, "color": "#FFFFFF", "f": [23, 34]},
+   {"text": "wanderbuddyapp.com/partners", "font": "semi", "size": 42, "y": -270, "color": "#DCEBFA", "f": [30, 41]}]}}}

@@ -1,0 +1,31 @@
+{
+ "color": "#0C1622",
+ "shadow": false,
+ "size": 76,
+ "supers": [
+  {
+   "text": "Pickup times.\nPassport copies.\nThe PDF nobody opens.",
+   "t": [
+    0.7,
+    4.7
+   ],
+   "y": 360
+  },
+  {
+   "text": "Say who the trip is for\nin one line.",
+   "t": [
+    9.9,
+    12.7
+   ],
+   "y": 340
+  },
+  {
+   "text": "The pages fill in,\nin your *colours.*",
+   "t": [
+    12.9,
+    16.1
+   ],
+   "y": 330
+  }
+ ]
+}

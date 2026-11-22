@@ -1,0 +1,10 @@
+{"color": "#FFFFFF", "shadow": true, "size": 70, "supers": [
+ {"text": "Monday. Two agencies\nquote her for Komodo.", "t": [0.4, 2.9], "y": 300},
+ {"text": "She opens one plan.", "t": [3.3, 5.3], "y": 300},
+ {"text": "Then again.", "t": [5.9, 7.6], "y": 300},
+ {"text": "And again.", "t": [8.2, 9.7], "y": 300},
+ {"text": "Lantern Trips can see it.\nSo they *call.*", "t": [10.4, 14.4], "y": 300, "size": 74},
+ {"text": "Booked the same night.", "t": [15.0, 17.3], "y": 300, "size": 74},
+ {"text": "The other agency is still\nwaiting for her reply.", "t": [17.8, 21.2], "y": 290},
+ {"text": "Two quotes. One follow-up.\nOne runs on WanderBuddy.", "t": [22.0, 26.7], "y": 330, "size": 66, "color": "#0C1622", "shadow": false}
+]}

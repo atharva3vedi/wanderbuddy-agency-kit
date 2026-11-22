@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>25 s ad: flat assets</title>
+<!-- Every flat piece of the 25 s ad, one element per [data-shot]. cards.mjs
+     screenshots each on a transparent background into ../cards/<id>.png and
+     Blender maps them onto planes. Panic props are the old way of working
+     (Word files, a broken sheet, chat floods); the labels and lockups are the
+     brand (WbSans, ink #0c1622, brand #1e88d6, mark tile #2072B8). -->
+<style>
+  @font-face{font-family:WbSans;src:url(../../../../metrics/fonts/WbSans-Regular.ttf);font-weight:400}
+  @font-face{font-family:WbSans;src:url(../../../../metrics/fonts/WbSans-SemiBold.ttf);font-weight:600}
+  @font-face{font-family:WbSans;src:url(../../../../metrics/fonts/WbSans-Bold.ttf);font-weight:700}
+  @font-face{font-family:Serif;src:url(../../../../metrics/fonts/InstrumentSerif-Italic.ttf);font-style:italic}
+  :root{--ink:#0c1622;--ink2:#26394b;--brand:#1e88d6;--brandInk:#155a97;--ground:#f3f6f9;--tile:#2072B8}
+  body{margin:0;padding:40px;background:transparent;font-family:WbSans,system-ui,sans-serif;display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}
+  [data-shot]{display:inline-block;flex:none}
+
+  /* chat bubbles: three apps' looks, no logos */
+  .bub{max-width:560px;padding:14px 18px 10px;border-radius:18px;font:400 27px/1.3 -apple-system,"Helvetica Neue",Arial,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+  .bub b{display:block;font-size:20px;font-weight:600;margin-bottom:3px}
+  .bub i{display:block;text-align:right;font-style:normal;font-size:17px;opacity:.6;margin-top:2px}
+  .wa{background:#202c33;color:#e9edef;border-top-left-radius:4px}
+  .ig{background:#262626;color:#fff;border-radius:26px}
+  .sms{background:#e9e9eb;color:#111}
+  .sms b{color:#555}
+
+  /* notification banners */
+  .nt{width:640px;display:grid;grid-template-columns:58px 1fr auto;gap:4px 16px;align-items:center;padding:18px 20px;border-radius:26px;
+      background:rgba(38,40,44,.94);color:#f2f2f2;font:400 24px/1.25 -apple-system,"Helvetica Neue",Arial,sans-serif;box-shadow:0 14px 34px rgba(0,0,0,.5)}
+  .nt .ic{grid-row:span 2;width:58px;height:58px;border-radius:14px;display:flex;align-items:center;justify-content:center;font:700 26px/1 Arial;color:#fff}
+  .nt .ap{font-size:19px;opacity:.7;text-transform:uppercase;letter-spacing:.04em}
+  .nt .tm{font-size:19px;opacity:.55;align-self:start}
+  .nt .tx{grid-column:2/4;font-weight:600}
+  .nt .tx span{display:block;font-weight:400;opacity:.85}
+  .badge{position:absolute;right:-10px;top:-10px;min-width:44px;height:44px;border-radius:22px;background:#e0483c;color:#fff;font:700 22px/44px Arial;text-align:center;padding:0 10px}
+
+  /* the sheet */
+  .sheet{border-collapse:collapse;background:#fff;font:15px/1 Arial,Helvetica,sans-serif;color:#111;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+  .sheet td,.sheet th{border:1px solid #d4d4d4;padding:9px 12px;white-space:nowrap;height:20px}
+  .sheet th{background:#f0f0f0;font-weight:400;color:#555;text-align:center}
+  .sheet .hd td{background:#e8eef5;font-weight:700}
+  .sheet .rn{background:#f0f0f0;color:#666;text-align:center;width:28px}
+  .err{background:#f8d7d5;color:#b3261e;font-weight:700}
+  .warn{background:#fde2e1}
+  .ok{color:#1b7f3a}
+
+  /* Word-style itinerary pages */
+  .doc{width:840px;height:1188px;box-sizing:border-box;padding:84px 90px;background:#fdfdfb;color:#222;font:21px/1.5 "Times New Roman",Times,serif;position:relative;overflow:hidden}
+  .doc h1{font:700 34px/1.2 "Times New Roman",serif;margin:0 0 6px}
+  .doc .fn{font:15px/1 Arial;color:#777;margin-bottom:26px}
+  .doc h2{font:700 23px/1.3 "Times New Roman",serif;margin:22px 0 6px;text-decoration:underline}
+  .doc p{margin:0 0 8px}
+  .doc .hl{background:#bfe8c6}
+  .doc .pk{background:#f7c6d9}
+  .doc s{color:#b3261e}
+  .doc .cm{position:absolute;right:28px;width:250px;padding:10px 12px;background:#fde7e7;border-left:4px solid #e0483c;font:15px/1.35 Arial;color:#7a1d17}
+
+  /* the phone in the panic: a lock screen buried in banners */
+  .lock{width:430px;height:932px;box-sizing:border-box;padding:56px 14px 0;background:linear-gradient(180deg,#1b2633,#0b0f14 70%);color:#fff;overflow:hidden;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;display:flex;flex-direction:column;align-items:center}
+  .lock .clk{font:200 96px/1 -apple-system,"Helvetica Neue",Arial;margin:26px 0 6px;letter-spacing:-2px}
+  .lock .dt{font-size:20px;opacity:.8;margin-bottom:26px}
+  .lock .nt{width:400px;padding:12px 14px;border-radius:20px;font-size:16px;grid-template-columns:38px 1fr auto;gap:2px 10px;margin-bottom:8px;box-shadow:none}
+  .lock .nt .ic{width:38px;height:38px;border-radius:10px;font-size:17px}
+  .lock .nt .ap,.lock .nt .tm{font-size:13px}
+
+  /* captions over the panic */
+  .cap{width:1500px;text-align:center;color:#fff;font:600 68px/1.15 WbSans;letter-spacing:-.01em;text-shadow:0 2px 24px rgba(0,0,0,.85),0 0 60px rgba(0,0,0,.6);padding:30px 0}
+  .cap em{font:italic 400 84px/1 Serif;letter-spacing:0}
+
+  /* labels on the light stage */
+  .lbl{width:900px;color:var(--ink);padding:10px 0}
+  .lbl .eye{font:600 24px/1 Menlo,ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--brandInk);margin-bottom:18px}
+  .lbl .hd{font:700 76px/1.05 WbSans;letter-spacing:-.02em}
+  .lbl.c{text-align:center;width:1400px}
+  .tag{font:600 18px/1 Menlo,ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);padding:12px 18px;border:1.5px solid #cfdce6;border-radius:999px;background:#fff}
+
+  /* what passes between the marketplace, the CRM and the app */
+  .chip{width:560px;box-sizing:border-box;padding:22px 26px;border-radius:14px;background:#fff;border:1.5px solid #cfdce6;box-shadow:0 18px 40px rgba(12,22,34,.18);color:var(--ink)}
+  .chip .eye{font:600 17px/1 Menlo,ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--brandInk);margin-bottom:12px}
+  .chip .t{font:700 32px/1.15 WbSans}
+  .chip .s{font:400 22px/1.3 WbSans;color:var(--ink2);margin-top:6px}
+
+  /* lockups */
+  .lock-ink img{height:150px;display:block}
+  .end{width:1400px;display:flex;flex-direction:column;align-items:center;color:#fff}
+  .end .row{display:flex;align-items:center;gap:44px}
+  .end .glyph{width:190px;height:190px}
+  .end .word{height:110px}
+  .end .url{margin-top:56px;font:600 44px/1 WbSans;letter-spacing:.005em;opacity:.95}
+</style>
+</head>
+<body>
+<script>
+const $ = (h) => { const t = document.createElement('template'); t.innerHTML = h.trim(); return document.body.appendChild(t.content.firstChild); };
+
+// ---- chat bubbles
+const MSGS = [
+  ['wa', 'Sophie', 'Is breakfast included?', '23:41', '#53bdeb'],
+  ['wa', 'Tom · Krabi group', 'Where do we meet the driver?', '05:12', '#e26ab6'],
+  ['ig', 'liam.travels', 'Can I fly my drone at Maya Bay?', '', ''],
+  ['wa', 'Hannah', 'My flight now lands at 14:20', '09:03', '#f15c6d'],
+  ['sms', 'Marco', 'Which hotel are we in on day 3?', '', ''],
+  ['wa', 'Ines', 'Did you get my passport copy?', '22:57', '#06cf9c'],
+  ['ig', 'erik.lindqvist', 'Can we add one more person?', '', ''],
+  ['wa', '+44 7700 900311', 'Price for 6 people in March?', '01:16', '#a5b337'],
+  ['wa', 'Noa', 'Is it too late to change rooms?', '18:30', '#53bdeb'],
+  ['sms', 'Grace', 'Sent the deposit. Did it arrive?', '', ''],
+  ['wa', 'Paul', 'hello??', '23:59', '#ffbc38'],
+  ['ig', 'sam.and.jules', 'Still there?', '', ''],
+  ['wa', 'Chloe', 'Can you resend the itinerary', '07:44', '#e26ab6'],
+  ['sms', 'Mia', 'Vegan options on the boat?', '', ''],
+  ['wa', 'Ryan', 'What time is pickup tomorrow', '21:08', '#06cf9c'],
+  ['ig', 'jonas.mia', 'Do I need a visa?', '', ''],
+];
+MSGS.forEach(([k, who, txt, tm, col], i) => {
+  $(`<div data-shot="bub${String(i + 1).padStart(2, '0')}" class="bub ${k}"><b style="${col ? 'color:' + col : ''}">${who}</b>${txt}${tm ? `<i>${tm}</i>` : ''}</div>`);
+});
+
+// ---- notification banners (generic icons, no app logos)
+const NOTES = [
+  ['#25a45b', 'W', 'WhatsApp', 'now', 'Krabi group (12)', '214 new messages', '214'],
+  ['#c13584', 'I', 'Instagram', 'now', 'Direct', '37 new messages', '37'],
+  ['#2f7de1', 'M', 'Mail', '2m ago', 'RE: RE: Fwd: final itinerary v7', 'Which version is the real one?', ''],
+  ['#34c759', 'P', 'Phone', '4m ago', 'Missed calls (6)', 'Unknown, +66 81 555 0142', '6'],
+  ['#25a45b', 'W', 'WhatsApp', 'now', 'Tom', 'where are you??', ''],
+  ['#2f7de1', 'M', 'Mail', '9m ago', 'Deposit for March?', 'Hi, we never heard back about the', ''],
+];
+NOTES.forEach(([c, l, app, tm, t1, t2, badge], i) => {
+  $(`<div data-shot="not${String(i + 1).padStart(2, '0')}" style="position:relative;padding:14px"><div class="nt"><div class="ic" style="background:${c}">${l}</div><div class="ap">${app}</div><div class="tm">${tm}</div><div class="tx">${t1}<span>${t2}</span></div></div>${badge ? `<div class="badge">${badge}</div>` : ''}</div>`);
+});
+
+// ---- the spreadsheet
+const ROWS = [
+  ['Traveller', 'Passport', 'Paid', 'Room', 'Diet', 'Flight in'],
+  ['Sophie B', '04/2030', 'YES', 'Twin', 'veg', 'TG 223'],
+  ['Tom + 1', '#N/A', 'partial', '#REF!', '', '??'],
+  ['Hannah K', 'expired?', 'NO', 'Double', 'GF', 'FD 3077'],
+  ['Marco R', '12/2027', '#VALUE!', 'Twin', 'vegan', '#N/A'],
+  ['Ines E', '', 'NO', '??', '', 'TG 211'],
+  ['Erik + 3', '#REF!', 'YES', 'Family', 'nuts', 'changed'],
+  ['Noa L', '09/2029', '#N/A', 'Twin', '', '#REF!'],
+];
+const bad = (v) => /^#|\?|NO|expired|partial|changed/.test(v);
+$(`<div data-shot="sheet"><table class="sheet"><tr><th></th>${'ABCDEF'.split('').map((c) => `<th>${c}</th>`).join('')}</tr>${
+  ROWS.map((r, i) => `<tr class="${i ? '' : 'hd'}"><td class="rn">${i + 1}</td>${r.map((v) => `<td class="${i && bad(v) ? (v.startsWith('#') ? 'err' : 'warn') : (v === 'YES' ? 'ok' : '')}">${v}</td>`).join('')}</tr>`).join('')
+}</table></div>`);
+
+// ---- Word itineraries, four versions of the same trip
+const DOCS = [
+  ['Krabi Islands itinerary FINAL', 'Krabi_itinerary_FINAL_v7 (2).docx', 'cm1'],
+  ['Krabi Islands, small group', 'Krabi_small_group_NEW.docx', ''],
+  ['Itinerary for Erik + family', 'Erik_Phuket_v3_USE THIS.docx', 'cm2'],
+  ['Krabi trip day by day', 'krabi FINAL final.docx', ''],
+];
+DOCS.forEach(([title, file, cm], i) => {
+  $(`<div data-shot="doc0${i + 1}" class="doc"><h1>${title}</h1><div class="fn">${file}</div>
+    <h2>Day 1, arrival</h2><p>Pickup at Krabi airport at <s>13:30</s> <span class="pk">14:20 (CHECK with Hannah)</span>. Transfer to Ao Nang, check in at the <s>Sea View</s> hotel.</p>
+    <p>Welcome dinner at 19:00, <span class="hl">confirm numbers with the restaurant</span>.</p>
+    <h2>Day 2, Hong Islands</h2><p>Longtail from Nopparat Thara pier at 08:30. Lunch on the beach. <span class="pk">Drone allowed?</span> Snorkel gear included <s>(not for kids)</s>.</p>
+    <h2>Day 3, Railay</h2><p>Hotel change. <span class="hl">Which hotel?? see email from Tues</span>. Phra Nang Cave Beach in the afternoon.</p>
+    <h2>Day 4, free day</h2><p>Optional cooking class, <s>$35</s> $40 a person. Vegan menu on request.</p>
+    <h2>Day 5, departure</h2><p>Checkout 11:00. Transfer to the airport, times TBC.</p>
+    ${cm === 'cm1' ? '<div class="cm" style="top:300px">Mai: is this the latest one? Tom has v5</div><div class="cm" style="top:640px">PRICE WRONG, fix before sending</div>' : ''}
+    ${cm === 'cm2' ? '<div class="cm" style="top:420px">Erik asked for 6 people now, not 4</div>' : ''}</div>`);
+});
+
+// ---- the phone on the desk
+$(`<div data-shot="lockscreen" class="lock"><div class="dt">Tuesday 10 November</div><div class="clk">23:48</div>${
+  [['#25a45b','W','WhatsApp','now','Krabi group (12)','214 new messages'],['#c13584','I','Instagram','1m','Direct','37 new messages'],
+   ['#34c759','P','Phone','4m','Missed calls (6)','Unknown, +66 81 555 0142'],['#2f7de1','M','Mail','9m','RE: RE: Fwd: final itinerary v7','Which version is the real one?'],
+   ['#25a45b','W','WhatsApp','12m','Tom','where do we meet the driver'],['#25a45b','W','WhatsApp','14m','Hannah','My flight now lands at 14:20'],
+   ['#2f7de1','M','Mail','20m','Deposit for March?','Hi, we never heard back about the'],['#c13584','I','Instagram','31m','liam.travels','Can I fly my drone at Maya Bay?'],
+   ['#25a45b','W','WhatsApp','40m','Noa','Is it too late to change rooms?']]
+  .map(([c,l,a,t,x,y]) => `<div class="nt"><div class="ic" style="background:${c}">${l}</div><div class="ap">${a}</div><div class="tm">${t}</div><div class="tx">${x}<span>${y}</span></div></div>`).join('')
+}</div>`);
+
+// ---- captions over the panic
+$(`<div data-shot="capP1" class="cap">You started an agency to <em>sell</em> trips.</div>`);
+$(`<div data-shot="capP2" class="cap">Not to scroll 400 messages for one PDF.</div>`);
+
+// ---- labels on the light stage
+$(`<div data-shot="lblCrm" class="lbl"><div class="eye">The CRM</div><div class="hd">Runs the business.</div></div>`);
+$(`<div data-shot="lblMarket" class="lbl"><div class="eye">The marketplace</div><div class="hd">Brings travellers<br>ready to book.</div></div>`);
+$(`<div data-shot="lblApp" class="lbl"><div class="eye">The app</div><div class="hd">Runs the trip.</div></div>`);
+$(`<div data-shot="lblAll" class="lbl c"><div class="hd">Everything in one place.</div></div>`);
+$(`<div data-shot="tagSample" class="tag">Sample agency · Lantern Trips</div>`);
+
+// ---- chips that fly between the three
+$(`<div data-shot="chipHold" class="chip"><div class="eye">New hold</div><div class="t">Sam and Freya, 2 spots</div><div class="s">Krabi Islands, small group · 16 Nov</div></div>`);
+$(`<div data-shot="chipPlan" class="chip"><div class="eye">In the app</div><div class="t">Plan and vouchers sent</div><div class="s">Krabi Islands, 9 travellers</div></div>`);
+
+// ---- lockups
+$(`<div data-shot="lockupInk" class="lock-ink"><img src="../../../../website/public/brand/logo.svg"></div>`);
+fetch('../../../../website/public/brand/logo-on-dark.svg').catch(() => null);
+$(`<div data-shot="endcard" class="end"><div class="row">
+  <svg class="glyph" viewBox="200 200 624 512"><polygon points="224,512 404,296 494,422 602,224 800,512" fill="#fff"/><path d="M217 620Q290 584 364 620T512 620T660 620T807 620L807 692L217 692Z" fill="#fff"/></svg>
+  <img class="word" id="word"></div><div class="url">wanderbuddyapp.com/partners</div></div>`);
+</script>
+</body>
+</html>

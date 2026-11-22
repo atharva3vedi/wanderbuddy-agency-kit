@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>30 s ad: overlay</title>
+<!-- The 2D layer over Blender's frames: captions, the ring that turns the
+     panic into the brand, the lockup, a line per beat, the upgrade end card.
+     A pure function of time: window.__seek(t) draws second t, and overlay.mjs
+     screenshots it 30 times a second on a transparent page.
+     overlay.html is 16:9 (1920x1080); overlay.html?f=916 is 9:16 (1080x1920). -->
+<style>
+  @font-face{font-family:WbSans;src:url(../../../../metrics/fonts/WbSans-Regular.ttf);font-weight:400}
+  @font-face{font-family:WbSans;src:url(../../../../metrics/fonts/WbSans-SemiBold.ttf);font-weight:600}
+  @font-face{font-family:WbSans;src:url(../../../../metrics/fonts/WbSans-Bold.ttf);font-weight:700}
+  @font-face{font-family:Serif;src:url(../../../../metrics/fonts/InstrumentSerif-Italic.ttf);font-style:italic}
+  :root{--ink:#0c1622;--ink2:#26394b;--brand:#1e88d6;--brandInk:#155a97;--ground:#f3f6f9;--tile:#2072B8}
+  html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:transparent;font-family:WbSans,sans-serif}
+  .o{position:absolute;opacity:0;will-change:opacity,transform}
+  .cap{left:0;right:0;bottom:150px;text-align:center;color:#fff;font:600 66px/1.15 WbSans;letter-spacing:-.01em;
+       text-shadow:0 2px 22px rgba(0,0,0,.9),0 0 70px rgba(0,0,0,.75)}
+  .cap em{font:italic 400 82px/1 Serif;letter-spacing:0}
+  #wipe{position:absolute;inset:0}
+  .lbl{color:var(--ink)}
+  .lbl .eye{font:600 24px/1 Menlo,ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--brandInk);margin-bottom:20px}
+  .lbl .hd{font:700 74px/1.04 WbSans;letter-spacing:-.02em}
+  .tag{left:48px;bottom:44px;font:600 17px/1 Menlo,ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);
+       padding:12px 18px;border:1.5px solid #cfdce6;border-radius:999px;background:rgba(255,255,255,.9)}
+  #logo{left:50%;top:50%;width:620px;margin:-57px 0 0 -310px}
+  #ask{left:0;right:0;top:250px;text-align:center;color:#fff;font:700 104px/1.06 WbSans;letter-spacing:-.025em}
+  #end{left:50%;top:600px;width:1120px;margin-left:-560px}
+
+  /* 9:16: the same pieces, stacked for a tall frame */
+  html.p,html.p body{width:1080px;height:1920px}
+  html.p .cap{left:70px;right:70px;bottom:380px;font-size:64px}
+  html.p .cap em{font-size:78px}
+  html.p #logo{width:540px;margin:-50px 0 0 -270px}
+  html.p .lbl{left:80px!important;right:80px!important;top:190px!important;text-align:left!important}
+  html.p .lbl .eye{font-size:26px;margin-bottom:22px}
+  html.p .lbl .hd{font-size:84px}
+  html.p #lAll{top:200px!important;text-align:center!important}
+  html.p #lAll .hd{font-size:76px!important}
+  html.p .tag{left:50%;bottom:70px;transform:translateX(-50%)}
+  html.p #tagR{display:none}
+  html.p #ask{top:640px;font-size:92px;padding:0 40px}
+  html.p #end{top:1040px;width:940px;margin-left:-470px}
+</style>
+</head>
+<body>
+<div class="o cap" id="c1">You started an agency to <em>sell</em> trips.</div>
+<div class="o cap" id="c2">Not to scroll 400 messages for one PDF.</div>
+<canvas id="wipe" width="1920" height="1080"></canvas>
+<img class="o" id="logo" src="../../../../website/public/brand/logo.svg">
+<div class="o lbl" id="lMarket" style="left:150px;top:400px"><div class="eye">The marketplace</div><div class="hd">Brings travellers<br>ready to book.</div></div>
+<div class="o lbl" id="lCrm" style="left:120px;top:150px"><div class="eye">The CRM</div><div class="hd">Runs the<br>business.</div></div>
+<div class="o lbl" id="lInbox" style="left:120px;top:150px"><div class="eye">The CRM</div><div class="hd">Every chat,<br>one inbox.</div></div>
+<div class="o lbl" id="lApp" style="left:1130px;top:420px"><div class="eye">The app</div><div class="hd">Runs the trip.</div></div>
+<div class="o lbl" id="lMap" style="left:1060px;top:390px"><div class="eye">The app</div><div class="hd">The whole group,<br>live on one map.</div></div>
+<div class="o lbl" id="lAll" style="left:0;right:0;top:44px;text-align:center"><div class="hd" style="font-size:64px">Everything in one place.</div></div>
+<div class="o tag" id="tag">Sample agency · Lantern Trips</div>
+<div class="o tag" id="tagR" style="left:auto;right:48px">Sample agency · Lantern Trips</div>
+<div class="o" id="ask">Ready to upgrade?<br>Message us today.</div>
+<img class="o" id="end" src="../cards/endcard.png">
+<script>
+const P = new URLSearchParams(location.search).get('f') === '916';
+if (P) document.documentElement.classList.add('p');
+const W = P ? 1080 : 1920, H = P ? 1920 : 1080, R = Math.hypot(W, H) / 2 + 40;
+const cv = document.getElementById('wipe');
+cv.width = W; cv.height = H;
+const ctx = cv.getContext('2d');
+
+const clamp = (x) => Math.max(0, Math.min(1, x));
+const smooth = (x) => { x = clamp(x); return x * x * (3 - 2 * x); };
+const outCubic = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const inCubic = (x) => Math.pow(clamp(x), 3);
+// a fade window: in over `fi` from a, out over `fo` ending at b
+const win = (t, a, b, fi = 0.3, fo = 0.25) => Math.min(smooth((t - a) / fi), 1 - smooth((t - (b - fo)) / fo));
+
+function show(id, t, a, b, { rise = 16, fi = 0.3, fo = 0.25, scale = 0, base = '' } = {}) {
+  const el = document.getElementById(id);
+  const v = t < a || t > b ? 0 : win(t, a, b, fi, fo);
+  const k = outCubic((t - a) / (fi * 1.6));
+  el.style.opacity = v.toFixed(4);
+  el.style.transform = base + `translateY(${((1 - k) * rise).toFixed(2)}px)` + (scale ? ` scale(${(1 - scale + scale * k).toFixed(4)})` : '');
+}
+
+function wipe(t) {
+  ctx.clearRect(0, 0, W, H);
+  // the panic into the brand: a light disc with the one azure ring at its edge
+  if (t >= 6.5 && t < 7.45) {
+    const r = R * inCubic((t - 6.5) / 0.5) + (t > 7.0 ? (t - 7.0) * 900 : 0);
+    const fill = t < 7.0 ? 1 : 1 - smooth((t - 7.0) / 0.35);
+    const ring = t < 7.05 ? 1 : 1 - smooth((t - 7.05) / 0.35);
+    if (fill > 0) { ctx.globalAlpha = fill; ctx.fillStyle = '#F3F6F9'; ctx.beginPath(); ctx.arc(W / 2, H / 2, r, 0, 7); ctx.fill(); }
+    if (ring > 0 && r > 2) { ctx.globalAlpha = ring; ctx.strokeStyle = '#1E88D6'; ctx.lineWidth = 26; ctx.beginPath(); ctx.arc(W / 2, H / 2, r + 13, 0, 7); ctx.stroke(); }
+    ctx.globalAlpha = 1;
+  }
+  // into the end card: azure from the middle
+  if (t >= 25.95) {
+    const r = R * smooth((t - 25.95) / 0.45);
+    ctx.fillStyle = '#2072B8';
+    ctx.beginPath(); ctx.arc(W / 2, H / 2, r, 0, 7); ctx.fill();
+  }
+}
+
+window.__seek = (t) => {
+  show('c1', t, 0.45, 3.3);
+  show('c2', t, 3.45, 6.35);
+  wipe(t);
+  show('logo', t, 7.08, 8.08, { rise: 0, scale: 0.06, fi: 0.3, fo: 0.24 });
+  show('lMarket', t, 9.35, 11.95);
+  show('lCrm', t, 12.95, 14.55, { fo: 0.2 });
+  show('lInbox', t, 14.65, 16.15, { fo: 0.2 });
+  show('lApp', t, 18.15, 19.95);
+  show('lMap', t, 20.6, 23.4);
+  show('lAll', t, 24.5, 25.92, { fo: 0.15 });
+  // the sample-agency tag keeps to the side the device is not on
+  if (P) show('tag', t, 9.35, 24.05, { rise: 0, fo: 0.15, base: 'translateX(-50%) ' });
+  else { show('tag', t, 9.35, 17.75, { rise: 0, fo: 0.15 }); show('tagR', t, 17.95, 24.05, { rise: 0, fo: 0.15 }); }
+  show('ask', t, 26.3, 31, { rise: 22, fi: 0.4 });
+  show('end', t, 26.85, 31, { rise: 0, scale: 0.035, fi: 0.4 });
+};
+window.__ready = document.fonts.ready.then(() => Promise.all([...document.images].map((i) => i.decode().catch(() => null))));
+</script>
+</body>
+</html>

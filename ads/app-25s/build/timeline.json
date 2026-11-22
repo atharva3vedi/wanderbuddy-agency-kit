@@ -1,0 +1,406 @@
+{
+  "fps": 30,
+  "w": 1920,
+  "h": 1080,
+  "total": 750,
+  "note": "Frames are global (0 = 0.000 s). Shots render as their own frame folders; 'end' starts 9 frames early for the 0.3 s crossfade out of 'assist'. Cuts after 7.0 s sit on the bossa track's downbeats (140 BPM, a bar = 51.43 frames).",
+  "shots": [
+    {
+      "id": "panic",
+      "start": 0,
+      "end": 210
+    },
+    {
+      "id": "logo",
+      "start": 210,
+      "end": 261
+    },
+    {
+      "id": "docs",
+      "start": 261,
+      "end": 364
+    },
+    {
+      "id": "plan",
+      "start": 364,
+      "end": 467
+    },
+    {
+      "id": "ideas",
+      "start": 467,
+      "end": 570
+    },
+    {
+      "id": "assist",
+      "start": 570,
+      "end": 673
+    },
+    {
+      "id": "end",
+      "start": 664,
+      "end": 750
+    }
+  ],
+  "xfade": {
+    "from": "assist",
+    "to": "end",
+    "frames": 9
+  },
+  "music": {
+    "file": "marketing/music/musicalmix2020-bossa-nova-summer-instrumental-brazil-7969.mp3",
+    "first_downbeat_in_file": 3.476,
+    "downbeat_lands_at": 7.0,
+    "fade_out_from": 23.6
+  },
+  "panic": {
+    "headline": [
+      "Every question lands on",
+      "you."
+    ],
+    "headline_in": 96,
+    "collapse": [
+      182,
+      203
+    ],
+    "tile_in": [
+      194,
+      202
+    ],
+    "cards": [
+      {
+        "who": "Sam Reed",
+        "at": "05:02",
+        "say": "Where do we meet the driver?",
+        "f": 3
+      },
+      {
+        "who": "Maya Reed",
+        "at": "05:02",
+        "say": "I can't find my passport",
+        "f": 4
+      },
+      {
+        "who": "Ken Walsh",
+        "at": "05:03",
+        "say": "What time is pickup?",
+        "f": 6
+      },
+      {
+        "who": "Chloe Evans",
+        "at": "05:03",
+        "say": "Is breakfast included?",
+        "f": 9
+      },
+      {
+        "who": "Ana Costa",
+        "at": "05:03",
+        "say": "Can I fly my drone at Maya Bay?",
+        "f": 11
+      },
+      {
+        "who": "Leo Martin",
+        "at": "05:04",
+        "say": "Which pier is it?",
+        "f": 14
+      },
+      {
+        "who": "Mia Novak",
+        "at": "05:04",
+        "say": "Do we need cash for the park fee?",
+        "f": 16
+      },
+      {
+        "who": "Tom Walker",
+        "at": "05:04",
+        "say": "Can someone resend the plan?",
+        "f": 19
+      },
+      {
+        "who": "Sam Reed",
+        "at": "05:05",
+        "say": "Hello??",
+        "f": 22,
+        "badge": 3
+      },
+      {
+        "who": "Ken Walsh",
+        "at": "05:05",
+        "say": "Is the boat still on if it rains?",
+        "f": 25
+      },
+      {
+        "who": "Chloe Evans",
+        "at": "05:05",
+        "say": "Which hotel are we in tonight?",
+        "f": 29
+      },
+      {
+        "who": "Ana Costa",
+        "at": "05:05",
+        "say": "My flight lands at 14:20 now",
+        "f": 32
+      },
+      {
+        "who": "Leo Martin",
+        "at": "05:06",
+        "say": "Lobby or the beach?",
+        "f": 35
+      },
+      {
+        "who": "Maya Reed",
+        "at": "05:06",
+        "say": "Still no passport",
+        "f": 38,
+        "badge": 2
+      },
+      {
+        "who": "Mia Novak",
+        "at": "05:06",
+        "say": "Where's the ferry voucher?",
+        "f": 42
+      },
+      {
+        "who": "Tom Walker",
+        "at": "05:06",
+        "say": "Is the cooking class veg?",
+        "f": 45
+      },
+      {
+        "who": "Ken Walsh",
+        "at": "05:07",
+        "say": "Anyone awake?",
+        "f": 49,
+        "badge": 5
+      },
+      {
+        "who": "Chloe Evans",
+        "at": "05:07",
+        "say": "What do I pack for the boat?",
+        "f": 53
+      },
+      {
+        "who": "Sam Reed",
+        "at": "05:07",
+        "say": "Driver isn't here",
+        "f": 56,
+        "badge": 4
+      },
+      {
+        "who": "Ana Costa",
+        "at": "05:07",
+        "say": "Can we leave later?",
+        "f": 60
+      },
+      {
+        "who": "Leo Martin",
+        "at": "05:08",
+        "say": "Who has the tickets?",
+        "f": 68
+      },
+      {
+        "who": "Tom Walker",
+        "at": "05:08",
+        "say": "Missed voice call",
+        "f": 76
+      },
+      {
+        "who": "Mia Novak",
+        "at": "05:08",
+        "say": "Is Maya Bay open today?",
+        "f": 84
+      },
+      {
+        "who": "Maya Reed",
+        "at": "05:08",
+        "say": "Found it. Not mine",
+        "f": 92
+      },
+      {
+        "who": "Ken Walsh",
+        "at": "05:09",
+        "say": "Pickup is when?",
+        "f": 100
+      },
+      {
+        "who": "Chloe Evans",
+        "at": "05:09",
+        "say": "Sunscreen on the boat?",
+        "f": 108
+      },
+      {
+        "who": "Sam Reed",
+        "at": "05:09",
+        "say": "Calling you now",
+        "f": 116
+      },
+      {
+        "who": "Leo Martin",
+        "at": "05:09",
+        "say": "Which van?",
+        "f": 124
+      }
+    ]
+  },
+  "beats": {
+    "docs": {
+      "headline": [
+        "Your vouchers,",
+        "on their phone."
+      ],
+      "phones": [
+        {
+          "tex": "app-documents.png",
+          "x": 400,
+          "y": -170,
+          "z": 0,
+          "s": 0.5,
+          "ry": [
+            -15,
+            -10
+          ],
+          "rx": [
+            5,
+            3
+          ]
+        }
+      ],
+      "ring": {
+        "phone": 0,
+        "rect": [
+          0.026,
+          0.3845,
+          0.978,
+          0.4716
+        ],
+        "r": 44
+      },
+      "ring_in": 18
+    },
+    "plan": {
+      "headline": [
+        "Your plan,",
+        "on their map."
+      ],
+      "phones": [
+        {
+          "tex": "map.png",
+          "x": 640,
+          "y": 150,
+          "z": -0.32,
+          "s": 0.5,
+          "ry": [
+            -20,
+            -16
+          ],
+          "rx": [
+            4,
+            3
+          ]
+        },
+        {
+          "tex": "plan.png",
+          "x": 250,
+          "y": 200,
+          "z": 0,
+          "s": 0.5,
+          "ry": [
+            -13,
+            -9
+          ],
+          "rx": [
+            5,
+            3
+          ]
+        }
+      ],
+      "ring": {
+        "phone": 1,
+        "rect": [
+          0.022,
+          0.588,
+          0.945,
+          0.668
+        ],
+        "r": 40
+      },
+      "ring_in": 18
+    },
+    "ideas": {
+      "headline": [
+        "Their ideas,",
+        "put to a vote."
+      ],
+      "phones": [
+        {
+          "tex": "app-ideas.png",
+          "x": 400,
+          "y": -130,
+          "z": 0,
+          "s": 0.5,
+          "ry": [
+            -15,
+            -10
+          ],
+          "rx": [
+            5,
+            3
+          ]
+        }
+      ],
+      "ring": {
+        "phone": 0,
+        "rect": [
+          0.037,
+          0.335,
+          0.963,
+          0.506
+        ],
+        "r": 56
+      },
+      "ring_in": 18
+    },
+    "assist": {
+      "headline": [
+        "Answers from",
+        "your trip plan."
+      ],
+      "phones": [
+        {
+          "tex": "app-chat.png",
+          "x": 560,
+          "y": 280,
+          "z": -0.15,
+          "s": 0.5,
+          "ry": [
+            -17,
+            -12
+          ],
+          "rx": [
+            5,
+            3
+          ]
+        }
+      ],
+      "card": {
+        "tex": "assistant-reply.png",
+        "w": 656,
+        "h": 234,
+        "x": 300,
+        "y": -250,
+        "z": 0.2,
+        "s": 1.45
+      },
+      "ring": {
+        "card": true,
+        "rect": [
+          0.279,
+          0.372,
+          0.983,
+          0.951
+        ],
+        "r": 30
+      },
+      "ring_in": 27
+    }
+  }
+}

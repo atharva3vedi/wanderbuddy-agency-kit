@@ -1,0 +1,16 @@
+{
+ "_how": "Filled in after `python build/reel1.py --probe` lists the takes. src = a file in reel1_takes, in/out in seconds. Order follows SCRIPTS.md Reel 1.",
+ "hook": {"text": "Walking into\ntravel agencies like", "to": 2.2, "size": 88},
+ "free_word": "Free.",
+ "segments": [
+  {"src": "TAKE_1_DOOR", "in": 0, "out": 2.2},
+  {"src": "TAKE_2_BALI", "in": 0, "out": 5.0},
+  {"src": "TAKE_3_SEND", "in": 0, "out": 5.0},
+  {"src": "TAKE_4_HOWMUCH", "in": 0, "out": 1.2},
+  {"src": "TAKE_5_FREE", "in": 0, "out": 2.2},
+  {"insert": "insert_card.mp4", "from": 0, "audio": {"src": "TAKE_6_LINES", "in": 0, "out": 2.0}},
+  {"insert": "insert_crm.mp4", "from": 0, "audio": {"src": "TAKE_6_LINES", "in": 2.5, "out": 5.5}},
+  {"src": "TAKE_7_NEED", "in": 0, "out": 4.0},
+  {"src": "TAKE_8_NEXT", "in": 0, "out": 3.0}
+ ]
+}

@@ -1,0 +1,583 @@
+{
+  "fps": 30,
+  "w": 1080,
+  "h": 1920,
+  "lens": 28.125,
+  "total": 750,
+  "prefix": "trav_",
+  "out": "app-25s-travellers-9x16.mp4",
+  "grounds": {
+    "light": "light_9x16.png",
+    "panic": "panic_9x16.png"
+  },
+  "note": "The traveller cut, 9:16 for Reels and TikTok. Same timing as timeline.json (cuts on the bossa downbeats). Everything the viewer must read sits between y +700 and y -540 px (Reels and TikTok cover the top ~220 px and the bottom ~420 px). The trip is the app's own sample friends' trip, Bangkok Crew; no agency appears.",
+  "shots": [
+    {
+      "id": "panic",
+      "start": 0,
+      "end": 210
+    },
+    {
+      "id": "logo",
+      "start": 210,
+      "end": 261
+    },
+    {
+      "id": "dates",
+      "start": 261,
+      "end": 364
+    },
+    {
+      "id": "vote",
+      "start": 364,
+      "end": 467
+    },
+    {
+      "id": "reels",
+      "start": 467,
+      "end": 570
+    },
+    {
+      "id": "budget",
+      "start": 570,
+      "end": 673
+    },
+    {
+      "id": "end",
+      "start": 664,
+      "end": 750
+    }
+  ],
+  "xfade": {
+    "from": "budget",
+    "to": "end",
+    "frames": 9
+  },
+  "music": {
+    "file": "marketing/music/musicalmix2020-bossa-nova-summer-instrumental-brazil-7969.mp3",
+    "first_downbeat_in_file": 3.476,
+    "downbeat_lands_at": 7.0,
+    "fade_out_from": 23.6
+  },
+  "layout": {
+    "headline": {
+      "x": -440,
+      "y": 560,
+      "size": 92
+    },
+    "logo": {
+      "m0": 250,
+      "m1": 150
+    },
+    "end": {
+      "m": 150,
+      "mm": 178,
+      "y": 90,
+      "lines": [
+        {
+          "text": "Plan your trip together.",
+          "font": "bold",
+          "size": 64,
+          "y": -110,
+          "color": "#FFFFFF",
+          "f": [
+            24,
+            36
+          ]
+        },
+        {
+          "text": "wanderbuddyapp.com",
+          "font": "semi",
+          "size": 44,
+          "y": -205,
+          "color": "#DCEBFA",
+          "f": [
+            32,
+            44
+          ]
+        }
+      ]
+    }
+  },
+  "panic": {
+    "headline": [
+      [
+        "Every group trip",
+        ""
+      ],
+      [
+        "starts like ",
+        "this."
+      ]
+    ],
+    "headline_y": 0,
+    "headline_size": [
+      96,
+      132
+    ],
+    "headline_in": 96,
+    "collapse": [
+      182,
+      203
+    ],
+    "tile_in": [
+      194,
+      202
+    ],
+    "phone_scale": 0.4,
+    "card_scale": 0.9,
+    "cam_x0": -0.02,
+    "fstop": 1.4,
+    "spread": [
+      0.4,
+      0.84
+    ],
+    "lock": {
+      "date": "Sunday 4 October",
+      "time": "23:47"
+    },
+    "group": "Bangkok Crew",
+    "manual": [
+      [
+        -0.08,
+        0.64,
+        0.05,
+        -6,
+        9,
+        3
+      ],
+      [
+        0.16,
+        0.4,
+        0.12,
+        4,
+        -11,
+        -2
+      ],
+      [
+        -0.1,
+        -0.36,
+        0.18,
+        -3,
+        12,
+        2
+      ],
+      [
+        0.16,
+        -0.6,
+        0.03,
+        5,
+        -9,
+        -3
+      ],
+      [
+        0.14,
+        0.82,
+        -0.3,
+        6,
+        3,
+        1
+      ],
+      [
+        -0.06,
+        -0.82,
+        0.3,
+        -4,
+        6,
+        -2
+      ],
+      [
+        0.24,
+        0.12,
+        -0.5,
+        3,
+        -6,
+        2
+      ],
+      [
+        -0.2,
+        0.16,
+        -0.42,
+        -2,
+        11,
+        -1
+      ]
+    ],
+    "cards": [
+      {
+        "who": "Maya",
+        "at": "23:41",
+        "say": "Which dates work for everyone?",
+        "f": 3
+      },
+      {
+        "who": "Leo",
+        "at": "23:41",
+        "say": "I can do the 14th. Maybe",
+        "f": 4
+      },
+      {
+        "who": "Priya",
+        "at": "23:42",
+        "say": "Who's booking the hotel?",
+        "f": 6
+      },
+      {
+        "who": "Maya",
+        "at": "23:42",
+        "say": "Send that reel again?",
+        "f": 9
+      },
+      {
+        "who": "Leo",
+        "at": "23:42",
+        "say": "Where was the street food place",
+        "f": 11
+      },
+      {
+        "who": "Priya",
+        "at": "23:43",
+        "say": "I paid for the boat. Who owes me?",
+        "f": 14
+      },
+      {
+        "who": "Maya",
+        "at": "23:43",
+        "say": "Muay Thai or night market?",
+        "f": 16
+      },
+      {
+        "who": "Leo",
+        "at": "23:43",
+        "say": "Scroll up, I sent it last week",
+        "f": 19
+      },
+      {
+        "who": "Priya",
+        "at": "23:43",
+        "say": "Is it the 16th or the 17th?",
+        "f": 22,
+        "badge": 12
+      },
+      {
+        "who": "Maya",
+        "at": "23:44",
+        "say": "Can someone make a plan",
+        "f": 25
+      },
+      {
+        "who": "Leo",
+        "at": "23:44",
+        "say": "Wait, are we still going?",
+        "f": 29
+      },
+      {
+        "who": "Priya",
+        "at": "23:44",
+        "say": "Poll? Anyone?",
+        "f": 32
+      },
+      {
+        "who": "Maya",
+        "at": "23:44",
+        "say": "Which hotel did we pick?",
+        "f": 35
+      },
+      {
+        "who": "Leo",
+        "at": "23:45",
+        "say": "Lost the spreadsheet",
+        "f": 38,
+        "badge": 27
+      },
+      {
+        "who": "Priya",
+        "at": "23:45",
+        "say": "Who has the itinerary?",
+        "f": 42
+      },
+      {
+        "who": "Maya",
+        "at": "23:45",
+        "say": "Can't find the link",
+        "f": 45
+      },
+      {
+        "who": "Leo",
+        "at": "23:45",
+        "say": "Ok but which dates",
+        "f": 49
+      },
+      {
+        "who": "Priya",
+        "at": "23:46",
+        "say": "Voice message (2:14)",
+        "f": 53
+      },
+      {
+        "who": "Maya",
+        "at": "23:46",
+        "say": "Did anyone vote?",
+        "f": 56,
+        "badge": 48
+      },
+      {
+        "who": "Leo",
+        "at": "23:46",
+        "say": "I owe who 400 baht?",
+        "f": 60
+      },
+      {
+        "who": "Priya",
+        "at": "23:46",
+        "say": "Rooftop bar video, where?",
+        "f": 68
+      },
+      {
+        "who": "Maya",
+        "at": "23:46",
+        "say": "Floating market or Ayutthaya?",
+        "f": 76
+      },
+      {
+        "who": "Leo",
+        "at": "23:47",
+        "say": "Flights are going up",
+        "f": 84
+      },
+      {
+        "who": "Priya",
+        "at": "23:47",
+        "say": "Hello??",
+        "f": 92,
+        "badge": 99
+      },
+      {
+        "who": "Maya",
+        "at": "23:47",
+        "say": "Who's in?",
+        "f": 100
+      },
+      {
+        "who": "Leo",
+        "at": "23:47",
+        "say": "Sorry, just saw this",
+        "f": 108
+      },
+      {
+        "who": "Priya",
+        "at": "23:47",
+        "say": "So what's the plan",
+        "f": 116
+      },
+      {
+        "who": "Maya",
+        "at": "23:47",
+        "say": "Scrolling up now",
+        "f": 124
+      }
+    ]
+  },
+  "beats": {
+    "dates": {
+      "headline": [
+        "Dates everyone",
+        "can make."
+      ],
+      "phones": [
+        {
+          "tex": "dates.png",
+          "x": 30,
+          "y": -455,
+          "z": 0,
+          "s": 0.62,
+          "ry": [
+            -10,
+            -6
+          ],
+          "rx": [
+            6,
+            4
+          ]
+        }
+      ],
+      "pop": {
+        "phone": 0,
+        "rect": [
+          0.02,
+          0.7,
+          0.98,
+          0.814
+        ],
+        "r": 44,
+        "to": [
+          0,
+          -150
+        ],
+        "lift": 0.26,
+        "s": 1.12
+      },
+      "ring": {
+        "pop": true,
+        "rect": [
+          0.035,
+          0.744,
+          0.62,
+          0.778
+        ],
+        "r": 30
+      },
+      "ring_in": 26
+    },
+    "vote": {
+      "headline": [
+        "Vote on",
+        "what to do."
+      ],
+      "phones": [
+        {
+          "tex": "vote.png",
+          "x": 30,
+          "y": -455,
+          "z": 0,
+          "s": 0.62,
+          "ry": [
+            -10,
+            -6
+          ],
+          "rx": [
+            6,
+            4
+          ]
+        }
+      ],
+      "pop": {
+        "phone": 0,
+        "rect": [
+          0.02,
+          0.655,
+          0.98,
+          0.952
+        ],
+        "r": 44,
+        "to": [
+          0,
+          -170
+        ],
+        "lift": 0.26,
+        "s": 1.08
+      },
+      "ring": {
+        "pop": true,
+        "rect": [
+          0.03,
+          0.757,
+          0.97,
+          0.81
+        ],
+        "r": 36
+      },
+      "ring_in": 26
+    },
+    "reels": {
+      "headline": [
+        "Saved reels",
+        "become places."
+      ],
+      "phones": [
+        {
+          "tex": "reels.png",
+          "x": 30,
+          "y": -455,
+          "z": 0,
+          "s": 0.62,
+          "ry": [
+            -10,
+            -6
+          ],
+          "rx": [
+            6,
+            4
+          ]
+        }
+      ],
+      "pop": {
+        "phone": 0,
+        "rect": [
+          0.025,
+          0.279,
+          0.975,
+          0.375
+        ],
+        "r": 36,
+        "to": [
+          0,
+          -120
+        ],
+        "lift": 0.28,
+        "s": 1.04
+      },
+      "ring": {
+        "pop": true,
+        "rect": [
+          0.025,
+          0.279,
+          0.975,
+          0.375
+        ],
+        "r": 36
+      },
+      "ring_in": 26
+    },
+    "budget": {
+      "headline": [
+        "Split costs,",
+        "settle up."
+      ],
+      "phones": [
+        {
+          "tex": "budget.png",
+          "x": 30,
+          "y": -455,
+          "z": 0,
+          "s": 0.62,
+          "ry": [
+            -10,
+            -6
+          ],
+          "rx": [
+            6,
+            4
+          ]
+        }
+      ],
+      "pop": {
+        "phone": 0,
+        "rect": [
+          0.03,
+          0.638,
+          0.97,
+          0.772
+        ],
+        "r": 36,
+        "to": [
+          0,
+          -150
+        ],
+        "lift": 0.26,
+        "s": 1.12
+      },
+      "ring": {
+        "pop": true,
+        "rect": [
+          0.03,
+          0.638,
+          0.97,
+          0.772
+        ],
+        "r": 36
+      },
+      "ring_in": 26
+    }
+  }
+}

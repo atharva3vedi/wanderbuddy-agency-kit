@@ -1,0 +1,148 @@
+{
+ "sfx": [
+  {
+   "t": 0.25,
+   "kind": "whoosh",
+   "gain": 1
+  },
+  {
+   "t": 1.9,
+   "kind": "tick",
+   "gain": 0.7
+  },
+  {
+   "t": 2.2,
+   "kind": "glow",
+   "gain": 0.6
+  },
+  {
+   "t": 5.794,
+   "kind": "lift",
+   "gain": 0.9
+  },
+  {
+   "t": 8.689,
+   "kind": "swish",
+   "gain": 0.7
+  },
+  {
+   "t": 9.049,
+   "kind": "pop",
+   "gain": 0.45
+  },
+  {
+   "t": 9.159,
+   "kind": "pop",
+   "gain": 0.45
+  },
+  {
+   "t": 9.269,
+   "kind": "pop",
+   "gain": 0.45
+  },
+  {
+   "t": 9.379,
+   "kind": "pop",
+   "gain": 0.45
+  },
+  {
+   "t": 9.489,
+   "kind": "pop",
+   "gain": 0.45
+  },
+  {
+   "t": 12.285,
+   "kind": "tick",
+   "gain": 0.5
+  },
+  {
+   "t": 12.405,
+   "kind": "tick",
+   "gain": 0.5
+  },
+  {
+   "t": 12.525,
+   "kind": "tick",
+   "gain": 0.5
+  },
+  {
+   "t": 12.645,
+   "kind": "tick",
+   "gain": 0.5
+  },
+  {
+   "t": 12.765,
+   "kind": "tick",
+   "gain": 0.5
+  },
+  {
+   "t": 12.885,
+   "kind": "tick",
+   "gain": 0.5
+  },
+  {
+   "t": 14.132,
+   "kind": "thud",
+   "gain": 1
+  },
+  {
+   "t": 14.7,
+   "kind": "slide",
+   "gain": 0.8
+  },
+  {
+   "t": 17.593,
+   "kind": "type",
+   "gain": 0.55
+  },
+  {
+   "t": 18.78,
+   "kind": "swish",
+   "gain": 0.45
+  },
+  {
+   "t": 21.521,
+   "kind": "pop",
+   "gain": 0.7
+  }
+ ],
+ "duration": 24.39,
+ "cues": [
+  {
+   "i": 0,
+   "start": 2.3,
+   "end": 5.544,
+   "text": "You posted your best trip. It's just buried."
+  },
+  {
+   "i": 1,
+   "start": 5.994,
+   "end": 8.239,
+   "text": "Here's how WanderBuddy can help you stand out."
+  },
+  {
+   "i": 2,
+   "start": 8.639,
+   "end": 13.176,
+   "text": "Send us your trips. We'll list them where groups plan their trips, and keep them live."
+  },
+  {
+   "i": 3,
+   "start": 13.676,
+   "end": 14.45,
+   "text": "Listing's free."
+  },
+  {
+   "i": 4,
+   "start": 15.15,
+   "end": 21.371,
+   "text": "And when someone's interested, the enquiry, the quote and the booking can all sit in one CRM."
+  },
+  {
+   "i": 5,
+   "start": 21.971,
+   "end": 23.286,
+   "text": "Message us your trips."
+  }
+ ]
+}

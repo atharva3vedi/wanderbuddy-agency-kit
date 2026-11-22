@@ -1,0 +1,228 @@
+{
+ "made": "investor-demo/build/score.py: the Pixabay bossa bed, the Iowa Steinway notes, a synthesized clock tick",
+ "stems_rms_db": {
+  "bed": -21.8,
+  "clock": -48.8,
+  "piano": -27.4
+ },
+ "peak": 0.668,
+ "events": [
+  {
+   "bed": "musicalmix2020-bossa-nova-summer-instrumental-brazil-7969.mp3",
+   "from_s": 55.797,
+   "night_db": -8.0,
+   "night_lowpass_hz": 850
+  },
+  {
+   "piano": [
+    {
+     "t": 7.3,
+     "note": "G4",
+     "gain_db": -14.0
+    },
+    {
+     "t": 11.0,
+     "note": "B4",
+     "gain_db": -12.0
+    },
+    {
+     "t": 15.4,
+     "note": "D5",
+     "gain_db": -12.0
+    },
+    {
+     "t": 19.8,
+     "note": "G4",
+     "gain_db": -12.0
+    },
+    {
+     "t": 23.5,
+     "note": "D5",
+     "gain_db": -12.0
+    },
+    {
+     "t": 27.6,
+     "note": "G4",
+     "gain_db": -12.0
+    },
+    {
+     "t": 32.0,
+     "note": "B4",
+     "gain_db": -12.0
+    },
+    {
+     "t": 36.0,
+     "note": "D5",
+     "gain_db": -12.0
+    },
+    {
+     "t": 38.7,
+     "note": "G5",
+     "gain_db": -14.0
+    },
+    {
+     "t": 40.25,
+     "note": "G2",
+     "gain_db": -10.0
+    },
+    {
+     "t": 40.26,
+     "note": "G4",
+     "gain_db": -11.0
+    },
+    {
+     "t": 40.27,
+     "note": "B4",
+     "gain_db": -12.0
+    },
+    {
+     "t": 42.0,
+     "note": "B4",
+     "gain_db": -13.0
+    },
+    {
+     "t": 45.0,
+     "note": "G4",
+     "gain_db": -13.0
+    },
+    {
+     "t": 51.6,
+     "note": "D5",
+     "gain_db": -12.0
+    },
+    {
+     "t": 57.9,
+     "note": "D5",
+     "gain_db": -11.0
+    },
+    {
+     "t": 57.912,
+     "note": "G5",
+     "gain_db": -13.0
+    },
+    {
+     "t": 64.8,
+     "note": "B4",
+     "gain_db": -12.0
+    },
+    {
+     "t": 72.0,
+     "note": "G4",
+     "gain_db": -15.0
+    },
+    {
+     "t": 72.42,
+     "note": "B4",
+     "gain_db": -15.0
+    },
+    {
+     "t": 72.84,
+     "note": "D5",
+     "gain_db": -15.0
+    },
+    {
+     "t": 73.26,
+     "note": "G5",
+     "gain_db": -16.0
+    },
+    {
+     "t": 79.6,
+     "note": "G5",
+     "gain_db": -12.0
+    },
+    {
+     "t": 91.0,
+     "note": "B3",
+     "gain_db": -11.0
+    },
+    {
+     "t": 94.6,
+     "note": "D4",
+     "gain_db": -11.0
+    },
+    {
+     "t": 95.9,
+     "note": "B4",
+     "gain_db": -11.0
+    },
+    {
+     "t": 100.45,
+     "note": "G4",
+     "gain_db": -10.0
+    },
+    {
+     "t": 100.46,
+     "note": "D5",
+     "gain_db": -12.0
+    },
+    {
+     "t": 104.4,
+     "note": "G4",
+     "gain_db": -12.0
+    },
+    {
+     "t": 105.6,
+     "note": "B4",
+     "gain_db": -12.0
+    },
+    {
+     "t": 106.8,
+     "note": "D5",
+     "gain_db": -12.0
+    },
+    {
+     "t": 112.57,
+     "note": "G4",
+     "gain_db": -9.0
+    },
+    {
+     "t": 112.655,
+     "note": "B4",
+     "gain_db": -9.0
+    },
+    {
+     "t": 112.74,
+     "note": "D5",
+     "gain_db": -9.0
+    },
+    {
+     "t": 112.825,
+     "note": "G5",
+     "gain_db": -9.0
+    },
+    {
+     "t": 113.45,
+     "note": "B4",
+     "gain_db": -12.0
+    },
+    {
+     "t": 113.45,
+     "note": "D3",
+     "gain_db": -8.0
+    },
+    {
+     "t": 113.45,
+     "note": "G2",
+     "gain_db": -6.0
+    },
+    {
+     "t": 113.45,
+     "note": "G4",
+     "gain_db": -10.0
+    }
+   ]
+  }
+ ],
+ "loudnorm_pass1": {
+  "input_i": "-19.00",
+  "input_tp": "-3.50",
+  "input_lra": "5.50",
+  "input_thresh": "-29.20",
+  "output_i": "-14.43",
+  "output_tp": "-2.00",
+  "output_lra": "5.20",
+  "output_thresh": "-24.54",
+  "normalization_type": "dynamic",
+  "target_offset": "0.43"
+ }
+}

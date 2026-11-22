@@ -1,0 +1,355 @@
+{
+ "shots": [
+  {
+   "name": "root-bridge-45",
+   "res": [
+    1080,
+    1350
+   ],
+   "mode": "photo",
+   "photo_crop": "E:/render/india-ads/crops/root-bridge-45.jpg",
+   "screen": "E:/render/india-ads/tex/screen-trip-root-bridge.png",
+   "phone": {
+    "loc": [
+     0.035020799999999984,
+     0,
+     -0.027648
+    ],
+    "scale": 0.9302826379542395,
+    "turn": -16,
+    "lean": 4,
+    "roll": -4
+   },
+   "fstop": 26,
+   "out": "E:/render/india-ads/renders/root-bridge-45.png"
+  },
+  {
+   "name": "root-bridge-916",
+   "res": [
+    1080,
+    1920
+   ],
+   "mode": "photo",
+   "photo_crop": "E:/render/india-ads/crops/root-bridge-916.jpg",
+   "screen": "E:/render/india-ads/tex/screen-trip-root-bridge.png",
+   "phone": {
+    "loc": [
+     0.018144,
+     0,
+     -0.012672000000000011
+    ],
+    "scale": 0.7132166890982502,
+    "turn": -16,
+    "lean": 4,
+    "roll": -4
+   },
+   "fstop": 26,
+   "out": "E:/render/india-ads/renders/root-bridge-916.png"
+  },
+  {
+   "name": "umngot-45",
+   "res": [
+    1080,
+    1350
+   ],
+   "mode": "photo",
+   "photo_crop": "E:/render/india-ads/crops/umngot-45.jpg",
+   "screen": "E:/render/india-ads/tex/screen-trip-umngot.png",
+   "phone": {
+    "loc": [
+     -0.0350208,
+     0,
+     -0.027648
+    ],
+    "scale": 0.9302826379542395,
+    "turn": 16,
+    "lean": 4,
+    "roll": 4
+   },
+   "fstop": 26,
+   "out": "E:/render/india-ads/renders/umngot-45.png"
+  },
+  {
+   "name": "umngot-916",
+   "res": [
+    1080,
+    1920
+   ],
+   "mode": "photo",
+   "photo_crop": "E:/render/india-ads/crops/umngot-916.jpg",
+   "screen": "E:/render/india-ads/tex/screen-trip-umngot.png",
+   "phone": {
+    "loc": [
+     -0.018144,
+     0,
+     -0.012672000000000011
+    ],
+    "scale": 0.7132166890982502,
+    "turn": 16,
+    "lean": 4,
+    "roll": 4
+   },
+   "fstop": 26,
+   "out": "E:/render/india-ads/renders/umngot-916.png"
+  },
+  {
+   "name": "mizoram-45",
+   "res": [
+    1080,
+    1350
+   ],
+   "mode": "photo",
+   "photo_crop": "E:/render/india-ads/crops/mizoram-45.jpg",
+   "screen": "E:/render/india-ads/tex/screen-trip-mizoram.png",
+   "phone": {
+    "loc": [
+     -0.0350208,
+     0,
+     -0.027648
+    ],
+    "scale": 0.9302826379542395,
+    "turn": 16,
+    "lean": 4,
+    "roll": 4
+   },
+   "fstop": 26,
+   "out": "E:/render/india-ads/renders/mizoram-45.png"
+  },
+  {
+   "name": "mizoram-916",
+   "res": [
+    1080,
+    1920
+   ],
+   "mode": "photo",
+   "photo_crop": "E:/render/india-ads/crops/mizoram-916.jpg",
+   "screen": "E:/render/india-ads/tex/screen-trip-mizoram.png",
+   "phone": {
+    "loc": [
+     -0.018144,
+     0,
+     -0.012672000000000011
+    ],
+    "scale": 0.7132166890982502,
+    "turn": 16,
+    "lean": 4,
+    "roll": 4
+   },
+   "fstop": 26,
+   "out": "E:/render/india-ads/renders/mizoram-916.png"
+  },
+  {
+   "name": "taj-45",
+   "res": [
+    1080,
+    1350
+   ],
+   "mode": "photo",
+   "photo_crop": "E:/render/india-ads/crops/taj-45.jpg",
+   "screen": "E:/render/india-ads/tex/screen-trip-taj.png",
+   "phone": {
+    "loc": [
+     0.04423679999999999,
+     0,
+     -0.03686400000000001
+    ],
+    "scale": 0.7752355316285329,
+    "turn": -16,
+    "lean": 4,
+    "roll": -4
+   },
+   "fstop": 26,
+   "out": "E:/render/india-ads/renders/taj-45.png"
+  },
+  {
+   "name": "taj-916",
+   "res": [
+    1080,
+    1920
+   ],
+   "mode": "photo",
+   "photo_crop": "E:/render/india-ads/crops/taj-916.jpg",
+   "screen": "E:/render/india-ads/tex/screen-trip-taj.png",
+   "phone": {
+    "loc": [
+     0.018144,
+     0,
+     -0.012672000000000011
+    ],
+    "scale": 0.7132166890982502,
+    "turn": -16,
+    "lean": 4,
+    "roll": -4
+   },
+   "fstop": 26,
+   "out": "E:/render/india-ads/renders/taj-916.png"
+  },
+  {
+   "name": "finder-45",
+   "res": [
+    1080,
+    1350
+   ],
+   "mode": "studio",
+   "screen": "E:/render/india-ads/tex/screen-home-typed.png",
+   "phone": {
+    "loc": [
+     0.0,
+     0,
+     -0.029952
+    ],
+    "scale": 0.8682637954239568,
+    "turn": -10,
+    "lean": 3,
+    "roll": -2
+   },
+   "cards": [
+    {
+     "tex": "E:/render/india-ads/tex/card-h3.png",
+     "loc": [
+      -0.05000542593597396,
+      0.045,
+      0.012
+     ],
+     "rz": 9,
+     "rx": -3,
+     "ry": -2,
+     "w": 0.06,
+     "emit": 0.22
+    },
+    {
+     "tex": "E:/render/india-ads/tex/card-c1.png",
+     "loc": [
+      0.05200564297341291,
+      0.06,
+      0.004
+     ],
+     "rz": -9,
+     "rx": -3,
+     "ry": 3,
+     "w": 0.06,
+     "emit": 0.22
+    },
+    {
+     "tex": "E:/render/india-ads/tex/card-h1.png",
+     "loc": [
+      -0.04700510037981552,
+      0.03,
+      -0.066
+     ],
+     "rz": 5,
+     "rx": 2,
+     "ry": -3,
+     "w": 0.056,
+     "emit": 0.22
+    },
+    {
+     "tex": "E:/render/india-ads/tex/card-h4.png",
+     "loc": [
+      0.04700510037981552,
+      -0.035,
+      -0.062
+     ],
+     "rz": -11,
+     "rx": 4,
+     "ry": 4,
+     "w": 0.052,
+     "emit": 0.22
+    }
+   ],
+   "fstop": 5.6,
+   "backdrop_dist": 0.3,
+   "key": 4.5,
+   "fill": 1.2,
+   "world": 0.25,
+   "bg_top": [
+    0.93,
+    0.96,
+    0.99
+   ],
+   "bg_bottom": [
+    0.78,
+    0.86,
+    0.94
+   ],
+   "out": "E:/render/india-ads/renders/finder-45.png"
+  },
+  {
+   "name": "finder-916",
+   "res": [
+    1080,
+    1920
+   ],
+   "mode": "studio",
+   "screen": "E:/render/india-ads/tex/screen-home-typed.png",
+   "phone": {
+    "loc": [
+     0.0,
+     0,
+     -0.012672000000000011
+    ],
+    "scale": 0.6822072678331089,
+    "turn": -10,
+    "lean": 3,
+    "roll": -2
+   },
+   "cards": [
+    {
+     "tex": "E:/render/india-ads/tex/card-h3.png",
+     "loc": [
+      -0.03516006511123169,
+      0.045,
+      0.012
+     ],
+     "rz": 9,
+     "rx": -3,
+     "ry": -2,
+     "w": 0.06,
+     "emit": 0.22
+    },
+    {
+     "tex": "E:/render/india-ads/tex/card-c1.png",
+     "loc": [
+      0.03656646771568095,
+      0.06,
+      0.004
+     ],
+     "rz": -9,
+     "rx": -3,
+     "ry": 3,
+     "w": 0.06,
+     "emit": 0.22
+    },
+    {
+     "tex": "E:/render/india-ads/tex/card-h4.png",
+     "loc": [
+      0.033050461204557784,
+      -0.035,
+      -0.05
+     ],
+     "rz": -11,
+     "rx": 4,
+     "ry": 4,
+     "w": 0.052,
+     "emit": 0.22
+    }
+   ],
+   "fstop": 5.6,
+   "backdrop_dist": 0.3,
+   "key": 4.5,
+   "fill": 1.2,
+   "world": 0.25,
+   "bg_top": [
+    0.93,
+    0.96,
+    0.99
+   ],
+   "bg_bottom": [
+    0.78,
+    0.86,
+    0.94
+   ],
+   "out": "E:/render/india-ads/renders/finder-916.png"
+  }
+ ]
+}

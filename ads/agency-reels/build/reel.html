@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>B2B listing reels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B141F; --ink3:#12202E; --surface:#1C2E42;
+  --azure:#3FA7E6; --azureD:#1E88D6; --azureDeep:#1A6FB0; --sky:#8FD3FF;
+  --green:#25C26E; --text:#0C1622;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--ink);
+  font-family:Inter,system-ui,sans-serif;color:#fff;-webkit-font-smoothing:antialiased}
+.abs{position:absolute;left:0;top:0}
+#glow{position:absolute;inset:0;background:radial-gradient(70% 45% at 50% 42%,rgba(30,136,214,.28),rgba(11,20,31,0) 70%)}
+#grain{position:absolute;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:81;opacity:.05;mix-blend-mode:overlay}
+#vig{position:absolute;inset:0;pointer-events:none;z-index:80;background:radial-gradient(120% 80% at 50% 45%,rgba(0,0,0,0) 60%,rgba(0,0,0,.38))}
+
+/* one headline at a time */
+.head{position:absolute;left:70px;right:70px;text-align:center;font-weight:900;font-size:104px;line-height:1.02;letter-spacing:-.035em;
+  color:#fff;text-shadow:0 10px 50px rgba(0,0,0,.55);z-index:60}
+.head span{display:inline-block;white-space:pre}
+#topfade{position:absolute;left:0;right:0;top:0;height:760px;z-index:59;background:linear-gradient(180deg,rgba(8,14,22,.92),rgba(8,14,22,.6) 55%,rgba(8,14,22,0))}
+
+/* captions */
+#cc{position:absolute;left:0;right:0;bottom:300px;text-align:center;z-index:70}
+#cc span{display:inline-block;max-width:940px;font-size:54px;font-weight:800;letter-spacing:-.015em;line-height:1.18;color:#fff;
+  padding:10px 28px 14px;border-radius:18px;background:rgba(5,10,16,.62);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+
+/* profile grid */
+#feed{position:absolute;left:0;top:0;width:1080px;will-change:transform}
+#feed .ph{height:1000px;padding:620px 56px 0;display:flex;align-items:center;gap:40px}
+#feed .av{width:150px;height:150px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 5px rgba(255,255,255,.12)}
+#feed .av img{width:104px}
+#feed .nm{font-size:50px;font-weight:800;letter-spacing:-.02em}
+#feed .st{font-size:36px;font-weight:600;margin-top:10px}
+#feed .st b{font-weight:800}
+#tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+#tiles i{display:block;height:357px;background:#16283a center/cover no-repeat}
+#target{position:absolute;z-index:5;border-radius:0;box-shadow:0 0 0 0 rgba(63,167,230,0)}
+
+/* trip card */
+.card{position:absolute;left:0;top:0;width:820px;border-radius:40px;background:#fff;color:var(--text);overflow:hidden;
+  box-shadow:0 40px 110px rgba(0,0,0,.55);transform-origin:0 0}
+.card .pic{position:relative;width:820px;height:560px;background:#16283a center/cover no-repeat}
+.card .bd{padding:34px 40px 38px}
+.card .tt{font-size:54px;font-weight:800;letter-spacing:-.025em;line-height:1.08}
+.card .ag{display:flex;align-items:center;gap:14px;margin-top:20px;font-size:32px;font-weight:700}
+.card .ag img{width:42px;height:42px}
+.card .rw{display:flex;align-items:baseline;justify-content:space-between;margin-top:22px}
+.card .dd{font-size:34px;font-weight:700}
+.card .pr{font-size:58px;font-weight:900;letter-spacing:-.03em;color:var(--azureDeep)}
+.card .live{position:absolute;left:30px;top:30px;display:flex;align-items:center;gap:12px;height:66px;padding:0 26px 0 22px;border-radius:33px;
+  background:#fff;color:var(--text);font-size:32px;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card .live i{width:20px;height:20px;border-radius:50%;background:var(--green);box-shadow:0 0 0 6px rgba(37,194,110,.22)}
+
+/* big word */
+#burst{position:absolute;left:140px;top:560px;width:800px;height:800px;border-radius:50%;z-index:61;
+  background:radial-gradient(circle,rgba(63,167,230,.55),rgba(30,136,214,.18) 45%,rgba(30,136,214,0) 70%)}
+#free{position:absolute;left:0;right:0;top:760px;text-align:center;font-size:300px;font-weight:900;letter-spacing:-.06em;color:#fff;z-index:62;
+  text-shadow:0 20px 80px rgba(0,0,0,.6)}
+
+/* browser */
+.brw{position:absolute;left:50px;width:980px;border-radius:28px;overflow:hidden;background:#fff;box-shadow:0 50px 130px rgba(0,0,0,.6);z-index:20}
+.brw .bar{height:64px;display:flex;align-items:center;gap:12px;padding:0 26px;background:#E9EDF2}
+.brw .bar i{width:18px;height:18px;border-radius:50%}
+.brw .view{position:relative;overflow:hidden;background:#fff}
+.brw .world{position:absolute;left:0;top:0;width:3200px;height:2000px;transform-origin:0 0}
+.brw .world img{position:absolute;left:0;top:0;width:3200px;height:2000px}
+.brw .ring{position:absolute;border:9px solid var(--azure);border-radius:30px;box-shadow:0 0 0 10px rgba(63,167,230,.18),0 0 60px rgba(63,167,230,.45)}
+
+/* chat (reel 3) */
+.bub{position:absolute;left:70px;max-width:860px;padding:34px 44px 38px;border-radius:48px 48px 48px 14px;background:var(--surface);
+  font-size:56px;font-weight:700;letter-spacing:-.02em;line-height:1.12;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,.35);transform-origin:0 100%;z-index:30}
+.src{position:absolute;left:0;top:0;transform-origin:50% 50%;z-index:25}
+.pdf{width:250px;height:330px;border-radius:18px;background:#fff;box-shadow:0 30px 70px rgba(0,0,0,.5);padding:26px 24px;overflow:hidden}
+.pdf .tag{position:absolute;right:0;top:0;padding:8px 16px;border-radius:0 18px 0 14px;background:#E04B3C;color:#fff;font-size:30px;font-weight:900}
+.pdf .im{height:120px;border-radius:10px;background:#16283a center/cover no-repeat;margin-top:44px}
+.pdf .ln{height:14px;border-radius:7px;background:#D5DCE4;margin-top:16px}
+.lnk{width:250px;height:250px;border-radius:60px;background:var(--azureD);display:grid;place-items:center;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.lnk svg{width:150px;height:150px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.igp{width:260px;height:260px;border-radius:30px;background:#16283a center/cover no-repeat;box-shadow:0 30px 70px rgba(0,0,0,.5);border:8px solid #fff}
+
+/* reel 1: the walk-in skit */
+.shop{position:absolute;inset:0;overflow:hidden;background:linear-gradient(#8CC6EC,#CBE6F6 420px);transform-origin:540px 1170px}
+.shop .facade{position:absolute;left:0;right:0;top:450px;bottom:300px;background:linear-gradient(#18324D,#0F2236)}
+.shop .sign{position:absolute;left:100px;right:100px;top:500px;height:170px;border-radius:24px;background:#0B141F;display:flex;align-items:center;justify-content:center;gap:26px;
+  font-size:78px;font-weight:800;letter-spacing:-.025em;color:#fff;box-shadow:0 18px 40px rgba(0,0,0,.35),inset 0 0 0 3px rgba(255,255,255,.08)}
+.shop .sign img{width:104px;height:104px;border-radius:50%;background:#fff;padding:12px}
+.shop .win{position:absolute;top:740px;height:640px;width:270px;border-radius:16px;border:10px solid #0B1A2A;
+  background:linear-gradient(160deg,#F3F6F9,#D9E3EC 60%,#C7D5E2)}
+.shop .win i{position:absolute;left:40px;top:70px;width:150px;height:200px;background:#fff center/cover;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.shop .door{position:absolute;left:390px;top:740px;width:300px;height:880px;background:linear-gradient(#EEF2F6,#DCE3EA);perspective:1600px;border:12px solid #0B1A2A;border-bottom:0}
+.shop .leaf{position:absolute;inset:0;transform-origin:0 50%;background:linear-gradient(#2E6894,#204F77);box-shadow:inset 0 0 0 8px #173E60}
+.shop .glass{position:absolute;left:34px;right:34px;top:46px;height:440px;border-radius:8px;background:linear-gradient(135deg,rgba(214,236,250,.92),rgba(150,195,228,.75))}
+.shop .open{position:absolute;left:56px;top:530px;padding:12px 30px;border-radius:14px;background:#fff;color:#0B141F;font-size:44px;font-weight:900;letter-spacing:-.02em}
+.shop .knob{position:absolute;right:26px;top:500px;width:26px;height:26px;border-radius:50%;background:#C9D3DC}
+.shop .ground{position:absolute;left:0;right:0;bottom:0;height:300px;background:linear-gradient(#C3CDD6,#A9B5C1)}
+.shop .ground::before{content:'';position:absolute;left:0;right:0;top:0;height:14px;background:#8D99A5}
+.office{position:absolute;inset:0;overflow:hidden;background:linear-gradient(#F1F4F7,#E3E9EF 64%)}
+.office .poster{position:absolute;background:#fff;padding:18px;box-shadow:0 22px 50px rgba(11,20,31,.22)}
+.office .poster i{display:block;width:100%;height:100%;background:#16283a center/cover}
+.office .desk{position:absolute;left:-40px;right:-40px;top:1230px;bottom:-40px;background:linear-gradient(#A97B54,#8B603F 40%,#7A5436);box-shadow:0 -6px 0 #C29466 inset}
+.office .laptop{position:absolute;left:350px;top:860px;width:620px;height:385px;padding:16px;border-radius:24px 24px 8px 8px;background:#1B232C;box-shadow:0 30px 60px rgba(11,20,31,.35)}
+.office .laptop i{display:block;width:100%;height:100%;border-radius:8px;background:#fff url(img/inbox.png) no-repeat;background-size:1240px auto;background-position:-372px -48px}
+.office .base{position:absolute;left:300px;top:1238px;width:720px;height:30px;border-radius:0 0 22px 22px;background:linear-gradient(#D7DDE3,#B8C1CA)}
+.office .pg{position:absolute;width:250px;height:330px;border-radius:12px;background:#fff;padding:22px;box-shadow:0 14px 34px rgba(11,20,31,.25)}
+.office .pg .im{height:110px;border-radius:8px;background:#16283a center/cover;margin-top:8px}
+.office .pg .ln{height:13px;border-radius:7px;background:#D5DCE4;margin-top:15px}
+.say{position:absolute;bottom:360px;display:flex;align-items:flex-end;gap:18px;z-index:45}
+.say .av{width:100px;height:100px;border-radius:50%;flex:none;display:grid;place-items:center;box-shadow:0 12px 28px rgba(0,0,0,.28)}
+.say span{display:block;max-width:760px;padding:30px 40px 34px;font-size:54px;font-weight:800;letter-spacing:-.02em;line-height:1.12;box-shadow:0 22px 54px rgba(11,20,31,.32)}
+.say.owner{left:46px;transform-origin:0 100%}
+.say.owner .av{background:#fff}.say.owner .av img{width:66px}
+.say.owner span{background:#fff;color:#0C1622;border-radius:46px 46px 46px 12px}
+.say.rep{right:46px;flex-direction:row-reverse;transform-origin:100% 100%}
+.say.rep .av{background:#1E88D6}.say.rep .av img{width:62px}
+.say.rep span{background:#1E88D6;color:#fff;border-radius:46px 46px 12px 46px}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="glow"></div>
+  <div id="layer" class="abs" style="width:1080px;height:1920px"></div>
+  <div id="topfade"></div>
+  <div id="hook" class="head" style="top:250px"></div>
+  <div id="burst"></div>
+  <div id="free">Free.</div>
+  <div id="cc"><span></span></div>
+  <div id="vig"></div>
+  <canvas id="grain" width="512" height="512"></canvas>
+</div>
+<script>
+const q = new URLSearchParams(location.search);
+const R = q.get('reel') || 'r2';
+const CC = q.get('cc') !== '0';
+document.write(`<script src="${R}_tl.js"><\/script>`);
+</script>
+<script>
+// ---------- helpers (same conventions as the origin-story engine: every frame is a pure function of t) ----------
+const FPS = 30;
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const lerp = (a, b, x) => a + (b - a) * x;
+const E = {
+  out: x => 1 - Math.pow(1 - x, 3),
+  out5: x => 1 - Math.pow(1 - x, 5),
+  inOut: x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
+  back: x => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); },
+  spring: x => x <= 0 ? 0 : x >= 1 ? 1 : 1 - Math.exp(-5.5 * x) * Math.cos(10 * x),
+};
+const $ = id => document.getElementById(id);
+function el(tag, cls, parent, h) { const e = document.createElement(tag); if (cls) e.className = cls; if (h != null) e.innerHTML = h; if (parent) parent.appendChild(e); return e; }
+function setTr(e, v) { if (e._t !== v) { e.style.transform = v; e._t = v; } }
+function setT(e, x, y, s = 1, r = 0) { setTr(e, `translate(${x.toFixed(2)}px,${y.toFixed(2)}px) scale(${s.toFixed(4)}) rotate(${r.toFixed(2)}deg)`); }
+function setO(e, o) { o = Math.round(clamp(o) * 1000) / 1000; if (e._o !== o) { e.style.opacity = o; e._o = o; } }
+function setF(e, f) { if (e._f !== f) { e.style.filter = f; e._f = f; } }
+function setS(e, k, v) { e._s = e._s || {}; if (e._s[k] !== v) { e.style[k] = v; e._s[k] = v; } }
+function show(e, on) { const v = on ? 'visible' : 'hidden'; if (e._v !== v) { e.style.visibility = v; e._v = v; } }
+function html(e, h) { if (e._h !== h) { e.innerHTML = h; e._h = h; } }
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+function rnd(seed) { let s = seed >>> 0 || 1; return () => { s ^= s << 13; s ^= s >>> 17; s ^= s << 5; return ((s >>> 0) % 100000) / 100000; }; }
+
+// ---------- timeline ----------
+const C = TL.cues.map(c => c.start), CE = TL.cues.map(c => c.end), DUR = TL.duration;
+function at(i, phrase) { const tx = TL.cues[i].text, k = tx.indexOf(phrase); return C[i] + (CE[i] - C[i]) * (k < 0 ? 0 : k / tx.length); }
+const SFX = [];
+const sfx = (t, kind, gain = 1) => SFX.push({ t: +t.toFixed(3), kind, gain });
+const RENDER = [];
+const L = $('layer');
+
+// ---------- captions: one line at a time ----------
+const ccEl = $('cc').firstElementChild, CCMAX = 30, CCS = [];
+const NOCC = new Set((q.get('nocc') || '').split(',').filter(Boolean).map(Number));
+// a long line splits into even halves at a word, so no single word is left on its own
+function evenSplit(s) {
+  const n = Math.ceil(s.length / CCMAX); if (n < 2) return [s];
+  const w = s.split(' '), out = []; let cur = '';
+  for (const x of w) {
+    if (cur && (cur + ' ' + x).length > s.length / n + 4 && out.length < n - 1) { out.push(cur); cur = x; } else cur = cur ? cur + ' ' + x : x;
+  }
+  return [...out, cur];
+}
+TL.cues.forEach(c => {
+  // sentences never share a caption; commas join while they fit
+  const chunks = [];
+  for (const sent of c.text.split(/(?<=[.?!])\s+/)) {
+    let cur = '';
+    for (const p of sent.split(/(?<=,)\s+/)) {
+      if (cur && (cur + ' ' + p).length > CCMAX) { chunks.push(...evenSplit(cur)); cur = p; } else cur = cur ? cur + ' ' + p : p;
+    }
+    if (cur) chunks.push(...evenSplit(cur));
+  }
+  const total = chunks.reduce((a, s) => a + s.length, 0); let t0 = c.start;
+  chunks.forEach((s, k) => {
+    const d = (c.end - c.start) * s.length / total;
+    CCS.push({ i: c.i, a: t0 - (k === 0 ? .06 : 0), b: t0 + d + (k === chunks.length - 1 ? .3 : 0), s: s.replace(/,$/, '') });
+    t0 += d;
+  });
+});
+function renderCC(t, skip) {
+  const c = CC && CCS.find(c => t >= c.a && t < c.b && !skip.has(c.i));
+  if (!c) { setO(ccEl, 0); return; }
+  html(ccEl, esc(c.s)); setO(ccEl, Math.min(prog(t, c.a, c.a + .1), 1 - prog(t, c.b - .06, c.b)));
+  setTr(ccEl, `translateY(${((1 - E.out(prog(t, c.a, c.a + .22))) * 16).toFixed(1)}px)`);
+}
+
+// ---------- headline that builds word by word ----------
+function headWords(e, text) { e.innerHTML = text.split(' ').map(w => w === '|' ? '<br>' : `<span>${esc(w)} </span>`).join(''); return [...e.querySelectorAll('span')]; }   // ' | ' breaks the line
+function renderHead(words, t, t0, t1, step = .07) {
+  words.forEach((w, k) => {
+    const p = E.out(prog(t, t0 + k * step, t0 + k * step + .35)), o = Math.min(p, 1 - prog(t, t1 - .2, t1));
+    setO(w, o); setTr(w, `translateY(${((1 - p) * 40).toFixed(1)}px)`);
+  });
+}
+
+// ---------- trip cards ----------
+const LOGO = 'img/lantern-mark.svg';
+const TRIPS = [
+  { t: 'Krabi island hopping', d: '5 days', p: '$690', img: 'img/krabi-railay-longtails.jpg', pos: '50% 62%' },
+  { t: 'Phuket old town and islands', d: '4 days', p: '$480', img: 'img/p_kopi.jpg', pos: '50% 50%' },
+  { t: 'Phang Nga Bay by kayak', d: '4 days', p: '$520', img: 'img/p_lantern.jpg', pos: '50% 50%' },
+  { t: 'Koh Lanta slow week', d: '6 days', p: '$760', img: 'img/p_saltwater.jpg', pos: '40% 50%' },
+  { t: 'Khao Sok jungle lake', d: '3 days', p: '$420', img: 'img/bg_karst_0.jpg', pos: '50% 50%' },
+  { t: 'Bangkok food nights', d: '3 days', p: '$390', img: 'img/bg_city_0.jpg', pos: '60% 50%' },
+];
+function makeCard(trip, parent) {
+  const c = el('div', 'card', parent, `<div class="pic" style="background-image:url(${trip.img});background-position:${trip.pos}"><div class="live"><i></i>Live</div></div>
+    <div class="bd"><div class="tt">${esc(trip.t)}</div><div class="ag"><img src="${LOGO}">Lantern Trips</div>
+    <div class="rw"><span class="dd">${trip.d}</span><span class="pr">${trip.p}</span></div></div>`);
+  c.pic = c.querySelector('.pic'); c.bd = c.querySelector('.bd'); c.live = c.querySelector('.live');
+  return c;
+}
+const CARD_H = 560 + 268;   // photo + body
+const HERO = { x: 130, y: 960 - CARD_H / 2 };
+// a 2 x 3 browse grid of every trip the agency runs, cards at half size
+function browseSlots(top) {
+  const s = .5, w = 820 * s, h = CARD_H * s, gx = 28, gy = 30, x0 = (1080 - (2 * w + gx)) / 2;
+  return TRIPS.map((_, k) => ({ x: x0 + (k % 2) * (w + gx), y: top + Math.floor(k / 2) * (h + gy), s }));
+}
+function makeBrowse(top) {
+  const root = el('div', 'abs', L); root.style.width = '1080px'; root.style.height = '1920px';
+  const slots = browseSlots(top);
+  const cards = TRIPS.map(tr => makeCard(tr, root));
+  return { root, cards, slots };
+}
+// hero card (cards[0]) moves into slot 0 while the others pop in; then "Live" pills light up one by one
+// every frame starts from nothing shown, so frames can be rendered in any order
+function resetBrowse(b) {
+  show(b.root, false);
+  b.cards.forEach(c => { setO(c, 0); setO(c.live, 0); setS(c.pic, 'height', '560px'); setO(c.bd, 1); setS(c, 'background', '#fff');
+    setS(c, 'borderRadius', '40px'); setS(c, 'boxShadow', '0 40px 110px rgba(0,0,0,.55)'); setF(c, 'none'); });
+}
+function renderBrowse(b, t, m0, liveT, drift0, drift1, out0, out1, dim = 1) {
+  const on = t >= m0 && t < out1;
+  if (!on) return; show(b.root, true);
+  const fade = 1 - prog(t, out0, out1), dy = -70 * E.inOut(prog(t, drift0, drift1));
+  b.cards.forEach((c, k) => {
+    const sl = b.slots[k];
+    if (k === 0) {
+      const p = E.inOut(prog(t, m0, m0 + .8));
+      setT(c, lerp(HERO.x, sl.x, p), lerp(HERO.y, sl.y, p) + dy * p, lerp(1, sl.s, p));
+      setO(c, fade * dim);
+    } else {
+      const t0 = m0 + .25 + k * .11, p = E.back(prog(t, t0, t0 + .5));
+      setT(c, sl.x + sl.s * 410 * (1 - p), sl.y + sl.s * 414 * (1 - p) + dy, sl.s * Math.max(p, .001));
+      setO(c, Math.min(prog(t, t0, t0 + .15), fade) * dim);
+    }
+    const lp = E.back(prog(t, liveT + k * .12, liveT + k * .12 + .4));
+    setO(c.live, lp); setTr(c.live, `scale(${(.6 + .4 * lp).toFixed(3)})`);
+  });
+}
+function sfxBrowse(m0, liveT) {
+  sfx(m0, 'swish', .7);
+  for (let k = 1; k < 6; k++) sfx(m0 + .25 + k * .11, 'pop', .45);
+  for (let k = 0; k < 6; k++) sfx(liveT + k * .12, 'tick', .5);
+}
+
+// ---------- browser over the Lantern CRM demo (3200x2000 captures) ----------
+const SW = 3200, SH = 2000;
+function makeBrowser(top, h) {
+  const root = el('div', 'brw', L); root.style.top = top + 'px';
+  el('div', 'bar', root, '<i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i>');
+  const view = el('div', 'view', root); view.style.height = h + 'px';
+  const world = el('div', 'world', view);
+  const lay = {}; for (const n of ['inbox', 'inbox_drafted', 'home']) { lay[n] = el('img', '', world); lay[n].src = `img/${n}.png`; }
+  // world coordinates of the drafted reply, the 'Booked' total and the payments list in the 3200x2000 captures
+  const ring = (x0, y0, x1, y1) => { const r = el('div', 'ring', world); Object.assign(r.style, { left: x0 - 18 + 'px', top: y0 - 18 + 'px', width: x1 - x0 + 36 + 'px', height: y1 - y0 + 36 + 'px' }); return r; };
+  const rings = { quote: ring(1211, 1709, 2187, 1862), booked: ring(528, 360, 1150, 611), pay: ring(1859, 1541, 3136, 1985) };
+  return { root, view, world, lay, rings, w: 980, h, top };
+}
+function cam(b, x, y, z) {
+  const base = Math.max(b.w / SW, b.h / SH), s = base * z;
+  let tx = b.w / 2 - x * s, ty = b.h / 2 - y * s;
+  tx = clamp(tx, b.w - SW * s, 0); ty = clamp(ty, b.h - SH * s, 0);
+  setTr(b.world, `translate(${tx.toFixed(2)}px,${ty.toFixed(2)}px) scale(${s.toFixed(5)})`);
+}
+function camKeys(keys, t) {
+  if (t <= keys[0][0]) return keys[0].slice(1);
+  for (let i = 1; i < keys.length; i++) if (t <= keys[i][0]) {
+    const a = keys[i - 1], b = keys[i], x = E.inOut(prog(t, a[0], b[0]));
+    return [lerp(a[1], b[1], x), lerp(a[2], b[2], x), lerp(a[3], b[3], x)];
+  }
+  return keys[keys.length - 1].slice(1);
+}
+// enquiry (inbox) -> quote (drafted reply) -> booking (home: booked, payments)
+function renderCRM(b, t, b0, tq, tb, b1) {
+  const on = t >= b0 && t < b1 + .4; show(b.root, on); if (!on) return;
+  const pin = E.out(prog(t, b0, b0 + .55)), pout = E.inOut(prog(t, b1, b1 + .4));
+  setT(b.root, 0, (1 - pin) * 420 + pout * 260, 1 - pout * .06); setO(b.root, Math.min(prog(t, b0, b0 + .3), 1 - pout));
+  setO(b.lay.inbox_drafted, prog(t, tq - .25, tq + .1));
+  setO(b.lay.home, prog(t, tb - .25, tb + .1));
+  const k = camKeys([[b0, 1853, 700, 1.36], [tq - .3, 1853, 760, 1.4], [tq + .4, 1853, 1640, 1.36], [tb - .25, 1853, 1700, 1.36],
+    [tb, 1180, 470, 1.25], [tb + 1.2, 1300, 560, 1.22], [b1, 2480, 1720, 1.22]], t);
+  cam(b, ...k);
+  const ringO = (a, z) => Math.min(E.out(prog(t, a, a + .3)), 1 - prog(t, z - .25, z));
+  setO(b.rings.quote, ringO(tq + .35, tb - .2)); setO(b.rings.booked, ringO(tb + .35, tb + 1.6)); setO(b.rings.pay, ringO(b1 - 1.4, b1 + .2));
+}
+function sfxCRM(b0, tq, tb) { sfx(b0, 'slide', .8); sfx(tq, 'type', .55); sfx(tb, 'swish', .45); }
+
+// ---------- reel 2: Post #214 ----------
+function reel2() {
+  const hookWords = headWords($('hook'), 'Your best trip is post #214');
+  // the agency's profile grid: header + 214 posts, the best trip buried at #214
+  const POOL = ['bg_budget_0', 'bg_city_0', 'bg_docs_0', 'bg_endsea_0', 'bg_itin_0', 'bg_karst_0', 'bg_trans_0', 'lake', 't1', 't2', 't3', 't4',
+    't5', 't6', 't7', 't8', 't9', 'p_kopi', 'p_lantern', 'p_saltwater', 'krabi-ao-nang', 'krabi-emerald-pool', 'bg_endsea_165', 'bg_budget_75'];
+  const feed = el('div', '', L); feed.id = 'feed';
+  el('div', 'ph', feed, `<div class="av"><img src="${LOGO}"></div><div><div class="nm">Lantern Trips</div><div class="st"><b>214</b> posts</div></div>`);
+  const tiles = el('div', '', feed); tiles.id = 'tiles';
+  const r = rnd(7); let last = '';
+  const TGT = 196, TILE = 357.33, ROW = TILE + 4, HEADER = 1000;
+  for (let k = 0; k < 214; k++) {
+    const i = el('i', '', tiles);
+    if (k === TGT) { i.style.backgroundImage = `url(${TRIPS[0].img})`; i.style.backgroundPosition = '50% 60%'; tiles.tgt = i; continue; }
+    let n; do n = POOL[Math.floor(r() * POOL.length)]; while (n === last); last = n;
+    i.style.backgroundImage = `url(img/${n}.jpg)`; i.style.backgroundPosition = `${Math.floor(r() * 100)}% ${Math.floor(r() * 100)}%`;
+  }
+  const tRow = Math.floor(TGT / 3), tCol = TGT % 3;
+  const SCROLL = HEADER + tRow * ROW + TILE / 2 - 960;
+  const tileX = tCol * (TILE + 4);
+  const sA = .25, sB = 1.95;
+  sfx(sA, 'whoosh', 1); sfx(sB - .05, 'tick', .7);
+
+  // the hero card starts life as tile #214
+  const browse = makeBrowse(230);
+  const hero = browse.cards[0];
+  const L0 = C[1] - .2, L1 = L0 + .9;
+  sfx(C[0] - .1, 'glow', .6); sfx(L0, 'lift', .9);
+  const m0 = C[2] + .05, liveT = at(2, 'keep') - .1;
+  sfxBrowse(m0, liveT);
+  const F0 = at(3, 'free') - .06; sfx(F0, 'thud', 1);
+  const crm = makeBrowser(330, 1060);
+  const b0 = C[4] - .45, tq = at(4, 'the quote') - .5, tb = at(4, 'the booking') - .25, b1 = C[5] - .55;
+  sfxCRM(b0, tq, tb);
+  const end0 = C[5] - .45; sfx(end0, 'pop', .7);
+
+  RENDER.push(t => {
+    // grid scroll with motion blur
+    const p = E.out5(prog(t, sA, sB)), y = -SCROLL * p;
+    const v = t > sA && t < sB ? SCROLL * 5 * Math.pow(1 - prog(t, sA, sB), 4) / (sB - sA) : 0;
+    const gridOut = E.inOut(prog(t, L0, L1));
+    show(feed, t < L1 + .1);
+    setTr(feed, `translateY(${y.toFixed(1)}px) scale(${(1 + gridOut * .08).toFixed(4)})`); feed.style.transformOrigin = `50% ${(-y + 960).toFixed(0)}px`;
+    setF(feed, `blur(${Math.min(v / 4500 + gridOut * 10, 16).toFixed(2)}px) brightness(${(1 - .62 * E.out(prog(t, C[0] - .2, C[0] + .3)) - .3 * gridOut).toFixed(3)})`);
+    setO(feed, 1 - prog(t, L1 - .3, L1 + .1));
+    renderHead(hookWords, t, -1, 2.25, .06);
+    setO($('topfade'), 1 - prog(t, 2.05, 2.4));
+
+    // tile #214 glows, lifts out and becomes the trip card (its slot goes dark once it leaves)
+    setO(tiles.tgt, t < L0 ? 1 : 0);
+    resetBrowse(browse);
+    const heroOn = t >= sB - .1 && t < m0;
+    if (heroOn) {
+      show(browse.root, true);
+      const lp = E.inOut(prog(t, L0, L1));
+      const s0 = TILE / 820, top0 = 960 - TILE / 2;
+      const x = lerp(tileX, HERO.x, lp), yy = lerp(top0, HERO.y, lp), s = lerp(s0, 1, lp);
+      setT(hero, x, yy, s);
+      setS(hero.pic, 'height', lerp(820, 560, lp).toFixed(1) + 'px');
+      setO(hero.bd, prog(t, L0 + .45, L1)); setS(hero, 'background', lp > .4 ? '#fff' : 'transparent');
+      setS(hero, 'borderRadius', (lerp(0, 40, lp) / s).toFixed(1) + 'px');
+      const g = prog(t, C[0] - .15, C[0] + .35) * (1 - lp) * (.75 + .25 * Math.sin((t - C[0]) * 6));
+      setS(hero, 'boxShadow', `0 0 0 ${(14 * g / s).toFixed(1)}px rgba(63,167,230,${(.95 * g).toFixed(3)}), 0 0 ${(120 * g / s).toFixed(0)}px rgba(63,167,230,${(.7 * g).toFixed(3)}), 0 40px 110px rgba(0,0,0,${(.55 * lp).toFixed(3)})`);
+      setO(hero, 1); setO(hero.live, 0);
+      setF(hero, `blur(${(t < sB ? 8 : 0)}px)`);
+    }
+    // every trip, listed and live
+    const dimB = 1 - .78 * E.out(prog(t, F0, F0 + .3));
+    renderBrowse(browse, t, m0, liveT, m0 + .6, b0, b0 - .1, b0 + .35, dimB);
+    // Free.
+    const fp = E.back(prog(t, F0, F0 + .45)), fo = Math.min(prog(t, F0, F0 + .12), 1 - prog(t, b0 - .25, b0 + .05));
+    setO($('free'), fo); setTr($('free'), `scale(${(.7 + .3 * fp).toFixed(4)})`);
+    const bp = E.out(prog(t, F0, F0 + .9)); setO($('burst'), fo * (1 - .55 * bp)); setTr($('burst'), `scale(${(.55 + .6 * bp).toFixed(4)})`);
+    // the CRM
+    renderCRM(crm, t, b0, tq, tb, b1);
+    // back to the card
+    if (t >= end0) {
+      show(browse.root, true);
+      const ep = E.back(prog(t, end0, end0 + .55));
+      setT(hero, HERO.x + 410 * (1 - ep) * .3, HERO.y + 414 * (1 - ep) * .3, .7 + .3 * ep);
+      setO(hero, prog(t, end0, end0 + .2)); setO(hero.live, 1);
+    }
+    renderCC(t, new Set([3]));
+  });
+}
+
+// ---------- reel 3: Three questions ----------
+function reel3() {
+  const hookWords = headWords($('hook'), 'Agencies ask us three things');
+  const QS = ['How much to list a trip?', 'What do I have to do?', 'And what do I get?'];
+  const bubs = QS.map(s => { const b = el('div', 'bub', L, esc(s)); return b; });
+  const BY = [700, 880, 1060], TOP = 400;
+  const pops = [.5, .9, 1.3]; pops.forEach(t => sfx(t, 'msg', .8));
+  const Q2 = C[1] - 1.0, Q3 = C[2] - 1.0;
+  sfx(Q2, 'msg', .8); sfx(Q3, 'msg', .8);
+
+  // sources: a PDF, a link, an Instagram post
+  const pdf = el('div', 'src pdf', L, `<div class="tag">PDF</div><div class="im" style="background-image:url(img/krabi-ao-nang.jpg)"></div><div class="ln"></div><div class="ln" style="width:80%"></div><div class="ln" style="width:60%"></div>`);
+  const lnk = el('div', 'src lnk', L, `<svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`);
+  const igp = el('div', 'src igp', L); igp.style.backgroundImage = 'url(img/krabi-railay-longtails.jpg)'; igp.style.backgroundPosition = '50% 60%';
+  const SRC = [[pdf, 250, 330, 230, at(1, 'A PDF') - .15, -8], [lnk, 250, 250, 540, at(1, 'a link') - .1, 6], [igp, 260, 260, 850, at(1, 'an Instagram') - .1, -5]];
+  SRC.forEach(s => sfx(s[4], 'pop', .7));
+  const merge = at(1, "We'll set") - .1; sfx(merge, 'swish', .8); sfx(merge + .35, 'pop', .8);
+
+  const browse = makeBrowse(470);
+  const hero = browse.cards[0];
+  const m0 = C[2] + .1, liveT = at(2, 'find') - .1;
+  sfxBrowse(m0, liveT);
+  const crm = makeBrowser(450, 1000);
+  const b0 = C[3] - .45, tq = at(3, 'quote') - .15, tb = at(3, 'booking') - .1, b1 = C[4] - .55;
+  sfxCRM(b0, tq, tb);
+  const end0 = C[4] - .45; sfx(end0, 'pop', .7);
+
+  RENDER.push(t => {
+    const QF = C[0] - .7;   // the first question takes the floor
+    renderHead(hookWords, t, -1, QF, .07);
+    setO($('topfade'), 0);
+    // question bubbles: all three, then one at a time at the top
+    // each one waits dimmed below, rises to the top when its turn comes, and leaves upwards when answered
+    const FT = [QF, Q2, Q3];
+    bubs.forEach((b, k) => {
+      const p = E.back(prog(t, pops[k], pops[k] + .45)), s = .6 + .4 * p;
+      const push = E.inOut(prog(t, QF, QF + .55));                      // the waiting ones step down and dim
+      const hide = k >= 2 ? E.inOut(prog(t, Q2, Q2 + .4)) : 0;           // the last one steps away while the card is made
+      const wait = [BY[k] + 160 * push, (1 - .72 * push) * (1 - hide)];
+      const rise = E.inOut(prog(t, FT[k], FT[k] + .55));                 // its turn
+      const from = k === 0 ? [BY[0], 1] : [BY[k] + 160, k >= 2 ? 0 : .28];
+      let y = t < FT[k] ? wait[0] : lerp(from[0], TOP, rise), o = t < FT[k] ? wait[1] : lerp(from[1], 1, rise);
+      const next = FT[k + 1] ?? b0;                                      // answered: up and out
+      if (t >= next) { const q = E.inOut(prog(t, next, next + .4)); y = lerp(TOP, TOP - 140, q); o = 1 - q; }
+      o *= Math.min(prog(t, pops[k], pops[k] + .12), 1);
+      setTr(b, `translate(0px,${y.toFixed(1)}px) translateY(-100%) scale(${s.toFixed(4)})`); setO(b, o);
+    });
+    // a PDF, a link, an Instagram post -> one trip card
+    const mp = E.inOut(prog(t, merge, merge + .5));
+    SRC.forEach(([e, w, h, cx, t0, rot]) => {
+      const p = E.back(prog(t, t0, t0 + .5));
+      const x = lerp(cx, 540, mp) - w / 2, y = lerp(980 + (1 - p) * 260, 960, mp) - h / 2;
+      setT(e, x, y, Math.max(p, .001) * (1 - .7 * mp), rot * (1 - mp)); setO(e, Math.min(prog(t, t0, t0 + .12), 1 - prog(t, merge + .3, merge + .5)));
+      show(e, t >= t0 && t < merge + .6);
+    });
+    // the card: born from the sources, parked while the last question lands, then listed with the rest
+    resetBrowse(browse);
+    if (t >= merge + .3 && t < m0) {
+      show(browse.root, true);
+      const hp = E.back(prog(t, merge + .3, merge + .85)), hq = E.inOut(prog(t, Q3, Q3 + .5));
+      setT(hero, HERO.x + 410 * (1 - hp) + 60 * hq, HERO.y + 30 + 414 * (1 - hp) + 120 * hq, Math.max(hp, .001) * (1 - .15 * hq));
+      setO(hero, Math.min(prog(t, merge + .3, merge + .45), 1 - .65 * hq)); setO(hero.live, 0);
+    }
+    renderBrowse(browse, t, m0, liveT, m0 + .6, b0, b0 - .1, b0 + .35);
+    // the CRM
+    renderCRM(crm, t, b0, tq, tb, b1);
+    if (t >= end0) {
+      show(browse.root, true);
+      const ep = E.back(prog(t, end0, end0 + .55));
+      setT(hero, HERO.x + 410 * (1 - ep) * .3, HERO.y + 414 * (1 - ep) * .3, .7 + .3 * ep);
+      setO(hero, prog(t, end0, end0 + .2)); setO(hero.live, 1);
+    }
+    renderCC(t, new Set());
+  });
+}
+
+
+// ---------- reel 1: Walk-in, an animated skit (us in azure on the right, the agency owner on the left) ----------
+function reel1() {
+  const cue = b => TL.cues.find(c => c.beat === b), S = b => cue(b).start, EN = b => cue(b).end;
+  const atB = (b, ph) => at(cue(b).i, ph);
+  $('hook').style.fontSize = '92px';
+  const hookWords = headWords($('hook'), 'Walking into | travel agencies like');
+  function makeShop(sign, logo, wins) {
+    const r = el('div', 'shop', L, `<div class="facade"></div><div class="sign">${logo ? `<img src="${logo}">` : ''}${esc(sign)}</div>
+      <div class="win" style="left:80px"><i style="background-image:url(${wins[0]})"></i></div><div class="win" style="right:80px"><i style="background-image:url(${wins[1]})"></i></div>
+      <div class="door"><div class="leaf"><div class="glass"></div><div class="open">Open</div><div class="knob"></div></div></div><div class="ground"></div>`);
+    r.leaf = r.querySelector('.leaf'); return r;
+  }
+  const shopA = makeShop('Lantern Trips', LOGO, ['img/krabi-railay-longtails.jpg', 'img/p_lantern.jpg']);
+  const office = el('div', 'office', L, `
+    <div class="poster" style="left:80px;top:250px;width:420px;height:560px;transform:rotate(-1.6deg)"><i style="background-image:url(img/krabi-railay-longtails.jpg);background-position:50% 60%"></i></div>
+    <div class="poster" style="left:570px;top:300px;width:420px;height:300px;transform:rotate(1.2deg)"><i style="background-image:url(img/p_kopi.jpg)"></i></div>
+    <div class="desk"></div><div class="laptop"><i></i></div><div class="base"></div>
+    <div class="stack"></div>`);
+  const stack = office.querySelector('.stack');
+  const PAGE_IMG = ['img/krabi-ao-nang.jpg', 'img/p_saltwater.jpg', 'img/krabi-emerald-pool.jpg'], PAGE_ROT = [-4, 2, -1];
+  const pages = [0, 1, 2].map(k => {
+    const g = el('div', 'pg', stack, `<div class="im" style="background-image:url(${PAGE_IMG[k]})"></div><div class="ln"></div><div class="ln" style="width:80%"></div><div class="ln" style="width:60%"></div>`);
+    g.style.left = (70 + k * 14) + 'px'; g.style.top = (1040 - k * 12) + 'px'; return g;
+  });
+  const shopB = makeShop('Travel', null, ['img/t9.jpg', 'img/bg_itin_0.jpg']);
+
+  // a speech bubble per line; "Free." is the big word instead
+  const AV = { rep: 'img/wb-glyph.png', owner: LOGO };
+  const bubbles = TL.cues.filter(c => c.beat !== 'free').map(c => ({ b: el('div', 'say ' + c.who, L, `<i class="av"><img src="${AV[c.who]}"></i><span>${esc(c.text)}</span>`), c }));
+
+  const browse = makeBrowse(230), hero = browse.cards[0];
+  const crm = makeBrowser(330, 1040);
+  const doorA = .95, doorB = 1.7, inA = 1.75, inB = 2.25;
+  sfx(doorA, 'lift', .8);
+  const F0 = S('free') - .03, F1 = S('card') - .15; sfx(F0, 'thud', 1);
+  const c0 = S('card') - .2, m0 = c0 + .9, liveT = atB('card', 'find') - .1; sfx(c0, 'pop', .8); sfxBrowse(m0, liveT);
+  const b0 = S('crm') - .35, tq = atB('crm', 'quotes') - .3, tb = atB('crm', 'bookings') - .2, b1 = EN('crm') + .15; sfxCRM(b0, tq, tb);
+  const back = b1 + .1, take = S('trips') + .55, whip = S('next') - .55; sfx(take, 'swish', .7); sfx(whip, 'whoosh', .6);
+
+  RENDER.push(t => {
+    // the street: hook, then the door swings open and we walk through it
+    renderHead(hookWords, t, -1, 1.15, .06);
+    setO($('topfade'), 0);
+    const push = E.inOut(prog(t, .9, inB)), op = E.inOut(prog(t, doorA, doorB));
+    show(shopA, t < inB + .05);
+    setTr(shopA, `translateY(${(-210 * push).toFixed(1)}px) scale(${(1 + 2.6 * push * push).toFixed(4)})`);
+    setTr(shopA.leaf, `rotateY(${(-82 * op).toFixed(2)}deg)`);
+    // inside: a little handheld drift; dims for "Free.", gone for the card and the CRM
+    const inside = (t >= inA && t < F0 + .5) || (t >= back - .3 && t < whip + .6);
+    show(office, inside);
+    const enter = 1 - E.out(prog(t, inA, inB + .35)), wp = E.inOut(prog(t, whip, whip + .55));
+    setTr(office, `translate(${(Math.sin(t * .8) * 7 - 1080 * wp).toFixed(1)}px,${(Math.cos(t * .6) * 6).toFixed(1)}px) scale(${(1.03 + .25 * enter).toFixed(4)})`);
+    setO(office, t < back - .3 ? Math.min(prog(t, inA, inB), 1 - prog(t, F0, F0 + .3) * .8) : prog(t, back - .3, back + .1));
+    setF(office, `blur(${(wp * 14).toFixed(1)}px)`);
+    // we take their itineraries
+    pages.forEach((g, k) => {
+      const q = E.inOut(prog(t, take + k * .08, take + .5 + k * .08));
+      setTr(g, `translate(${(q * 260).toFixed(1)}px,${(q * 900).toFixed(1)}px) rotate(${(PAGE_ROT[k] + q * 14).toFixed(2)}deg)`);
+    });
+    // next door
+    show(shopB, t >= whip);
+    setTr(shopB, `translateX(${(1080 * (1 - wp)).toFixed(1)}px) scale(1.08)`); setF(shopB, `blur(${((1 - wp) * 14).toFixed(1)}px)`);
+    // Free.
+    const fp = E.back(prog(t, F0, F0 + .45)), fo = Math.min(prog(t, F0, F0 + .12), 1 - prog(t, F1 - .2, F1 + .1));
+    setO($('free'), fo); setTr($('free'), `scale(${(.7 + .3 * fp).toFixed(4)})`);
+    const bp = E.out(prog(t, F0, F0 + .9)); setO($('burst'), fo * (1 - .55 * bp)); setTr($('burst'), `scale(${(.55 + .6 * bp).toFixed(4)})`);
+    // their trip, listed with the rest and live
+    resetBrowse(browse);
+    if (t >= c0 && t < m0) {
+      show(browse.root, true);
+      const hp = E.back(prog(t, c0, c0 + .55));
+      setT(hero, HERO.x + 410 * (1 - hp), HERO.y + 414 * (1 - hp), Math.max(hp, .001)); setO(hero, prog(t, c0, c0 + .15)); setO(hero.live, 0);
+    }
+    renderBrowse(browse, t, m0, liveT, m0 + .6, b0, b0 - .1, b0 + .35);
+    renderCRM(crm, t, b0, tq, tb, b1);
+    // speech bubbles, one at a time
+    bubbles.forEach(({ b, c }, k) => {
+      const nx = bubbles[k + 1] ? bubbles[k + 1].c.start - .05 : DUR;
+      const end = Math.min(c.end + .45, nx), p = E.back(prog(t, c.start - .08, c.start + .3));
+      setO(b, Math.min(prog(t, c.start - .08, c.start + .05), 1 - prog(t, end - .1, end)));
+      setTr(b, `translateY(${((1 - p) * 30).toFixed(1)}px) scale(${(.85 + .15 * p).toFixed(4)})`);
+    });
+    renderCC(t, new Set(TL.cues.map(c => c.i)));   // the bubbles are the captions
+  });
+}
+
+// ---------- grain ----------
+const gctx = $('grain').getContext('2d'), gimg = gctx.createImageData(512, 512);
+function renderGrain(t) { const r = rnd(Math.floor(t * FPS) * 7919 + 13), d = gimg.data; for (let i = 0; i < d.length; i += 4) { const v = r() * 255; d[i] = d[i + 1] = d[i + 2] = v; d[i + 3] = 255; } gctx.putImageData(gimg, 0, 0); }
+
+({ r1: reel1, r2: reel2, r3: reel3 })[R]();
+setO($('free'), 0); setO($('burst'), 0);
+function render(t) { RENDER.forEach(f => f(t)); renderGrain(t); }
+window.SFX = SFX; window.__dur = DUR;
+window.__seek = t => render(t);
+const imgs = [...document.images].map(i => i.complete ? null : new Promise(r => { i.onload = i.onerror = r; })).filter(Boolean);
+// background photos (tiles, card pictures) are not in document.images: preload them too
+const bgs = new Set([...document.querySelectorAll('#stage *')].map(e => (e.style.backgroundImage.match(/url\("?([^")]+)"?\)/) || [])[1]).filter(Boolean));
+bgs.forEach(u => { const i = new Image(); imgs.push(new Promise(r => { i.onload = i.onerror = r; })); i.src = u; });
+Promise.all([document.fonts.ready, ...imgs]).then(() => { render(+(q.get('t') || 0)); window.__ready = true; });
+</script>
+</body>
+</html>

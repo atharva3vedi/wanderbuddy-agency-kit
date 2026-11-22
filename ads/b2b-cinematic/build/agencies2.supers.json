@@ -1,0 +1,9 @@
+{"color": "#FFFFFF", "shadow": true, "size": 76, "supers": [
+ {"text": "23:47. One traveller.\nThree agencies. All closed.", "t": [0.5, 3.3], "y": 400, "size": 68},
+ {"text": "She messages two.\nNobody answers.", "t": [3.9, 7.0], "y": 400},
+ {"text": "The third is on WanderBuddy.", "t": [8.4, 11.2], "y": 300, "size": 66},
+ {"text": "Dates. Seats. Price.\nShe holds two spots.", "t": [11.5, 14.3], "y": 300, "size": 66},
+ {"text": "Lantern Trips is asleep.\nIts seats are *held.*", "t": [14.9, 19.2], "y": 300},
+ {"text": "09:02. The others reply.\nToo late.", "t": [19.8, 23.2], "y": 290, "size": 72},
+ {"text": "Three were closed.\nOne was on WanderBuddy.", "t": [24.0, 28.7], "y": 330, "size": 66, "color": "#0C1622", "shadow": false}
+]}

@@ -1,0 +1,311 @@
+{
+ "action": [
+  [
+   "SECTION",
+   "",
+   248,
+   64,
+   1352,
+   1629,
+   "Pipeline21 open enquiries worth $34K. Weighted by stage, abo"
+  ],
+  [
+   "H1",
+   "",
+   280,
+   92,
+   626,
+   34,
+   "Pipeline"
+  ],
+  [
+   "SECTION",
+   "card flush",
+   280,
+   365,
+   1288,
+   1225,
+   "Action nowTop to bottom: overdue, then today, then leads wit"
+  ],
+  [
+   "H2",
+   "",
+   305,
+   386,
+   719,
+   22,
+   "Action now"
+  ],
+  [
+   "TR",
+   "",
+   281,
+   449,
+   406,
+   39,
+   "WhoStageFollow-upLast touchNext move"
+  ],
+  [
+   "TR",
+   "",
+   281,
+   496,
+   771,
+   52,
+   "Sophie +4Angkor at dawn · $2.6KQualified1 day lateNot logged"
+  ],
+  [
+   "TR",
+   "",
+   281,
+   548,
+   771,
+   52,
+   "Jack +3Luang Prabang, slow · $2.8KQualifiedTodayNot loggedDo"
+  ],
+  [
+   "TR",
+   "",
+   281,
+   600,
+   771,
+   52,
+   "Paul +3Sapa terraces · $2.8KNewTodayNot loggedDoneFollow up"
+  ],
+  [
+   "TR",
+   "",
+   281,
+   652,
+   771,
+   52,
+   "Hannah +3Angkor at dawn · $2.8KNewTodayNot loggedDoneFollow "
+  ],
+  [
+   "TR",
+   "",
+   281,
+   704,
+   771,
+   52,
+   "Sam & InesKomodo by phinisi · $2.3KQualifiedTodayNot loggedD"
+  ],
+  [
+   "TR",
+   "",
+   281,
+   756,
+   771,
+   52,
+   "Tom & EmilyAngkor at dawn · $2.3KQualifiedTodayNot loggedDon"
+  ],
+  [
+   "TR",
+   "",
+   281,
+   808,
+   771,
+   52,
+   "Erik +3Penang food trail · $2.2KQuote sentTodayNot loggedDon"
+  ],
+  [
+   "TR",
+   "",
+   281,
+   860,
+   771,
+   52,
+   "Lukas & SophieSapa terraces · $1.4KQuote sentTodayNot logged"
+  ],
+  [
+   "TR",
+   "",
+   281,
+   912,
+   771,
+   52,
+   "Paul & Ji-wooAngkor at dawn · $1.4KQuote sentTodayNot logged"
+  ],
+  [
+   "TR",
+   "",
+   281,
+   964,
+   771,
+   52,
+   "Sam & FreyaSapa terraces · $1.4KNewTodayNot loggedDoneFollow"
+  ]
+ ],
+ "board": [
+  [
+   "SECTION",
+   "",
+   248,
+   64,
+   1352,
+   1919,
+   "Pipeline21 open enquiries worth $34K. Weighted by stage, abo"
+  ],
+  [
+   "H1",
+   "",
+   280,
+   92,
+   626,
+   34,
+   "Pipeline"
+  ],
+  [
+   "DIV",
+   "col",
+   280,
+   251,
+   248,
+   1351,
+   "New9 · $12K Hana & PetrTwo of them · Penang food trail$1.4K "
+  ],
+  [
+   "DIV",
+   "col",
+   540,
+   251,
+   248,
+   1122,
+   "Qualified7 · $13K NoaSolo · Komodo by phinisi · Adventure$69"
+  ],
+  [
+   "DIV",
+   "col",
+   800,
+   251,
+   248,
+   893,
+   "Quote sent5 · $9.3K Erik +3Family of 4 · Penang food trail ·"
+  ],
+  [
+   "DIV",
+   "col",
+   1060,
+   251,
+   248,
+   1593,
+   "Booked, recent48 · $63K FinnSolo · Sapa terraces · Adventure"
+  ],
+  [
+   "DIV",
+   "col",
+   1320,
+   251,
+   248,
+   1628,
+   "Lost, recent22 · $42K Ana +2Family of 3 · Penang food trail "
+  ]
+ ],
+ "home": [
+  [
+   "SECTION",
+   "",
+   248,
+   64,
+   1352,
+   3208,
+   "Good evening, Mai What do you want to do today? New enquiryB"
+  ],
+  [
+   "SECTION",
+   "home-hero",
+   280,
+   92,
+   1288,
+   244,
+   "Good evening, Mai What do you want to do today? New enquiryB"
+  ],
+  [
+   "H1",
+   "",
+   311,
+   151,
+   1226,
+   35,
+   "What do you want to do today?"
+  ],
+  [
+   "H2",
+   "glance-h",
+   280,
+   386,
+   529,
+   22,
+   "Your day at a glance"
+  ],
+  [
+   "SECTION",
+   "card tg-home",
+   280,
+   610,
+   1288,
+   110,
+   "November 2026No targets yet for this month. Set each person'"
+  ],
+  [
+   "H2",
+   "",
+   305,
+   635,
+   710,
+   22,
+   "November 2026"
+  ],
+  [
+   "SECTION",
+   "card",
+   280,
+   743,
+   737,
+   1103,
+   "Needs you today20 Erik LindqvistErik picked Option B and tap"
+  ],
+  [
+   "H2",
+   "",
+   305,
+   768,
+   119,
+   22,
+   "Needs you today"
+  ],
+  [
+   "SECTION",
+   "card",
+   1041,
+   743,
+   527,
+   179,
+   "While you slept1 overnight Enquiries that came in after 9 pm"
+  ],
+  [
+   "H2",
+   "",
+   1066,
+   768,
+   108,
+   22,
+   "While you slept"
+  ]
+ ],
+ "home_needs": {
+  "card": [
+   280,
+   96,
+   737,
+   1103
+  ],
+  "erik": [
+   305,
+   159,
+   687,
+   63
+  ],
+  "scroller": "HTML."
+ }
+}

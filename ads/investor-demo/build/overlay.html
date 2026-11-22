@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Investor demo overlay</title>
+<!-- The 2D layer over Blender's frames: the captions, the lockup, the model lines and
+     the end card. A pure function of time: window.__seek(t) draws second t and
+     overlay.mjs screenshots it 24 times a second on a transparent page. Change a word
+     here, re-run overlay.mjs and compose.sh; Blender does not need to run again. -->
+<style>
+  @font-face{font-family:WbSans;src:url(../../../../metrics/fonts/WbSans-Regular.ttf);font-weight:400}
+  @font-face{font-family:WbSans;src:url(../../../../metrics/fonts/WbSans-SemiBold.ttf);font-weight:600}
+  @font-face{font-family:WbSans;src:url(../../../../metrics/fonts/WbSans-Bold.ttf);font-weight:700}
+  @font-face{font-family:Serif;src:url(../../../../metrics/fonts/InstrumentSerif-Italic.ttf);font-style:italic}
+  :root{--ink:#0c1622;--ink2:#26394b;--brand:#1e88d6;--brandInk:#155a97;--ground:#f3f6f9;--tile:#2072B8;
+        --mono:ui-monospace,SFMono-Regular,Menlo,monospace}
+  html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:transparent;font-family:WbSans,sans-serif}
+  .o{position:absolute;opacity:0;will-change:opacity,transform}
+  .halo{text-shadow:0 0 28px rgba(243,246,249,.96),0 0 10px rgba(243,246,249,.9),0 0 2px rgba(243,246,249,.9)}
+  .dark{color:#fff!important;text-shadow:0 2px 26px rgba(4,8,14,.95),0 0 8px rgba(4,8,14,.8)}
+  .cap{left:112px;width:540px;color:var(--ink)}
+  .cap .hd{font:600 48px/1.14 WbSans;letter-spacing:-.015em}
+  .top{left:0;right:0;bottom:104px;text-align:center;color:var(--ink);font:600 58px/1.12 WbSans;letter-spacing:-.015em}
+  #title{left:112px;top:330px;width:620px}
+  #title img{width:470px;display:block;margin:0 0 26px}
+  #title div{font:600 40px/1.2 WbSans;color:var(--ink2);letter-spacing:-.01em}
+  .tag{left:44px;bottom:40px;font:600 18px/1 WbSans;color:var(--ink2);
+       padding:12px 18px;border:1.5px solid #cfdce6;border-radius:999px;background:rgba(255,255,255,.92)}
+  #model{left:112px;top:270px;width:860px;padding:40px 44px 34px;border-radius:14px;background:rgba(255,255,255,.93);
+         box-shadow:0 18px 60px rgba(12,22,34,.16);color:var(--ink)}
+  #model .eye{font:700 34px/1.1 WbSans;letter-spacing:-.015em;color:var(--ink);margin-bottom:24px}
+  .row{display:grid;grid-template-columns:220px 1fr;align-items:baseline;padding:18px 0;border-top:1.5px solid #dfe7ee;opacity:0}
+  .row b{font:600 26px/1 WbSans;color:#5b6b7b}
+  .row span{font:600 40px/1.15 WbSans;letter-spacing:-.012em}
+  .row.us span{color:var(--brandInk)}
+  #wipe{position:absolute;inset:0}
+  #end{left:0;right:0;top:330px;text-align:center;color:#fff}
+  #end img{width:600px;display:block;margin:0 auto 54px}
+  #end .line{font:700 84px/1.05 WbSans;letter-spacing:-.025em}
+  #end .line em{font:italic 400 104px/1 Serif;letter-spacing:0}
+  #end .url{margin-top:40px;font:600 34px/1 WbSans;opacity:.92}
+  #end .live{margin-top:20px;font:600 24px/1 WbSans;opacity:.78}
+</style>
+</head>
+<body>
+<div class="o top halo" id="c1">Every group trip in Asia has someone running it.</div>
+<div class="o top halo" id="c2">Sometimes a friend. Sometimes an agency.</div>
+<div class="o halo" id="title"><img src="../../../../website/public/brand/logo.svg" alt=""><div>One app for both.</div></div>
+
+<div class="o cap halo" id="b1" style="top:400px"><div class="hd">A friend rallies the group. WanderBuddy finds the dates everyone can make.</div></div>
+<div class="o cap halo" id="b2" style="top:400px"><div class="hd">They vote on what to do.</div></div>
+<div class="o cap halo" id="g1" style="top:400px"><div class="hd">To save a reel, they DM it to our Instagram, @wanderbuddyapp.</div></div>
+<div class="o cap halo" id="g2" style="top:400px"><div class="hd">WanderBuddy reads it and replies with the places it found.</div></div>
+<div class="o cap halo" id="b3" style="top:400px"><div class="hd">Saved reels become places on the plan.</div></div>
+<div class="o cap halo" id="b4" style="top:400px"><div class="hd">The costs get split and settled, so nobody has to chase.</div></div>
+<div class="o cap halo" id="b6" style="top:400px"><div class="hd">On the trip, everyone is on one live map.</div></div>
+<div class="o cap halo" id="b5" style="top:370px"><div class="hd">For agencies, the app is an add-on to every trip they sell.</div></div>
+<div class="o cap halo" id="a1" style="top:400px"><div class="hd">Lantern Trips lists its Krabi trip on WanderBuddy. Free.</div></div>
+<div class="o cap halo" id="m1" style="top:370px"><div class="hd">A traveller in Singapore finds it on WanderBuddy.</div></div>
+<div class="o cap halo" id="m2" style="top:370px"><div class="hd">She holds two spots. We take 3% now. The agency gets the rest, paid its own way.</div></div>
+<div class="o cap halo" id="h1" style="top:400px;width:440px"><div class="hd">The hold lands in Lantern's inbox, with her WhatsApp number.</div></div>
+<div class="o cap halo" id="p1" style="top:190px"><div class="hd">Lantern's AIRM, an AI relationship manager, turns the chat into the plan.</div></div>
+<div class="o cap halo" id="p2" style="top:190px"><div class="hd">One plan: a PDF, a page, and the trip in her app.</div></div>
+<div class="o cap halo" id="t1" style="top:400px"><div class="hd">Every traveller gets the WanderBuddy app with the trip.</div></div>
+<div class="o cap halo" id="t2" style="top:400px"><div class="hd">Plan, vouchers and the group chat, in one place.</div></div>
+<div class="o cap dark" id="n1" style="top:190px"><div class="hd">23:47. A traveller asks what time pickup is.</div></div>
+<div class="o cap dark" id="n2" style="top:370px"><div class="hd">Lantern's WhatsApp assistant answers from the trip plan. Nobody there has to wake up.</div></div>
+
+<div class="o" id="model">
+  <div class="eye">How WanderBuddy earns</div>
+  <div class="row" id="r1"><b>Travellers</b><span>Find and run trips, free.</span></div>
+  <div class="row" id="r2"><b>Agencies</b><span>List free. Pay for the AIRM.</span></div>
+  <div class="row us" id="r3"><b>WanderBuddy</b><span>3% of every booking we bring.</span></div>
+</div>
+<div class="o tag" id="tagB">Sample trip, real product screens</div>
+<div class="o tag" id="tag">Sample agency, real product screens</div>
+
+<canvas id="wipe" width="1920" height="1080"></canvas>
+<div class="o" id="end">
+  <img src="../../../../website/public/brand/logo-on-dark.svg" alt="">
+  <div class="line">One app. <em>Both</em> ways to run a trip.</div>
+  <div class="url">wanderbuddyapp.com</div>
+  <div class="live">Live on iOS, Android and the web.</div>
+</div>
+<script>
+const W = 1920, H = 1080, R = Math.hypot(W, H) / 2 + 40;
+const ctx = document.getElementById('wipe').getContext('2d');
+const clamp = (x) => Math.max(0, Math.min(1, x));
+const smooth = (x) => { x = clamp(x); return x * x * (3 - 2 * x); };
+const outCubic = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const win = (t, a, b, fi = 0.35, fo = 0.3) => Math.min(smooth((t - a) / fi), 1 - smooth((t - (b - fo)) / fo));
+
+function show(id, t, a, b, { rise = 14, fi = 0.35, fo = 0.3, scale = 0 } = {}) {
+  const el = document.getElementById(id);
+  const v = t < a || t > b ? 0 : win(t, a, b, fi, fo);
+  const k = outCubic((t - a) / (fi * 1.6));
+  el.style.opacity = v.toFixed(4);
+  el.style.transform = `translateY(${((1 - k) * rise).toFixed(2)}px)` + (scale ? ` scale(${(1 - scale + scale * k).toFixed(4)})` : '');
+}
+
+const D = 33;            // the friends' act, inserted at 7 s
+const CARD = 79.4 + D;
+function wipe(t) {
+  ctx.clearRect(0, 0, W, H);
+  if (t >= CARD) {
+    const r = R * smooth((t - CARD) / 0.5);
+    ctx.fillStyle = '#2072B8';
+    ctx.beginPath(); ctx.arc(W / 2, H / 2, r, 0, 7); ctx.fill();
+  }
+}
+
+window.__seek = (t) => {
+  show('c1', t, 0.6, 3.4);
+  show('c2', t, 3.6, 6.8);
+  show('title', t, 7.6, 10.0, { rise: 0, scale: 0.04 });
+  // the friends' act (B2C)
+  show('b1', t, 10.2, 14.4);
+  show('b2', t, 14.6, 18.6);
+  show('g1', t, 19.0, 22.8);
+  show('g2', t, 22.9, 26.7);
+  show('b3', t, 26.9, 31.0);
+  show('b4', t, 31.2, 35.4);
+  show('b6', t, 35.6, 39.6);
+  show('tagB', t, 7.6, 7 + D, { rise: 0, fo: 0.2 });
+  // the hand-off: the app is an add-on for agencies
+  show('b5', t, 39.8, 44.2);
+  // the agency film (B2B), as before but D later
+  show('a1', t, 11.4 + D, 16.6 + D);
+  show('m1', t, 19.6 + D, 23.8 + D);
+  show('m2', t, 24.0 + D, 29.2 + D);
+  show('h1', t, 32.6 + D, 37.8 + D);
+  show('p1', t, 38.8 + D, 43.6 + D);
+  show('p2', t, 43.8 + D, 46.9 + D);
+  show('t1', t, 48.0 + D, 52.6 + D);
+  show('t2', t, 52.8 + D, 57.6 + D);
+  show('n1', t, 59.2 + D, 63.0 + D);
+  show('n2', t, 63.2 + D, 67.3 + D);
+  show('model', t, 71.2 + D, CARD + 0.1, { rise: 18, fo: 0.2 });
+  show('r1', t, 71.5 + D, CARD + 0.1, { rise: 10, fo: 0.2 });
+  show('r2', t, 72.7 + D, CARD + 0.1, { rise: 10, fo: 0.2 });
+  show('r3', t, 73.9 + D, CARD + 0.1, { rise: 10, fo: 0.2 });
+  show('tag', t, 7 + D, CARD, { rise: 0, fo: 0.2 });
+  wipe(t);
+  show('end', t, CARD + 0.45, 999, { rise: 0, scale: 0.03, fi: 0.5 });
+};
+window.__ready = document.fonts.ready.then(() => Promise.all([...document.images].map((i) => i.decode().catch(() => null))));
+</script>
+</body>
+</html>

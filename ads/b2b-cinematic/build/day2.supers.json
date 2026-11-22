@@ -1,0 +1,35 @@
+{
+ "color": "#FFFFFF",
+ "shadow": true,
+ "size": 80,
+ "supers": [
+  {
+   "text": "Day 2 of 5.",
+   "t": [
+    0.8,
+    4.4
+   ],
+   "y": 360,
+   "color": "#0C1622",
+   "shadow": false
+  },
+  {
+   "text": "Seven travellers.\nOne plan.",
+   "t": [
+    9.6,
+    13.4
+   ],
+   "y": 1240,
+   "color": "#FFFFFF",
+   "shadow": true
+  },
+  {
+   "text": "Your trip, on every\ntraveller's *phone.*",
+   "t": [
+    15.3,
+    18.6
+   ],
+   "y": 360
+  }
+ ]
+}

@@ -1,0 +1,3 @@
+[
+ {"name":"trips-q-tall","url":"https://wanderbuddyapp.com/trips?q=Meghalaya%20with%20friends%20in%20December","w":390,"h":3200,"wait":15000,"after":100,"js":"(()=>{const out=[];document.querySelectorAll('a,article,li,div').forEach(e=>{const t=e.innerText||'';const r=e.getBoundingClientRect();if(t.indexOf('Ask ')>=0&&r.width>300&&r.width<380&&r.height>380&&r.height<760&&t.indexOf('Hindustan')>=0){out.push([Math.round(r.x),Math.round(r.y+scrollY),Math.round(r.width),Math.round(r.height),t.split(String.fromCharCode(10))[0].slice(0,40)])}});return out})()"}
+]

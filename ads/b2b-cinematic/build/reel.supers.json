@@ -1,0 +1,9 @@
+{"color": "#FFFFFF", "shadow": true, "size": 70, "supers": [
+ {"text": "23:40. A reel,\nand one question.", "t": [0.5, 3.6], "y": 300},
+ {"text": "You press\none button.", "t": [4.4, 6.3], "y": 1010, "color": "#0C1622", "shadow": false},
+ {"text": "It reads the reel, prices it,\nand writes the plan.", "t": [6.9, 9.7], "y": 300, "size": 62},
+ {"text": "Fourteen pages. Your logo.\nYour colours. Your prices.", "t": [10.4, 12.8], "y": 250, "size": 62},
+ {"text": "You press Send.\nShe taps *Book.*", "t": [18.4, 22.6], "y": 300},
+ {"text": "On the trip it answers her.\nYou are asleep.", "t": [23.4, 27.6], "y": 300, "size": 66},
+ {"text": "One reel in.\nOne booking out.", "t": [28.4, 31.6], "y": 330}
+]}

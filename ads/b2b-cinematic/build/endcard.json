@@ -1,0 +1,5 @@
+{"fps": 24, "w": 1080, "h": 1920, "lens": 28.125, "total": 84,
+ "shots": [{"id": "end", "start": 0, "end": 84}],
+ "layout": {"end": {"m": 150, "mm": 178, "y": 90, "lines": [
+   {"text": "For travel agencies.", "font": "bold", "size": 62, "y": -110, "color": "#FFFFFF", "f": [20, 31]},
+   {"text": "wanderbuddyapp.com/partners", "font": "semi", "size": 44, "y": -200, "color": "#DCEBFA", "f": [27, 38]}]}}}

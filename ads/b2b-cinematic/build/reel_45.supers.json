@@ -1,0 +1,68 @@
+{
+ "color": "#FFFFFF",
+ "shadow": true,
+ "size": 70,
+ "supers": [
+  {
+   "text": "23:40. A reel,\nand one question.",
+   "t": [
+    0.5,
+    3.6
+   ],
+   "y": 150
+  },
+  {
+   "text": "You press\none button.",
+   "t": [
+    4.4,
+    6.3
+   ],
+   "y": 860,
+   "color": "#0C1622",
+   "shadow": false
+  },
+  {
+   "text": "Reads it. Prices it. Writes the plan.",
+   "t": [
+    6.9,
+    9.7
+   ],
+   "y": 54,
+   "size": 46
+  },
+  {
+   "text": "Fourteen pages. Your logo.\nYour colours. Your prices.",
+   "t": [
+    10.4,
+    12.8
+   ],
+   "y": 100,
+   "size": 62
+  },
+  {
+   "text": "You press Send.\nShe taps *Book.*",
+   "t": [
+    18.4,
+    22.6
+   ],
+   "y": 150
+  },
+  {
+   "text": "On the trip it answers her.\nYou are asleep.",
+   "t": [
+    23.4,
+    27.6
+   ],
+   "y": 150,
+   "size": 66
+  },
+  {
+   "text": "One reel in.\nOne booking out.",
+   "t": [
+    28.4,
+    31.6
+   ],
+   "y": 180
+  }
+ ]
+}

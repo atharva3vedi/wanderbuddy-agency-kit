@@ -1,0 +1,32 @@
+{
+ "color": "#FFFFFF",
+ "shadow": true,
+ "size": 80,
+ "supers": [
+  {
+   "text": "23:48.\nThe office is closed.",
+   "t": [
+    0.8,
+    5.0
+   ],
+   "y": 380
+  },
+  {
+   "text": "Your travellers ask\nthe assistant, not you.",
+   "t": [
+    7.0,
+    10.2
+   ],
+   "y": 360
+  },
+  {
+   "text": "It answers from\nyour trip plan,\nday and *night.*",
+   "t": [
+    16.9,
+    21.25
+   ],
+   "y": 1250,
+   "size": 76
+  }
+ ]
+}

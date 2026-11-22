@@ -1,0 +1,252 @@
+{
+ "made": "generated in build; the piano is the Iowa Steinway samples",
+ "stems_rms_db": {
+  "air": -37.8,
+  "strings": -27.6,
+  "zither": -28.6,
+  "piano": -21.1
+ },
+ "peak": 0.693,
+ "events": [
+  {
+   "pad": [
+    "G2",
+    "D3",
+    "G3"
+   ],
+   "from": 0.0,
+   "to": 9.6,
+   "gain_db": -22
+  },
+  {
+   "pad": [
+    "E2",
+    "B2",
+    "E3",
+    "G3"
+   ],
+   "from": 8.6,
+   "to": 14.2,
+   "gain_db": -22
+  },
+  {
+   "pad": [
+    "C3",
+    "G3",
+    "C4",
+    "E4"
+   ],
+   "from": 13.4,
+   "to": 18.9,
+   "gain_db": -21
+  },
+  {
+   "pad": [
+    "G2",
+    "D3",
+    "G3",
+    "B3",
+    "D4"
+   ],
+   "from": 18.2,
+   "to": 24.5,
+   "gain_db": -19
+  },
+  {
+   "string": 587.3,
+   "t": 0.6,
+   "gain_db": -15
+  },
+  {
+   "string": 293.7,
+   "t": 0.62,
+   "gain_db": -20
+  },
+  {
+   "string": 493.9,
+   "t": 1.5,
+   "gain_db": -15
+  },
+  {
+   "string": 392.0,
+   "t": 2.4,
+   "gain_db": -15
+  },
+  {
+   "string": 440.0,
+   "t": 3.6,
+   "gain_db": -15
+  },
+  {
+   "string": 587.3,
+   "t": 4.5,
+   "gain_db": -15
+  },
+  {
+   "string": 293.7,
+   "t": 4.52,
+   "gain_db": -20
+  },
+  {
+   "string": 659.3,
+   "t": 5.7,
+   "gain_db": -15
+  },
+  {
+   "string": 587.3,
+   "t": 6.6,
+   "gain_db": -15
+  },
+  {
+   "string": 493.9,
+   "t": 7.8,
+   "gain_db": -15
+  },
+  {
+   "string": 392.0,
+   "t": 9.25,
+   "gain_db": -13.0
+  },
+  {
+   "string": 440.0,
+   "t": 9.38,
+   "gain_db": -12.6
+  },
+  {
+   "string": 493.9,
+   "t": 9.51,
+   "gain_db": -12.2
+  },
+  {
+   "string": 587.3,
+   "t": 9.64,
+   "gain_db": -11.8
+  },
+  {
+   "string": 659.3,
+   "t": 9.77,
+   "gain_db": -11.4
+  },
+  {
+   "string": 784.0,
+   "t": 9.9,
+   "gain_db": -11.0
+  },
+  {
+   "string": 880.0,
+   "t": 10.03,
+   "gain_db": -10.6
+  },
+  {
+   "string": 659.3,
+   "t": 11.6,
+   "gain_db": -17
+  },
+  {
+   "string": 587.3,
+   "t": 12.5,
+   "gain_db": -17
+  },
+  {
+   "string": 392.0,
+   "t": 14.2,
+   "gain_db": -17
+  },
+  {
+   "string": 493.9,
+   "t": 15.1,
+   "gain_db": -17
+  },
+  {
+   "string": 587.3,
+   "t": 17.4,
+   "gain_db": -17
+  },
+  {
+   "string": 784.0,
+   "t": 19.6,
+   "gain_db": -17
+  },
+  {
+   "string": 587.3,
+   "t": 20.4,
+   "gain_db": -17
+  },
+  {
+   "piano": [
+    {
+     "t": 16.333,
+     "note": "G4",
+     "gain_db": -10.0
+    },
+    {
+     "t": 16.345,
+     "note": "D5",
+     "gain_db": -10.0
+    },
+    {
+     "t": 18.833,
+     "note": "G4",
+     "gain_db": -10.0
+    },
+    {
+     "t": 18.845,
+     "note": "D5",
+     "gain_db": -10.0
+    },
+    {
+     "t": 21.37,
+     "note": "G4",
+     "gain_db": -9.0
+    },
+    {
+     "t": 21.455,
+     "note": "B4",
+     "gain_db": -9.0
+    },
+    {
+     "t": 21.54,
+     "note": "D5",
+     "gain_db": -9.0
+    },
+    {
+     "t": 21.625,
+     "note": "G5",
+     "gain_db": -9.0
+    },
+    {
+     "t": 22.25,
+     "note": "B4",
+     "gain_db": -12.0
+    },
+    {
+     "t": 22.25,
+     "note": "D3",
+     "gain_db": -8.0
+    },
+    {
+     "t": 22.25,
+     "note": "G2",
+     "gain_db": -6.0
+    },
+    {
+     "t": 22.25,
+     "note": "G4",
+     "gain_db": -10.0
+    }
+   ]
+  }
+ ],
+ "loudnorm_pass1": {
+  "input_i": "-16.64",
+  "input_tp": "-3.18",
+  "input_lra": "11.60",
+  "input_thresh": "-26.88",
+  "output_i": "-12.90",
+  "output_tp": "-2.00",
+  "output_lra": "6.70",
+  "output_thresh": "-23.00",
+  "normalization_type": "dynamic",
+  "target_offset": "-1.10"
+ }
+}

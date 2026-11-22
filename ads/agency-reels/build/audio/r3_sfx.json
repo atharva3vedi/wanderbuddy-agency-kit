@@ -1,0 +1,167 @@
+{
+ "sfx": [
+  {
+   "t": 0.5,
+   "kind": "msg",
+   "gain": 0.8
+  },
+  {
+   "t": 0.9,
+   "kind": "msg",
+   "gain": 0.8
+  },
+  {
+   "t": 1.3,
+   "kind": "msg",
+   "gain": 0.8
+  },
+  {
+   "t": 6.863,
+   "kind": "msg",
+   "gain": 0.8
+  },
+  {
+   "t": 13.241,
+   "kind": "msg",
+   "gain": 0.8
+  },
+  {
+   "t": 9.65,
+   "kind": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 10.168,
+   "kind": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 10.703,
+   "kind": "pop",
+   "gain": 0.7
+  },
+  {
+   "t": 11.972,
+   "kind": "swish",
+   "gain": 0.8
+  },
+  {
+   "t": 12.322,
+   "kind": "pop",
+   "gain": 0.8
+  },
+  {
+   "t": 14.341,
+   "kind": "swish",
+   "gain": 0.7
+  },
+  {
+   "t": 14.701,
+   "kind": "pop",
+   "gain": 0.45
+  },
+  {
+   "t": 14.811,
+   "kind": "pop",
+   "gain": 0.45
+  },
+  {
+   "t": 14.921,
+   "kind": "pop",
+   "gain": 0.45
+  },
+  {
+   "t": 15.031,
+   "kind": "pop",
+   "gain": 0.45
+  },
+  {
+   "t": 15.141,
+   "kind": "pop",
+   "gain": 0.45
+  },
+  {
+   "t": 15.808,
+   "kind": "tick",
+   "gain": 0.5
+  },
+  {
+   "t": 15.928,
+   "kind": "tick",
+   "gain": 0.5
+  },
+  {
+   "t": 16.048,
+   "kind": "tick",
+   "gain": 0.5
+  },
+  {
+   "t": 16.168,
+   "kind": "tick",
+   "gain": 0.5
+  },
+  {
+   "t": 16.288,
+   "kind": "tick",
+   "gain": 0.5
+  },
+  {
+   "t": 16.408,
+   "kind": "tick",
+   "gain": 0.5
+  },
+  {
+   "t": 17.564,
+   "kind": "slide",
+   "gain": 0.8
+  },
+  {
+   "t": 20.928,
+   "kind": "type",
+   "gain": 0.55
+  },
+  {
+   "t": 21.8,
+   "kind": "swish",
+   "gain": 0.45
+  },
+  {
+   "t": 24.741,
+   "kind": "pop",
+   "gain": 0.7
+  }
+ ],
+ "duration": 27.73,
+ "cues": [
+  {
+   "i": 0,
+   "start": 3.2,
+   "end": 6.763,
+   "text": "Nothing. Yes, really. Listing a trip is free."
+  },
+  {
+   "i": 1,
+   "start": 7.863,
+   "end": 13.141,
+   "text": "Send us whatever you've got. A PDF, a link, an Instagram post. We'll set it up."
+  },
+  {
+   "i": 2,
+   "start": 14.241,
+   "end": 17.514,
+   "text": "Groups planning a trip can find yours on WanderBuddy."
+  },
+  {
+   "i": 3,
+   "start": 18.014,
+   "end": 24.591,
+   "text": "And if you want it, a CRM, so enquiries, quotes and bookings stop getting lost in chats."
+  },
+  {
+   "i": 4,
+   "start": 25.191,
+   "end": 26.63,
+   "text": "Just message us your trips."
+  }
+ ]
+}

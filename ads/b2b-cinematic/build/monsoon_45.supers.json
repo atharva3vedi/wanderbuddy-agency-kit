@@ -1,0 +1,66 @@
+{
+ "color": "#FFFFFF",
+ "shadow": true,
+ "size": 76,
+ "supers": [
+  {
+   "text": "Peak season.",
+   "t": [
+    0.5,
+    3.2
+   ],
+   "y": 1000
+  },
+  {
+   "text": "WhatsApp. Instagram. Excel.\nCanva. A bank app.",
+   "t": [
+    3.9,
+    6.8
+   ],
+   "y": 270,
+   "size": 66
+  },
+  {
+   "text": "Five apps. One booking.",
+   "t": [
+    7.1,
+    10.2
+   ],
+   "y": 270
+  },
+  {
+   "text": "Something always\ngets lost.",
+   "t": [
+    10.8,
+    13.2
+   ],
+   "y": 190
+  },
+  {
+   "text": "Next door, the same messages.\nEach one in its *place.*",
+   "t": [
+    13.9,
+    17.9
+   ],
+   "y": 150,
+   "size": 64
+  },
+  {
+   "text": "And what to do next.",
+   "t": [
+    18.7,
+    21.2
+   ],
+   "y": 150
+  },
+  {
+   "text": "23:30. One is still sorting.\nOne runs on WanderBuddy.",
+   "t": [
+    21.9,
+    27.1
+   ],
+   "y": 270,
+   "size": 70
+  }
+ ]
+}

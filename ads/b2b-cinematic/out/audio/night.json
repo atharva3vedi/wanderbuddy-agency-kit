@@ -1,0 +1,155 @@
+{
+ "notes": [
+  {
+   "t": 0.0,
+   "note": "G2",
+   "gain_db": -7.0
+  },
+  {
+   "t": 0.02,
+   "note": "D3",
+   "gain_db": -9.0
+  },
+  {
+   "t": 1.083,
+   "note": "B4",
+   "gain_db": -14.0
+  },
+  {
+   "t": 1.103,
+   "note": "D5",
+   "gain_db": -14.0
+  },
+  {
+   "t": 1.123,
+   "note": "G5",
+   "gain_db": -15.0
+  },
+  {
+   "t": 6.25,
+   "note": "G4",
+   "gain_db": -13.0
+  },
+  {
+   "t": 11.917,
+   "note": "D5",
+   "gain_db": -10.0
+  },
+  {
+   "t": 12.5,
+   "note": "G4",
+   "gain_db": -9.5
+  },
+  {
+   "t": 12.512,
+   "note": "D5",
+   "gain_db": -9.5
+  },
+  {
+   "t": 16.333,
+   "note": "B4",
+   "gain_db": -16.0
+  },
+  {
+   "t": 16.667,
+   "note": "G4",
+   "gain_db": -15.0
+  },
+  {
+   "t": 17.087,
+   "note": "B4",
+   "gain_db": -15.0
+  },
+  {
+   "t": 17.417,
+   "note": "D6",
+   "gain_db": -15.0
+  },
+  {
+   "t": 17.507,
+   "note": "D5",
+   "gain_db": -15.0
+  },
+  {
+   "t": 17.927,
+   "note": "G5",
+   "gain_db": -15.0
+  },
+  {
+   "t": 18.347,
+   "note": "B5",
+   "gain_db": -15.0
+  },
+  {
+   "t": 18.767,
+   "note": "D6",
+   "gain_db": -15.0
+  },
+  {
+   "t": 18.833,
+   "note": "D6",
+   "gain_db": -15.0
+  },
+  {
+   "t": 21.37,
+   "note": "G4",
+   "gain_db": -9.0
+  },
+  {
+   "t": 21.455,
+   "note": "B4",
+   "gain_db": -9.0
+  },
+  {
+   "t": 21.54,
+   "note": "D5",
+   "gain_db": -9.0
+  },
+  {
+   "t": 21.625,
+   "note": "G5",
+   "gain_db": -9.0
+  },
+  {
+   "t": 22.25,
+   "note": "B4",
+   "gain_db": -12.0
+  },
+  {
+   "t": 22.25,
+   "note": "D3",
+   "gain_db": -8.0
+  },
+  {
+   "t": 22.25,
+   "note": "G2",
+   "gain_db": -6.0
+  },
+  {
+   "t": 22.25,
+   "note": "G4",
+   "gain_db": -10.0
+  }
+ ],
+ "bed": {
+  "file": "musicalmix2020-bossa-nova-summer-instrumental-brazil-7969.mp3",
+  "lands": 6.25,
+  "gain": 4.5,
+  "bar": 0,
+  "quiet_until": 16.667,
+  "quiet_db": -7.0
+ },
+ "reverb_wet": 0.45,
+ "loudnorm_pass1": {
+  "input_i": "-12.65",
+  "input_tp": "0.48",
+  "input_lra": "14.40",
+  "input_thresh": "-23.36",
+  "output_i": "-13.70",
+  "output_tp": "-2.00",
+  "output_lra": "10.30",
+  "output_thresh": "-24.41",
+  "normalization_type": "dynamic",
+  "target_offset": "-0.30"
+ }
+}

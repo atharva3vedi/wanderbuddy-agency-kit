@@ -1,0 +1,6 @@
+{"color": "#FFFFFF", "shadow": true, "size": 80, "supers": [
+ {"text": "Your next departure.", "t": [0.7, 4.0], "y": 380},
+ {"text": "In front of travellers\nalready planning one.", "t": [6.6, 10.6], "y": 400},
+ {"text": "They hold a spot.\nYou confirm.", "t": [13.9, 16.7], "y": 1360},
+ {"text": "List your trips on\nWanderBuddy, *free.*", "t": [17.6, 21.25], "y": 370}
+]}

@@ -1,0 +1,188 @@
+{
+ "notes": [
+  {
+   "t": 0.25,
+   "note": "D6",
+   "gain_db": -17.0
+  },
+  {
+   "t": 0.56,
+   "note": "B5",
+   "gain_db": -16.6
+  },
+  {
+   "t": 0.87,
+   "note": "G5",
+   "gain_db": -16.2
+  },
+  {
+   "t": 1.18,
+   "note": "D5",
+   "gain_db": -15.8
+  },
+  {
+   "t": 1.49,
+   "note": "D6",
+   "gain_db": -15.4
+  },
+  {
+   "t": 1.8,
+   "note": "B5",
+   "gain_db": -15.0
+  },
+  {
+   "t": 2.11,
+   "note": "G5",
+   "gain_db": -14.6
+  },
+  {
+   "t": 2.42,
+   "note": "D5",
+   "gain_db": -14.2
+  },
+  {
+   "t": 2.73,
+   "note": "D6",
+   "gain_db": -13.8
+  },
+  {
+   "t": 3.284,
+   "note": "G4",
+   "gain_db": -11.0
+  },
+  {
+   "t": 4.876,
+   "note": "G4",
+   "gain_db": -14.0
+  },
+  {
+   "t": 5.058,
+   "note": "A4",
+   "gain_db": -14.0
+  },
+  {
+   "t": 5.229,
+   "note": "B4",
+   "gain_db": -14.0
+  },
+  {
+   "t": 5.395,
+   "note": "D5",
+   "gain_db": -14.0
+  },
+  {
+   "t": 5.557,
+   "note": "E5",
+   "gain_db": -14.0
+  },
+  {
+   "t": 5.717,
+   "note": "G5",
+   "gain_db": -14.0
+  },
+  {
+   "t": 5.877,
+   "note": "A5",
+   "gain_db": -14.0
+  },
+  {
+   "t": 6.037,
+   "note": "B5",
+   "gain_db": -14.0
+  },
+  {
+   "t": 6.197,
+   "note": "D6",
+   "gain_db": -14.0
+  },
+  {
+   "t": 6.357,
+   "note": "D6",
+   "gain_db": -14.0
+  },
+  {
+   "t": 13.75,
+   "note": "D5",
+   "gain_db": -9.0
+  },
+  {
+   "t": 14.0,
+   "note": "G4",
+   "gain_db": -9.5
+  },
+  {
+   "t": 14.012,
+   "note": "D5",
+   "gain_db": -9.5
+  },
+  {
+   "t": 19.417,
+   "note": "G4",
+   "gain_db": -9.5
+  },
+  {
+   "t": 19.429,
+   "note": "D5",
+   "gain_db": -9.5
+  },
+  {
+   "t": 21.37,
+   "note": "G4",
+   "gain_db": -9.0
+  },
+  {
+   "t": 21.455,
+   "note": "B4",
+   "gain_db": -9.0
+  },
+  {
+   "t": 21.54,
+   "note": "D5",
+   "gain_db": -9.0
+  },
+  {
+   "t": 21.625,
+   "note": "G5",
+   "gain_db": -9.0
+  },
+  {
+   "t": 22.25,
+   "note": "B4",
+   "gain_db": -12.0
+  },
+  {
+   "t": 22.25,
+   "note": "D3",
+   "gain_db": -8.0
+  },
+  {
+   "t": 22.25,
+   "note": "G2",
+   "gain_db": -6.0
+  },
+  {
+   "t": 22.25,
+   "note": "G4",
+   "gain_db": -10.0
+  }
+ ],
+ "bed": {
+  "file": "musicalmix2020-bossa-nova-summer-instrumental-brazil-7969.mp3",
+  "lands": 6.25,
+  "gain": 4.5,
+  "bar": 0
+ },
+ "reverb_wet": 0.3,
+ "loudnorm_pass1": {
+  "input_i": "-12.11",
+  "input_tp": "1.47",
+  "input_lra": "11.40",
+  "input_thresh": "-22.67",
+  "output_i": "-13.06",
+  "output_tp": "-2.00",
+  "output_lra": "3.40",
+  "output_thresh": "-23.18",
+  "normalization_type": "dynamic",
+  "target_offset": "-0.94"
+ }
+}
