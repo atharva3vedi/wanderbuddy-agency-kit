@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root{ --amber:#F2A93B; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1080px;height:1080px;}
+  body{
+    background:radial-gradient(120% 95% at 50% 26%, #1d3d5e 0%, #112640 48%, #0a1622 100%);
+    font-family:Arial, Helvetica, sans-serif;
+    color:#fff; position:relative; overflow:hidden;
+  }
+  .frame{ position:absolute; inset:34px; border:2px solid rgba(255,255,255,.42); }
+  .pad{
+    position:absolute; inset:34px; padding:44px 68px 52px 68px;
+    display:flex; flex-direction:column; height:calc(1080px - 68px);
+  }
+  .toprow{ display:flex; justify-content:space-between; align-items:center; }
+  .kicker{
+    font-family:Consolas,"Courier New",monospace; font-size:23px;
+    letter-spacing:.22em; color:rgba(255,255,255,.6);
+  }
+  .scene{ width:100%; margin-top:14px; }
+  .title{
+    text-align:center; font-weight:900; font-size:172px; line-height:.9;
+    letter-spacing:.1em; margin-top:8px; text-indent:.1em;
+  }
+  .sub{
+    text-align:center; margin-top:14px; font-size:40px; font-weight:700;
+    color:rgba(255,255,255,.9);
+  }
+  .sub b{ color:var(--amber); font-weight:900; }
+  .foot{
+    margin-top:auto;
+    display:flex; justify-content:space-between; align-items:center;
+    border-top:2px solid rgba(255,255,255,.3); padding-top:18px;
+  }
+  .brand{ display:flex; align-items:center; gap:18px; }
+  .wordmark{ font-weight:800; font-size:40px; }
+  .tag{ font-size:24px; color:rgba(255,255,255,.82); text-align:right; white-space:nowrap; }
+</style>
+</head>
+<body>
+  <div class="frame"></div>
+  <div class="pad">
+    <div class="toprow">
+      <div class="kicker">EST.&nbsp;2AM</div>
+      <div class="kicker">DEPARTS&nbsp;TUESDAY</div>
+    </div>
+
+    <svg class="scene" viewBox="0 0 944 452" xmlns="http://www.w3.org/2000/svg">
+      <!-- sun -->
+      <circle cx="602" cy="176" r="120" fill="#F2A93B"/>
+      <!-- back-right foothill -->
+      <polygon points="520,430 772,205 944,430" fill="#1a3c5d"/>
+      <!-- left foothill -->
+      <polygon points="-30,430 168,246 372,430" fill="#15314b"/>
+      <!-- fuji -->
+      <polygon points="80,430 410,70 740,430" fill="#2d6597"/>
+      <!-- snowcap -->
+      <path d="M410,70 L492,214
+               C472,205 460,220 440,212
+               C424,206 415,221 402,214
+               C388,221 378,206 360,214
+               C346,220 340,206 330,215 Z" fill="#ffffff"/>
+      <!-- water / wave band (logo motif) -->
+      <path d="M40,430 Q126,410 212,430 T384,430 T556,430 T728,430 T900,430
+               L900,452 L40,452 Z" fill="rgba(255,255,255,.16)"/>
+    </svg>
+
+    <div class="title">JAPAN</div>
+    <div class="sub">planned by no one. <b>survived by all.</b></div>
+
+    <div class="foot">
+      <div class="brand">
+        <svg width="72" height="66" viewBox="200 180 620 520" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#fff"/>
+          <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#fff"/>
+        </svg>
+        <span class="wordmark">WanderBuddy</span>
+      </div>
+      <div class="tag">you show up. the trip plans itself.</div>
+    </div>
+  </div>
+</body>
+</html>

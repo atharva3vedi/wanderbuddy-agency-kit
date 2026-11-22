@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root{ --amber:#F2A93B; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1080px;height:1080px;}
+  body{
+    background:radial-gradient(130% 100% at 25% 8%, #1c3a5c 0%, #10233c 46%, #0a1622 100%);
+    font-family:Arial, Helvetica, sans-serif;
+    color:#fff; position:relative; overflow:hidden;
+  }
+  .ghost{ position:absolute; right:-150px; bottom:-120px; width:760px; opacity:.06; transform:rotate(-4deg); }
+  .frame{ position:absolute; inset:34px; border:2px solid rgba(255,255,255,.42); }
+  .pad{
+    position:absolute; inset:34px; padding:50px 66px 46px 68px;
+    display:flex; flex-direction:column; height:calc(1080px - 68px);
+  }
+  .toprow{ display:flex; justify-content:space-between; align-items:center; }
+  .pill{
+    font-weight:900; letter-spacing:.18em; font-size:40px;
+    background:#fff; color:#0f2740; padding:12px 28px 11px; border-radius:4px;
+  }
+  .ref{
+    font-family:Consolas,"Courier New",monospace; font-size:22px;
+    letter-spacing:.04em; color:rgba(255,255,255,.6); text-align:right;
+  }
+  .head{
+    margin-top:36px; font-weight:900; font-size:120px; line-height:.9;
+    letter-spacing:-.02em; text-transform:uppercase;
+  }
+  .lede{ margin-top:20px; font-size:34px; color:rgba(255,255,255,.9); }
+  .ledger{ margin-top:26px; font-family:Consolas,"Courier New",monospace; font-size:30px; }
+  .row{
+    display:flex; align-items:baseline; padding:11px 0;
+    border-bottom:2px dotted rgba(255,255,255,.34);
+  }
+  .row .k{ color:rgba(255,255,255,.72); }
+  .row .fill{ flex:1; }
+  .row .v{ color:#fff; text-align:right; }
+  .row .v.hot{ color:var(--amber); font-weight:700; }
+  .tabs{ margin-top:auto; display:flex; gap:10px; }
+  .tab{
+    flex:1; border:2px dashed rgba(255,255,255,.32); border-radius:6px;
+    height:120px; display:flex; align-items:center; justify-content:center;
+  }
+  .tab span{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    font-size:22px; letter-spacing:.06em; color:rgba(255,255,255,.72);
+    font-weight:700;
+  }
+  .foot{
+    margin-top:24px;
+    display:flex; justify-content:space-between; align-items:center;
+    border-top:2px solid rgba(255,255,255,.3); padding-top:18px;
+  }
+  .brand{ display:flex; align-items:center; gap:18px; }
+  .wordmark{ font-weight:800; font-size:40px; }
+  .tag{ font-size:24px; color:rgba(255,255,255,.82); text-align:right; white-space:nowrap; }
+</style>
+</head>
+<body>
+  <svg class="ghost" viewBox="217 180 590 520" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#fff"/>
+    <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#fff"/>
+  </svg>
+  <div class="frame"></div>
+  <div class="pad">
+    <div class="toprow">
+      <div class="pill">MISSING</div>
+      <div class="ref">HAVE&nbsp;YOU&nbsp;SEEN&nbsp;THESE?</div>
+    </div>
+
+    <div class="head">Our travel<br>plans</div>
+    <div class="lede">last seen alive in the group chat, six weeks ago.</div>
+
+    <div class="ledger">
+      <div class="row"><span class="k">last seen</span><span class="fill"></span><span class="v">"we should totally do this"</span></div>
+      <div class="row"><span class="k">condition</span><span class="fill"></span><span class="v">still just a screenshot</span></div>
+      <div class="row"><span class="k">reward</span><span class="fill"></span><span class="v hot">we actually go</span></div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab"><span>let's go</span></div>
+      <div class="tab"><span>let's go</span></div>
+      <div class="tab"><span>let's go</span></div>
+      <div class="tab"><span>let's go</span></div>
+      <div class="tab"><span>let's go</span></div>
+      <div class="tab"><span>let's go</span></div>
+      <div class="tab"><span>let's go</span></div>
+    </div>
+
+    <div class="foot">
+      <div class="brand">
+        <svg width="72" height="66" viewBox="200 180 620 520" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#fff"/>
+          <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#fff"/>
+        </svg>
+        <span class="wordmark">WanderBuddy</span>
+      </div>
+      <div class="tag">we get the trip out of the group chat.</div>
+    </div>
+  </div>
+</body>
+</html>

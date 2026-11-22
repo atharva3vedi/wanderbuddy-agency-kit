@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WanderBuddy airport poster</title>
+<style>
+  @font-face { font-family: WbSans; src: url("%%FONTS%%/WbSans-Regular.ttf"); font-weight: 400; }
+  @font-face { font-family: WbSans; src: url("%%FONTS%%/WbSans-SemiBold.ttf"); font-weight: 600; }
+  @font-face { font-family: WbSans; src: url("%%FONTS%%/WbSans-Bold.ttf"); font-weight: 700; }
+  /* The sheet is the trimmed poster plus 0.125 in of bleed on every side. */
+  @page { size: %%PAGE_W%%in %%PAGE_H%%in; margin: 0; }
+  :root { --ink: #0B141F; --azure: #3FA7E6; }
+  html, body { margin: 0; background: var(--ink); }
+  .sheet { position: relative; width: %%SW%%px; height: %%SH%%px; overflow: hidden; background: var(--ink); }
+  .poster {
+    position: absolute; left: %%B%%px; top: %%B%%px; width: %%W%%px; height: %%H%%px;
+    color: #fff; font-family: WbSans, sans-serif;
+    -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision;
+  }
+  /* 1200 css px across = the trimmed width on the page. */
+  @media print { .sheet { zoom: %%ZOOM%%; } }
+  .layer { position: absolute; left: 0; top: 0; width: %%W%%px; height: %%H%%px; }
+  .bg { position: absolute; left: -%%B%%px; top: -%%B%%px; width: %%SW%%px; height: %%SH%%px; }
+
+  .flights .arcs path { fill: none; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+  .flights .halo { fill: var(--azure); opacity: .35; }
+  .flights .dot { fill: #fff; }
+  .flights .ring { fill: none; stroke: var(--azure); stroke-width: 4; }
+  .flights .ring2 { fill: none; stroke: var(--azure); stroke-width: 1.8; opacity: .6; }
+  .flights .jets path { fill: #fff; }
+  .flights text { font: 700 20px WbSans; letter-spacing: .14em; fill: #fff; }
+  .flights text.dest { font-size: 34px; letter-spacing: .1em; }
+
+  .top { position: absolute; top: 34px; left: 60px; right: 60px; display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 31px; letter-spacing: -.02em; }
+  .mark { width: 50px; height: 50px; display: block; }
+  .site { font-weight: 600; font-size: 22px; }
+
+  /* One headline in two parts: the first behind the Earth's horizon, the second under the flights. */
+  /* Caps: no descenders, so the horizon can cut the letters without losing the word. */
+  h1 { margin: 0; font-weight: 700; font-size: 192px; line-height: 1; letter-spacing: -.045em; text-transform: uppercase; }
+  h1 span { position: absolute; white-space: nowrap; }
+  .w1 { left: 44px; top: 100px; z-index: 1; }
+  .w2 { right: 54px; top: 1070px; z-index: 4; }
+  .horizon { position: absolute; left: -%%B%%px; top: %%HZ_T%%px; width: %%SW%%px; height: %%HZ_H%%px; z-index: 2; }
+  .flights { z-index: 3; }
+  .top, .cols { z-index: 4; }
+
+  .cols { position: absolute; left: 60px; right: 60px; top: 1290px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 64px; }
+  .col h2 { margin: 0 0 8px; font-weight: 700; font-size: 30px; letter-spacing: -.015em; }
+  .col ul { list-style: none; margin: 0; padding: 0; }
+  .col li { font-size: 23px; line-height: 1.25; padding: 13px 0; border-top: 1.5px solid rgba(255,255,255,.22); }
+  .col li:last-child { border-bottom: 1.5px solid rgba(255,255,255,.22); }
+
+  .qrs { display: flex; gap: 22px; margin-top: 26px; align-items: flex-end; }
+  .tile { width: 204px; background: #fff; border-radius: 18px; padding: 10px 10px 12px; box-sizing: border-box; color: var(--ink); text-align: center; }
+  .tile svg { display: block; width: 184px; height: 184px; }
+  .tile b { display: block; font-weight: 700; font-size: 19px; margin-top: 2px; letter-spacing: -.01em; }
+  .url { font-weight: 700; font-size: 25px; line-height: 1.2; letter-spacing: -.015em; padding-bottom: 8px; }
+%%FMT_CSS%%
+</style>
+</head>
+<body>
+<div class="sheet">
+<div class="poster">
+  <img class="bg" src="background.jpg" alt="">
+  <h1><span class="w1">Everyone’s</span> <span class="w2">on board.</span></h1>
+  <img class="horizon" src="horizon.png" alt="">
+  <svg class="layer flights" viewBox="0 0 %%W%% %%H%%" aria-hidden="true">%%FLIGHTS%%</svg>
+
+  <div class="top">
+    <div class="brand">%%MARK%%<span>WanderBuddy</span></div>
+    <div class="site">wanderbuddyapp.com</div>
+  </div>
+
+  <div class="cols">
+    <section class="col">
+      <h2>For travellers</h2>
+      <ul>
+        <li>Plan it together. Everyone votes.</li>
+        <li>Forward a reel. It lands in your trip.</li>
+        <li>Split costs. Share tickets. Find everyone.</li>
+      </ul>
+      <div class="qrs">
+        <div class="tile">%%QR_IOS%%<b>App Store</b></div>
+        <div class="tile">%%QR_ANDROID%%<b>Google Play</b></div>
+      </div>
+    </section>
+    <section class="col">
+      <h2>For travel agencies</h2>
+      <ul>
+        <li>Itineraries in your brand, in minutes.</li>
+        <li>A WhatsApp assistant that never sleeps.</li>
+        <li>Leads, trips and payments in one CRM.</li>
+      </ul>
+      <div class="qrs">
+        <div class="tile">%%QR_PARTNERS%%<b>Partners</b></div>
+        <div class="url">wanderbuddyapp.com<br>/partners</div>
+      </div>
+    </section>
+  </div>
+</div>
+</div>
+</body>
+</html>

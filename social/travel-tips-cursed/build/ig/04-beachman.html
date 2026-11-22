@@ -1,0 +1,114 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+  :root{ --amber:#F2A93B; --ink:#060E18; --wrong:#D9503F; --cold:#B9C6D2; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1080px;height:1350px;overflow:hidden;}
+  body{ background:var(--ink); color:#fff; position:relative;
+    font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  .shot{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    filter:saturate(1.06) contrast(1.04); }
+  .scrim{ position:absolute; inset:0; background:
+    linear-gradient(180deg, rgba(6,14,24,.62) 0%, rgba(6,14,24,.16) 12%,
+      rgba(6,14,24,0) 28%, rgba(6,14,24,.12) 44%, rgba(6,14,24,.70) 65%,
+      rgba(6,14,24,.95) 83%, #060E18 100%); }
+  .pad{ position:absolute; inset:0; padding:58px 62px 56px;
+    display:flex; flex-direction:column; }
+
+  .top{ display:flex; align-items:center; justify-content:space-between; }
+  .brand{ display:flex; align-items:center; gap:13px; opacity:.92; }
+  .wordmark{ font-weight:700; font-size:28px; letter-spacing:.01em; }
+  .count{ font-family:Consolas,"Courier New",monospace; font-size:24px;
+    letter-spacing:.16em; color:rgba(255,255,255,.72); }
+
+  .body{ margin-top:auto; }
+  .num{ font-weight:900; font-size:112px; line-height:.82; color:var(--amber);
+    letter-spacing:-.04em; margin-bottom:18px; }
+  .head{ font-weight:900; font-size:74px; line-height:1.0; letter-spacing:-.028em;
+    text-shadow:0 2px 26px rgba(0,0,0,.5); }
+  .rule{ width:96px; height:5px; background:var(--amber); border-radius:3px;
+    margin:24px 0 22px; }
+  .copy{ font-size:32px; line-height:1.38; color:rgba(255,255,255,.9);
+    max-width:890px; text-shadow:0 1px 16px rgba(0,0,0,.55); }
+
+  .foot{ margin-top:36px; display:flex; align-items:center; justify-content:space-between;
+    border-top:2px solid rgba(255,255,255,.22); padding-top:20px; }
+  .foot .tag{ font-size:24px; color:rgba(255,255,255,.74); }
+  .swipe{ font-size:25px; font-weight:700; color:var(--amber); letter-spacing:.02em; }
+
+  /* ---- stage one: the sentence starts eating itself ---- */
+  .stutter .head{ color:#fff;
+    text-shadow:9px 8px 0 rgba(217,80,63,.62),
+                19px 16px 0 rgba(217,80,63,.26),
+                0 2px 26px rgba(0,0,0,.5); }
+  .stutter .copy{ color:rgba(255,255,255,.72); }
+
+  /* ---- stage two: the narrator comes apart ---- */
+  .collapse .wordmark{ letter-spacing:9px; opacity:.55; }
+  .collapse .num{ color:var(--wrong); transform:rotate(-4deg) translateX(-6px); opacity:.85; }
+  .collapse .head{ letter-spacing:3px; color:#fff; }
+  .collapse .rule{ background:var(--wrong); width:52px; }
+  .collapse .copy{ color:rgba(255,255,255,.8); }
+  .collapse .swipe{ color:var(--wrong); }
+
+  /* ---- stage three: the sentence simply stops ---- */
+  .cut .caret{ display:inline-block; width:18px; height:30px;
+    background:var(--wrong); vertical-align:-4px; margin-left:9px; }
+  .cut .band{ margin-top:30px; border-top:3px solid var(--wrong);
+    height:118px; background:#03080E; }
+  .cut .note{ font-family:Consolas,"Courier New",monospace; font-size:23px;
+    letter-spacing:.14em; color:rgba(255,255,255,.42); margin-top:18px; }
+  .cut .swipe{ color:rgba(255,255,255,.4); }
+
+  /* ---- the successor. same furniture, colder hands ---- */
+  .successor .shot{ filter:saturate(.42) contrast(1.1) brightness(.88); }
+  .successor .num{ color:#fff; }
+  .successor .rule{ background:var(--cold); width:60px; }
+  .successor .swipe{ color:var(--cold); }
+  .chip{ display:inline-block; font-family:Consolas,"Courier New",monospace;
+    font-size:22px; letter-spacing:.2em; color:#0B1622; background:var(--cold);
+    padding:8px 15px; border-radius:3px; margin-bottom:20px; }
+
+  /* cover */
+  .cover .kicker{ font-family:Consolas,"Courier New",monospace; font-size:26px;
+    letter-spacing:.2em; color:var(--amber); margin-bottom:26px; }
+  .cover .head{ font-size:94px; line-height:.95; letter-spacing:-.035em; }
+  .cover .head em{ font-style:normal; color:var(--amber); }
+  .cover .copy{ margin-top:28px; font-size:35px; }
+
+  /* ---- the closer. brand navy field, no photograph, subject cut out on top ---- */
+  body.threat{ background:radial-gradient(130% 100% at 25% 8%,
+    #1c3a5c 0%, #10233c 46%, #0a1622 100%); }
+  /* Geometry is set per aspect rather than scaled from one number. The artwork is
+     only 420x640, so the 9:16 canvas will happily blow it up past 2x and go soft,
+     and a subject sized for 4:5 lands straight on top of the headline at 9:16. */
+  .threat .subject{ position:absolute; object-fit:contain; object-position:top right;
+    filter:drop-shadow(0 28px 50px rgba(0,0,0,.62));
+    /* the source ends on a flat cut across the wrist, which reads as a severed hand
+       floating on the navy. Dissolve the last stretch into the background instead. */
+    -webkit-mask-image:linear-gradient(180deg, #000 72%, rgba(0,0,0,.55) 88%, transparent 100%);
+    mask-image:linear-gradient(180deg, #000 72%, rgba(0,0,0,.55) 88%, transparent 100%); }
+  .threat .subject{ right:-30px; top:118px; width:830px; max-height:742px; }
+  /* keeps the headline readable where the subject overlaps it */
+  .threat .floor{ position:absolute; left:0; right:0; bottom:0; height:52%;
+    background:linear-gradient(180deg, rgba(10,22,34,0) 0%, rgba(10,22,34,.72) 42%,
+      rgba(10,22,34,.94) 72%, #0a1622 100%); }
+  .threat .head{ font-size:96px; line-height:.94; letter-spacing:-.035em; }
+  .threat .head em{ font-style:normal; color:var(--amber); }
+  .threat .demand{ margin-top:26px; font-weight:800; font-size:46px;
+    line-height:1.08; letter-spacing:-.02em; }
+  .threat .pill{ display:inline-block; margin-top:26px; background:var(--amber); color:#10233C;
+    font-weight:800; font-size:31px; letter-spacing:.02em;
+    padding:18px 36px; border-radius:100px; }
+</style></head>
+<body class="tip"><img class="shot" src="../../sources/beachman-06.jpg" style="object-position:50% 45%;"><div class="scrim"></div><div class="pad"><div class="top">
+      <div class="brand"><svg width="34" height="31" viewBox="200 180 620 520" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#fff"/>
+  <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#fff"/></svg><span class="wordmark">WanderBuddy</span></div>
+      <div class="count">04 / 10</div>
+    </div><div class="body">
+      
+      <div class="num">03</div>
+      <div class="head">fall in love with the handsome man selling drugs on the beach</div>
+      <div class="rule"></div>
+      <div class="copy">Do not buy anything. That is not what he is for. Sit down. Learn his mother's name. He has a boat, a scar, and no plans whatsoever. In eleven years you will think about him while loading a dishwasher in Leicester and you will have to sit down on the floor.</div>
+      <div class="foot"><div class="tag">wanderbuddyapp.com</div><div class="swipe">swipe &rarr;</div></div>
+    </div></div></body></html>

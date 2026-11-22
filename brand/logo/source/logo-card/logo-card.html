@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- WanderBuddy logo reveal card, 1080x1920. Brand-exact: white two-peak mark +
+     wave band on the logo blue #2072B8, from assets/icon-master.svg.
+     ?mark  -> hide the wordmark (the "settle" frame before the wordmark rises).
+     Render with: node render-logo-card.mjs  (headless Edge, no CDN). -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1920px;overflow:hidden;}
+  body{background:#2072B8;display:flex;align-items:center;justify-content:center;}
+  .stage{width:1080px;height:1920px;position:relative;}
+  svg{position:absolute;inset:0;}
+  .word{
+    font-family:'Roboto','Segoe UI',Arial,Helvetica,sans-serif;
+    font-weight:800;letter-spacing:2px;fill:#FFFFFF;
+  }
+  body.markonly .word{display:none;}
+</style>
+</head>
+<body>
+  <div class="stage">
+    <svg viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+      <!-- mark: two overlapping peaks + wave band, scaled up and centered -->
+      <g transform="translate(-48.8,294) scale(1.15)" fill="#FFFFFF">
+        <polygon points="224,404 404,188 494,314 602,116 800,404"/>
+        <polygon points="224,512 404,296 494,422 602,224 800,512"/>
+        <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620
+                 L 807 692 L 217 692 Z"/>
+      </g>
+      <!-- wordmark -->
+      <text class="word" x="540" y="1200" text-anchor="middle" font-size="112">WanderBuddy</text>
+    </svg>
+  </div>
+  <script>
+    if (location.search.includes('mark')) document.body.classList.add('markonly');
+  </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+[
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/01-cover.html",
+    "png": "out/ig/01-cover.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/02-beer.html",
+    "png": "out/ig/02-beer.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/03-tip.html",
+    "png": "out/ig/03-tip.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/04-beachman.html",
+    "png": "out/ig/04-beachman.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/05-sentence.html",
+    "png": "out/ig/05-sentence.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/06-photocopy.html",
+    "png": "out/ig/06-photocopy.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/07-toast.html",
+    "png": "out/ig/07-toast.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/08-bruges.html",
+    "png": "out/ig/08-bruges.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/09-goanyway.html",
+    "png": "out/ig/09-goanyway.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/10-outro.html",
+    "png": "out/ig/10-outro.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/01-cover.html",
+    "png": "out/tiktok/01-cover.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/02-beer.html",
+    "png": "out/tiktok/02-beer.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/03-tip.html",
+    "png": "out/tiktok/03-tip.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/04-beachman.html",
+    "png": "out/tiktok/04-beachman.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/05-sentence.html",
+    "png": "out/tiktok/05-sentence.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/06-photocopy.html",
+    "png": "out/tiktok/06-photocopy.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/07-toast.html",
+    "png": "out/tiktok/07-toast.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/08-bruges.html",
+    "png": "out/tiktok/08-bruges.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/09-goanyway.html",
+    "png": "out/tiktok/09-goanyway.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/10-outro.html",
+    "png": "out/tiktok/10-outro.png"
+  }
+]

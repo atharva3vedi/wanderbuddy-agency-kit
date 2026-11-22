@@ -1,0 +1,13 @@
+{
+  "_comment": "Beach -> logo intro (see SPEC.md). Generate the two plates in Higgsfield (prompts in SPEC.md), drop them here, render logo-card.png first (node render-logo-card.mjs), then: node ../ugc-autocut/autocut.mjs intro.example.json. Without the plates it degrades to a clean logo-card push-in.",
+  "output": "out/wanderbuddy-intro.mp4",
+  "fps": 30,
+  "music": "auto",
+  "shots": [
+    { "type": "logo-intro", "dur": 3.0,
+      "approach": "plates/approach.mp4",
+      "crash": "plates/crash.mp4",
+      "card": "logo-card.png",
+      "mark": "logo-mark.png" }
+  ]
+}

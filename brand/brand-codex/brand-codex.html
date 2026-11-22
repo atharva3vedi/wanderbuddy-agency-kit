@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>WanderBuddy Brand Codex</title>
+<script src="/theme.js"></script>
+<style>
+  /* ============ FACES ============ */
+  /* WbSans = the app's face (Google Sans Flex subset, OFL, assets/fonts/wbsans). No italic
+     anywhere (decided 2026-11-02): emphasis comes from size and position. */
+  @font-face { font-family: "WbSans"; src: url("/fonts/WbSans-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "WbSans"; src: url("/fonts/WbSans-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+  @font-face { font-family: "WbSans"; src: url("/fonts/WbSans-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+
+  /* ============ TOKENS ============ */
+  /* Mirrors lib/theme/app_colors.dart: bare :root = AppColors.light, dark below = AppColors.dark. */
+  :root {
+    --page:     #F3F6F9;
+    --subtle:   #E5EEF5;
+    --surface:  #FFFFFF;
+    --surface2: #E5EEF5;
+    --primary:  #1A6FB0;
+    --vivid:    #1E88D6;
+    --on-primary: #FFFFFF;
+    --teal:     #14756B;
+    --ink:      #0C1622;
+    --ink2:     #26394B;
+    --line:     #CFDCE6;
+    --danger:   #E0483C;
+    --amber:    #8A5A08;
+    --shadow: 0 18px 44px -28px rgba(12,22,34,.35);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page:     #0B141F;
+      --subtle:   #12202E;
+      --surface:  #17293B;
+      --surface2: #213A52;
+      --primary:  #3FA7E6;
+      --vivid:    #3FA7E6;
+      --on-primary: #06121C;
+      --teal:     #35C9BC;
+      --ink:      #E7F1FA;
+      --ink2:     #C5D7E6;
+      --line:     #25394C;
+      --danger:   #FF6B5E;
+      --amber:    #F0A431;
+      --shadow: 0 24px 60px -36px rgba(0,0,0,.8);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page:     #0B141F;
+    --subtle:   #12202E;
+    --surface:  #17293B;
+    --surface2: #213A52;
+    --primary:  #3FA7E6;
+    --vivid:    #3FA7E6;
+    --on-primary: #06121C;
+    --teal:     #35C9BC;
+    --ink:      #E7F1FA;
+    --ink2:     #C5D7E6;
+    --line:     #25394C;
+    --danger:   #FF6B5E;
+    --amber:    #F0A431;
+    --shadow: 0 24px 60px -36px rgba(0,0,0,.8);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: "WbSans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-synthesis-weight: none;
+    line-height: 1.6;
+    font-size: clamp(15px, .9vw + 12px, 17px);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* the one gradient: ink to azure to teal, large display type only (website .text-gradient) */
+  .grad {
+    background-image: linear-gradient(104deg, var(--ink), var(--vivid) 58%, var(--teal));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  a { color: var(--primary); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+  code, .code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .86em; }
+
+  /* ============ SHELL ============ */
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(16px, 5vw, 56px); }
+  .reading { max-width: 66ch; }
+  section { padding: clamp(56px, 8vw, 112px) 0; border-top: 1px solid var(--line); }
+  p { margin: 0 0 1.1em; }
+  .lead { font-size: clamp(1.12rem, 1.8vw, 1.42rem); line-height: 1.5; }
+  .lead strong { font-weight: 700; }
+
+  h2 {
+    margin: 0 0 30px; font-weight: 700; letter-spacing: -.02em; line-height: 1.05;
+    font-size: clamp(2rem, 4.4vw, 3.2rem); text-wrap: balance;
+    display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap;
+  }
+  h2 .n { font-size: .9rem; font-weight: 700; color: var(--primary); letter-spacing: .08em; }
+  h2 em.a { font-size: 1.12em; }
+  h3 { margin: 0 0 10px; font-size: 1.2rem; font-weight: 700; letter-spacing: -.01em; line-height: 1.25; }
+
+  .back {
+    display: inline-block; margin: 16px 0 0; font-size: 13px; font-weight: 600; letter-spacing: .02em;
+  }
+  .toggle {
+    position: fixed; top: 14px; right: 14px; z-index: 50;
+    font: 600 12px/1 "WbSans", system-ui, sans-serif; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 100px; padding: 9px 14px;
+    cursor: pointer;
+  }
+  .toggle:hover { border-color: var(--primary); }
+
+  /* ============ HERO ============ */
+  .hero { padding: clamp(64px, 12vw, 150px) 0 clamp(48px, 7vw, 90px); }
+  .hero .markrow { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.05rem; }
+  .hero .markrow svg { width: 40px; height: 40px; }
+  .hero h1 {
+    margin: 26px 0 0; font-weight: 700; letter-spacing: -.035em; line-height: .95;
+    font-size: clamp(3.6rem, 13vw, 9.5rem);
+  }
+  .hero h1 .a { display: block; font-size: 1.1em; letter-spacing: -.01em; line-height: 1; }
+  .hero .lead { margin-top: 30px; max-width: 34ch; }
+  .toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; }
+  .toc a {
+    border: 1px solid var(--line); border-radius: 100px; padding: 7px 14px; color: var(--ink);
+    font-size: .9rem; font-weight: 600; background: var(--surface);
+  }
+  .toc a:hover { border-color: var(--primary); text-decoration: none; }
+
+  /* ============ COMPONENTS ============ */
+  .rows { display: grid; gap: 12px; margin-top: 30px; }
+  .row {
+    border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; background: var(--surface);
+    display: grid; grid-template-columns: 170px 1fr; gap: 6px 26px; align-items: baseline;
+  }
+  .row .k { font-weight: 700; color: var(--primary); font-size: .95rem; }
+  .row .v .s { display: block; margin-top: 4px; font-size: .95rem; color: var(--ink2); }
+
+  .tenets { display: grid; gap: 12px; margin-top: 30px; }
+  .tenet {
+    border: 1px solid var(--line); border-radius: 16px; background: var(--surface);
+    padding: clamp(20px, 3vw, 30px); display: grid; grid-template-columns: 54px 1fr; gap: 6px 20px;
+  }
+  .tenet .no { font-weight: 700; font-size: 1.6rem; color: var(--primary); line-height: 1.1; }
+  .tenet p { margin: 0; }
+
+  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 30px; }
+  .card { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); padding: clamp(20px, 3vw, 28px); }
+  .card .who { font-weight: 700; color: var(--primary); font-size: .92rem; margin-bottom: 6px; }
+  .card dl { margin: 16px 0 0; display: grid; gap: 10px; }
+  .card dt { font-weight: 700; font-size: .92rem; }
+  .card dd { margin: 0; font-size: .97rem; }
+  .card .state {
+    display: inline-block; margin-top: 16px; font-size: .82rem; font-weight: 700; border-radius: 100px;
+    padding: 4px 11px; border: 1px solid var(--teal); color: var(--teal);
+  }
+  .card .state.off { border-color: var(--line); color: var(--ink2); }
+
+  /* palette */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; margin-top: 30px; }
+  .sw { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
+  .sw .fill { height: 84px; border-bottom: 1px solid var(--line); }
+  .sw .meta { padding: 11px 13px 13px; }
+  .sw .nm { font-weight: 700; font-size: .95rem; }
+  .sw .role { font-size: .86rem; color: var(--ink2); margin-top: 2px; }
+  .sw .hex { font-size: .82rem; margin-top: 7px; color: var(--primary); font-variant-numeric: tabular-nums; }
+  .swatches.light .sw .fill { height: 52px; }
+  .lights { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 10px; margin-top: 18px; }
+  .tl { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 100px;
+           padding: 7px 14px 7px 7px; background: var(--surface); font-size: .9rem; font-weight: 600; }
+  .tl i { width: 26px; height: 26px; border-radius: 50%; flex: none; }
+
+  /* type */
+  .specs { display: grid; gap: 14px; margin-top: 30px; }
+  .spec { border: 1px solid var(--line); border-radius: 16px; padding: clamp(20px, 3vw, 32px); background: var(--surface); }
+  .spec .meta { display: flex; justify-content: space-between; gap: 10px 18px; flex-wrap: wrap;
+                border-top: 1px solid var(--line); margin-top: 20px; padding-top: 14px; font-size: .86rem; }
+  .spec .meta b { font-weight: 700; }
+  .spec .big { font-size: clamp(2.3rem, 6.6vw, 4.4rem); font-weight: 700; letter-spacing: -.03em; line-height: 1; }
+  .spec .mid { font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 600; letter-spacing: -.015em; line-height: 1.2; }
+  .spec .figures { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  /* say / never */
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 26px; }
+  .vcard { border: 1px solid var(--line); border-radius: 16px; padding: clamp(20px, 3vw, 28px); background: var(--surface); }
+  .vcard .h { font-weight: 700; display: flex; align-items: center; gap: 9px; margin-bottom: 14px; }
+  .vcard .h .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .vcard.say .h { color: var(--teal); } .vcard.say .dot { background: var(--teal); }
+  .vcard.never .h { color: var(--danger); } .vcard.never .dot { background: var(--danger); }
+  .vcard ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+  .vcard li { padding-left: 18px; position: relative; font-size: .98rem; }
+  .vcard li::before { content: ""; position: absolute; left: 0; top: .66em; width: 8px; height: 2px; border-radius: 2px; background: var(--line); }
+  .vcard li.rule { font-weight: 600; }
+
+  /* sound */
+  .soundrow { display: grid; grid-template-columns: 220px 1fr; gap: clamp(18px, 3vw, 34px); margin-top: 30px; align-items: start; }
+  .still { width: 100%; border-radius: 18px; border: 1px solid var(--line); display: block; }
+  .players { display: grid; gap: 12px; }
+  .player {
+    border: 1px solid var(--line); border-radius: 16px; background: var(--surface); padding: 16px 18px;
+    display: grid; grid-template-columns: 52px 1fr; gap: 4px 16px; align-items: center;
+  }
+  .player button {
+    grid-row: span 2; width: 52px; height: 52px; border-radius: 50%; border: 0; cursor: pointer;
+    background: var(--primary); color: var(--on-primary); display: grid; place-items: center;
+    transition: transform .12s ease;
+  }
+  .player button:active { transform: scale(.94); }
+  .player button svg { width: 20px; height: 20px; }
+  .player .pause { display: none; }
+  .player.on .pause { display: block; } .player.on .play { display: none; }
+  .player .t { font-weight: 700; }
+  .player .t span { font-weight: 400; }
+  .player .track { display: flex; align-items: center; gap: 12px; }
+  .player .bar { flex: 1; height: 6px; border-radius: 6px; background: var(--surface2); overflow: hidden; cursor: pointer; }
+  .player .bar i { display: block; height: 100%; width: 0; background: var(--primary); border-radius: 6px; }
+  .player .time { font-size: .84rem; font-variant-numeric: tabular-nums; min-width: 78px; text-align: right; }
+  .keys { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+  .keys button {
+    width: 54px; height: 92px; border-radius: 0 0 10px 10px; border: 1px solid var(--line); cursor: pointer;
+    background: #FFFFFF; color: #0C1622; font: 700 .85rem/1 "WbSans", system-ui, sans-serif;
+    display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px;
+    box-shadow: inset 0 -5px 0 rgba(12,22,34,.08); transition: transform .08s ease, background .12s ease;
+  }
+  .keys button.hit { transform: translateY(2px); background: #DCEEFB; }
+  .keyscap { font-size: .95rem; margin: 12px 0 0; }
+
+  /* listing example */
+  .lstrow { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(18px, 3vw, 38px); align-items: start; margin-top: 30px; }
+  .lst { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); padding: clamp(18px, 3vw, 26px); box-shadow: var(--shadow); }
+  .lst-host { display: flex; align-items: center; gap: 10px; font-size: .95rem; flex-wrap: wrap; }
+  .lst-logo { width: 34px; height: 34px; border-radius: 10px; background: var(--teal); color: var(--page); font-weight: 700;
+              display: grid; place-items: center; font-size: .8rem; }
+  .lst-tick { font-size: .78rem; font-weight: 700; color: var(--teal); border: 1px solid var(--teal); border-radius: 100px; padding: 2px 9px; }
+  .lst-title { font-weight: 700; font-size: clamp(1.3rem, 2.6vw, 1.6rem); letter-spacing: -.015em; margin: 14px 0 10px; line-height: 1.15; }
+  .lst-facts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lst-facts span { background: var(--subtle); border: 1px solid var(--line); border-radius: 100px; padding: 4px 12px;
+                    font-size: .88rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .lst-facts .seats { color: var(--primary); border-color: var(--primary); }
+  .lst-days { list-style: none; padding: 0; margin: 18px 0 14px; display: grid; gap: 8px; font-size: .95rem; }
+  .lst-days b { color: var(--primary); margin-right: 8px; }
+  .lst-inc { font-size: .93rem; margin: 0; }
+  .lst-cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 18px; }
+  .lst-btn { background: var(--primary); color: var(--on-primary); font-weight: 700; border-radius: 100px; padding: 10px 20px; font-size: .95rem; }
+  .lst-cta p { margin: 0; font-size: .9rem; }
+  .pins { display: flex; gap: 12px; align-items: center; margin-top: 18px; flex-wrap: wrap; font-size: .9rem; }
+  .pin-price { background: var(--primary); color: var(--on-primary); font-weight: 700; border-radius: 100px; padding: 5px 12px; font-variant-numeric: tabular-nums; }
+  .pin-people { width: 34px; height: 34px; border-radius: 50%; background: var(--surface); border: 2px solid var(--primary); display: grid; place-items: center; }
+  .pin-people svg { width: 18px; height: 18px; fill: var(--primary); }
+  .why { margin: 0; padding-left: 22px; display: grid; gap: 10px; }
+
+  /* mark */
+  .glyphrow { display: grid; grid-template-columns: 260px 1fr; gap: clamp(22px, 4vw, 48px); align-items: center; margin-top: 30px; }
+  .glyphrow svg { width: 100%; height: auto; display: block; }
+
+  /* promo-only amber sample */
+  .promo { display: inline-flex; align-items: center; gap: 8px; background: #F0A431; color: #3A2606; font-weight: 700;
+           border-radius: 100px; padding: 7px 15px; font-size: .9rem; }
+
+  footer { padding: 56px 0 80px; border-top: 1px solid var(--line); }
+  .foot { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; align-items: baseline; font-size: .92rem; }
+  .foot .mk { font-weight: 700; font-size: 1.15rem; }
+
+  @media (max-width: 760px) {
+    .cards, .pair, .lstrow, .soundrow { grid-template-columns: 1fr; }
+    .soundrow .still { max-width: 180px; }
+    .soundrow .players { order: -1; }
+    .glyphrow { grid-template-columns: 1fr; }
+    .glyphrow svg { max-width: 220px; }
+    .row { grid-template-columns: 1fr; gap: 3px; }
+    .tenet { grid-template-columns: 1fr; gap: 4px; }
+    .keys button { width: calc((100% - 30px) / 6); min-width: 40px; }
+  }
+</style>
+</head>
+<body>
+<button class="toggle" type="button" data-theme-toggle><span data-theme-label>Dark</span> mode</button>
+<div class="wrap"><a class="back" href="/">&larr; Dashboard</a></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="markrow">
+      <svg viewBox="0 0 1024 1024" aria-hidden="true">
+        <clipPath id="wb-round-s"><rect width="1024" height="1024" rx="200"/></clipPath>
+        <g clip-path="url(#wb-round-s)">
+          <rect width="1024" height="1024" fill="#2072B8"/>
+          <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#FFFFFF"/>
+          <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#FFFFFF"/>
+        </g>
+      </svg>
+      WanderBuddy
+    </div>
+    <h1><span>Brand</span><span class="a grad">Codex</span></h1>
+    <p class="lead">How WanderBuddy looks, sounds and talks: in the app, on the map, at the agency desk and in every reel.</p>
+    <nav class="toc" aria-label="Sections">
+      <a href="#what">What we are</a>
+      <a href="#offerings">Offerings</a>
+      <a href="#feel">How it feels</a>
+      <a href="#colour">Colour</a>
+      <a href="#type">Type</a>
+      <a href="#sound">Sound</a>
+      <a href="#pictures">Pictures and motion</a>
+      <a href="#travellers">Travellers</a>
+      <a href="#agencies">Agencies</a>
+      <a href="#listings">Listings</a>
+      <a href="#mark">The mark</a>
+      <a href="#founder">Founder</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ 01 WHAT WE ARE ============ -->
+<section id="what">
+  <div class="wrap">
+    <h2><span class="n">01</span><span>What we are</span></h2>
+    <div class="reading">
+      <p class="lead">WanderBuddy is a travel marketplace. <strong>Agencies and trip captains list their departures for free, travellers find them on a map and buy a seat, and then the whole group lives the trip together in the app.</strong> We take a fee on each seat booked.</p>
+      <p>Today the agency desk pays the bills: the CRM and the WhatsApp assistant that agencies run their departures on. Every departure it runs brings a group of travellers into the app, and that is how the marketplace fills.</p>
+    </div>
+    <div class="rows">
+      <div class="row"><div class="k">Name</div><div class="v">WanderBuddy. One word, capital W and capital B.<span class="s">Never "Wander Buddy", "wanderbuddy" or "WB" in copy. For voice models write "Wander-Buddy", so it is never heard as "Wonder Buddy".</span></div></div>
+      <div class="row"><div class="k">Tagline</div><div class="v">Travel together, perfectly in sync.<span class="s">The sign-off. Use it whole.</span></div></div>
+      <div class="row"><div class="k">For travellers</div><div class="v">Find a trip, hold your seat, and travel it together.<span class="s">Until bookings are live in the app: "Plan your trip together", with votes, reels and costs in one place.</span></div></div>
+      <div class="row"><div class="k">For agencies</div><div class="v">List your trips on WanderBuddy, free.<span class="s">The hook in every agency reel and DM. The desk comes after: "and if you want it, a CRM".</span></div></div>
+      <div class="row"><div class="k">Where</div><div class="v">Southeast Asia first: Thailand, Bali, Vietnam, Singapore, Malaysia, the Philippines.<span class="s">Prices in USD. Examples, numbers and places from the region. No India references.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 OFFERINGS ============ -->
+<section id="offerings">
+  <div class="wrap">
+    <h2><span class="n">02</span><span>Four offerings, one family</span></h2>
+    <div class="reading">
+      <p class="lead">Each offering has its own job and its own temperature, on the same palette, the same face and the same sound. Someone who meets us in a reel, on the map and in the app should feel it is one company.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <div class="who">Travellers</div>
+        <h3>The app</h3>
+        <p>Plan the trip together, then live it together.</p>
+        <dl>
+          <dt>Feels like</dt><dd>A calm friend who has been there. Quick, warm, never loud.</dd>
+          <dt>Lead with</dt><dd>Planning as a group: date votes, the ideas board, reels sent from WhatsApp or Instagram turning into places. Then the Today view, Translate, and Group (chat, members, budget, photos).</dd>
+          <dt>Solo</dt><dd>Solo-friendly, not solo-first. "Just me" is a full start; group features stay, optional.</dd>
+        </dl>
+        <span class="state">Live</span>
+      </article>
+      <article class="card">
+        <div class="who">Travellers browsing</div>
+        <h3>Community map</h3>
+        <p>Agency departures and traveller-made trips on one world map.</p>
+        <dl>
+          <dt>Feels like</dt><dd>A window onto real departures. Honest, browsable, nothing pushy.</dd>
+          <dt>Lead with</dt><dd>Host-first trip cards: who runs it, dates, price from, seats left, Hold my spot. Filter by who is hosting, when, budget and length.</dd>
+          <dt>Pins</dt><dd>An agency trip is a price pill, a traveller trip a people pin.</dd>
+        </dl>
+        <span class="state off">Built, switched off until agencies list</span>
+      </article>
+      <article class="card">
+        <div class="who">Agencies</div>
+        <h3>WanderBuddy for agencies</h3>
+        <p>The CRM and the WhatsApp assistant, in the agency's own colours.</p>
+        <dl>
+          <dt>Feels like</dt><dd>An operator's desk. Someone who has run a departure built it.</dd>
+          <dt>Lead with</dt><dd>The WhatsApp desk, the itinerary in their brand, entry rules per passport.</dd>
+          <dt>Setup</dt><dd>Google Drive, WhatsApp and Instagram are each linked by the agency alone, with plain step-by-step instructions. One sign-in link for every agency.</dd>
+        </dl>
+        <span class="state">Live with founding agencies</span>
+      </article>
+      <article class="card">
+        <div class="who">Hosts</div>
+        <h3>Listings and captains</h3>
+        <p>A departure for sale, from an agency or a trip captain.</p>
+        <dl>
+          <dt>Feels like</dt><dd>The host's own page. WanderBuddy is where the seat is held safely.</dd>
+          <dt>Lead with</dt><dd>Dates, price and seats left at a glance, a time or a place in every day line.</dd>
+          <dt>Money</dt><dd>Listing is free. Payment on the app comes country by country; until then the host collects.</dd>
+        </dl>
+        <span class="state off">Rolling out with the map</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 HOW IT FEELS ============ -->
+<section id="feel">
+  <div class="wrap">
+    <h2><span class="n">03</span><span>How it feels</span></h2>
+    <div class="tenets">
+      <div class="tenet"><div class="no">01</div><div>
+        <h3>The host is the brand.</h3>
+        <p>On anything a traveller sees about a trip, the agency or captain comes first: name, logo, verified tick. WanderBuddy is the credit line, where the seat is held and where the trip is lived.</p>
+      </div></div>
+      <div class="tenet"><div class="no">02</div><div>
+        <h3>Only what is live.</h3>
+        <p>Every claim is checked against what ships. Pilot work is "built with you", never shown as live. No "book on WanderBuddy" until payments are on in that country. The not-shipped list lives in <code>website/src/lib/site.ts</code>.</p>
+      </div></div>
+      <div class="tenet"><div class="no">03</div><div>
+        <h3>Real, never generated-looking.</h3>
+        <p>Real app screens, real recordings, real photos from past departures. No gradient hero over three cards, no buzzwords, no synthesized chimes, no stock or generated images shown as a trip.</p>
+      </div></div>
+      <div class="tenet"><div class="no">04</div><div>
+        <h3>One thing at a time.</h3>
+        <p>One headline per frame, with no kicker above it and no grey line under it. One control per action. If a detail matters, it goes in the main text, in full ink.</p>
+      </div></div>
+      <div class="tenet"><div class="no">05</div><div>
+        <h3>Calm, and every touch lands.</h3>
+        <p>Solid grounds, no glow. Each press has weight, each new trip gets its moment, and then the screen settles. Excitement comes from the trip, not from the interface.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 COLOUR ============ -->
+<section id="colour">
+  <div class="wrap">
+    <h2><span class="n">04</span><span>Colour</span></h2>
+    <div class="reading">
+      <p class="lead">Mission Control: electric azure on ink navy, with lagoon teal. <strong>Dark is home, light is first-class too.</strong> Components use the tokens in <code>lib/theme/app_colors.dart</code>, never raw hex.</p>
+    </div>
+    <div class="swatches">
+      <div class="sw"><div class="fill" style="background:#0B141F"></div><div class="meta"><div class="nm">Ink navy</div><div class="role">The page</div><div class="hex">#0B141F</div></div></div>
+      <div class="sw"><div class="fill" style="background:#17293B"></div><div class="meta"><div class="nm">Glass navy</div><div class="role">Cards, sheets</div><div class="hex">#17293B</div></div></div>
+      <div class="sw"><div class="fill" style="background:#213A52"></div><div class="meta"><div class="nm">Raised navy</div><div class="role">Chips, tracks</div><div class="hex">#213A52</div></div></div>
+      <div class="sw"><div class="fill" style="background:#3FA7E6"></div><div class="meta"><div class="nm">Electric azure</div><div class="role">Actions, links, the ring</div><div class="hex">#3FA7E6</div></div></div>
+      <div class="sw"><div class="fill" style="background:#35C9BC"></div><div class="meta"><div class="nm">Lagoon teal</div><div class="role">Ready, verified, tags</div><div class="hex">#35C9BC</div></div></div>
+      <div class="sw"><div class="fill" style="background:#E7F1FA"></div><div class="meta"><div class="nm">Signal white</div><div class="role">Text on dark</div><div class="hex">#E7F1FA</div></div></div>
+      <div class="sw"><div class="fill" style="background:#C5D7E6"></div><div class="meta"><div class="nm">Mist</div><div class="role">Secondary text, still reads as ink</div><div class="hex">#C5D7E6</div></div></div>
+      <div class="sw"><div class="fill" style="background:#FF6B5E"></div><div class="meta"><div class="nm">Coral</div><div class="role">Errors, SOS only</div><div class="hex">#FF6B5E</div></div></div>
+    </div>
+    <div class="swatches light">
+      <div class="sw"><div class="fill" style="background:#F3F6F9"></div><div class="meta"><div class="nm">Light page</div><div class="hex">#F3F6F9</div></div></div>
+      <div class="sw"><div class="fill" style="background:#FFFFFF"></div><div class="meta"><div class="nm">Light surface</div><div class="hex">#FFFFFF</div></div></div>
+      <div class="sw"><div class="fill" style="background:#1A6FB0"></div><div class="meta"><div class="nm">Light azure</div><div class="hex">#1A6FB0</div></div></div>
+      <div class="sw"><div class="fill" style="background:#14756B"></div><div class="meta"><div class="nm">Light teal</div><div class="hex">#14756B</div></div></div>
+      <div class="sw"><div class="fill" style="background:#0C1622"></div><div class="meta"><div class="nm">Light ink</div><div class="hex">#0C1622</div></div></div>
+    </div>
+    <div class="rows">
+      <div class="row"><div class="k">Solid grounds</div><div class="v">Pages and cards are flat colour. No glow, no blurred blooms behind screens.<span class="s">Glass only where content sits over a photo or the map.</span></div></div>
+      <div class="row"><div class="k">The one gradient</div><div class="v">Ink to azure to teal, on large headlines only: <span class="grad" style="font-weight:700">Travel together</span>.<span class="s">From the wanderbuddyapp.com hero. It is white to azure to teal in dark mode. Never on body text or buttons.</span></div></div>
+      <div class="row"><div class="k">No yellow in the app</div><div class="v">Amber is not an app colour. It never appears on a button, a status or a card in the app.<span class="s">It is kept for rare promotional moments: a launch, a founding-partner offer, the deck's Next button. <span class="promo">Promotional only</span></span></div></div>
+      <div class="row"><div class="k">Brand blue</div><div class="v"><span class="num">#2072B8</span> belongs to the mark's tile and the end card. Interfaces use azure.</div></div>
+      <div class="row"><div class="k">Trip light</div><div class="v">A trip wears a colour for its phase, on small marks only: avatars, the phase chip's dot, menu circles. Never on a control, never instead of a status.<span class="s">Defined in <code>lib/theme/app_lights.dart</code>. Countdown, Evening and After lost their amber on 3 Nov 2026: teal grows through the countdown, evening is azure into navy, after is a quiet sea teal.</span>
+        <div class="lights">
+          <span class="tl"><i style="background:linear-gradient(135deg,#1A6FB0,#3FA7E6)"></i>Planning</span>
+          <span class="tl"><i style="background:linear-gradient(135deg,#3FA7E6,#6FD8CE)"></i>Countdown</span>
+          <span class="tl"><i style="background:linear-gradient(135deg,#1A6FB0,#35C9BC)"></i>Ready</span>
+          <span class="tl"><i style="background:linear-gradient(135deg,#3FA7E6,#8FD3F8)"></i>Daytime</span>
+          <span class="tl"><i style="background:linear-gradient(135deg,#3F7FD0,#1A3F7A)"></i>Evening</span>
+          <span class="tl"><i style="background:linear-gradient(135deg,#4F9A93,#3A6F95)"></i>After</span>
+          <span class="tl"><i style="background:linear-gradient(135deg,#FF6B5E,#E0483C)"></i>SOS</span>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 TYPE ============ -->
+<section id="type">
+  <div class="wrap">
+    <h2><span class="n">05</span><span>Type</span></h2>
+    <div class="specs">
+      <div class="spec">
+        <div class="big">Plan it together</div>
+        <div class="meta"><span><b>WbSans Bold</b>, no italic</span><span>Titles, store frames, reel headlines</span></div>
+      </div>
+      <div class="spec">
+        <div class="mid">Pickup is at 7:30, from the hotel lobby. Mai will be there with a sign.</div>
+        <p style="margin:16px 0 0">WbSans carries every word you read in the app: titles, body, buttons, captions. It is Google Sans Flex, cut down to what we use and bundled as <code>assets/fonts/wbsans</code>. Friendly, round, very readable on a phone in the sun.</p>
+        <div class="meta"><span><b>WbSans</b> 400, 600, 700</span><span>Everything in the app</span></div>
+      </div>
+      <div class="spec">
+        <div class="figures">$890 &middot; 4 of 12 seats left &middot; 14 to 19 Jan</div>
+        <div class="meta"><span><b>Tabular figures</b></span><span>Prices, dates, counts, timers</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><div class="k">No italic</div><div class="v">No italic, anywhere. A title is one weight and one face, and emphasis comes from size and position.<span class="s">An italic word in the middle of a headline reads as template-made (decided 2026-11-02).</span></div></div>
+      <div class="row"><div class="k">On the website</div><div class="v">Instrument Serif for display, Inter for text.<span class="s">The app moved from Inter to WbSans in 2.0; Inter stays as its fallback.</span></div></div>
+      <div class="row"><div class="k">Text colour</div><div class="v">Primary and secondary text both read as ink. No small grey sub-labels.<span class="s">Muted colour is for input placeholders only.</span></div></div>
+      <div class="row"><div class="k">Retired</div><div class="v">Anton, Hanken Grotesk and IBM Plex Mono from Rev 02. Do not use them in new work.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 SOUND ============ -->
+<section id="sound">
+  <div class="wrap">
+    <h2><span class="n">06</span><span>Bossa nova and piano</span></h2>
+    <div class="reading">
+      <p class="lead">WanderBuddy sounds like a good afternoon on holiday. <strong>A warm bossa nova guitar sits under the voice, and real piano notes mark what happens on screen.</strong> Never a tech demo, never a hacker video.</p>
+    </div>
+    <div class="soundrow">
+      <img class="still" src="codex/reel-post214.jpg" alt="Frame from the Post 214 reel: a grid of travel photos with one picked out by an azure ring" width="540" height="960" loading="lazy">
+      <div class="players">
+        <div class="player" data-player data-name="the Post 214 reel">
+          <button type="button" aria-label="Play the Post 214 reel">
+            <svg class="play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+            <svg class="pause" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+          </button>
+          <div class="t">The whole mix <span>(agency reel "Post #214")</span></div>
+          <div class="track"><div class="bar" aria-hidden="true"><i></i></div><span class="time">0:00</span></div>
+          <audio preload="metadata" src="codex/reel-post214.mp3"></audio>
+        </div>
+        <div class="player" data-player data-name="the piano cues">
+          <button type="button" aria-label="Play the piano cues">
+            <svg class="play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+            <svg class="pause" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+          </button>
+          <div class="t">The cues <span>(run, three cards, low chord, end card)</span></div>
+          <div class="track"><div class="bar" aria-hidden="true"><i></i></div><span class="time">0:00</span></div>
+          <audio preload="metadata" src="codex/piano-keys.mp3"></audio>
+        </div>
+        <div class="keys" aria-label="Piano notes in G major pentatonic">
+          <button type="button" data-note="G4" aria-label="Play G4">G</button>
+          <button type="button" data-note="B4" aria-label="Play B4">B</button>
+          <button type="button" data-note="D5" aria-label="Play D5">D</button>
+          <button type="button" data-note="G5" aria-label="Play G5">G</button>
+          <button type="button" data-note="B5" aria-label="Play B5">B</button>
+          <button type="button" data-note="D6" aria-label="Play D6">D</button>
+        </div>
+        <p class="keyscap">Tap the keys: these are the Steinway notes the reels use.</p>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><div class="k">The bed</div><div class="v">"Bossa Nova - Summer - Instrumental Brazil" by Musicalmix2020, under the whole reel and the end card.<span class="s">Pixabay Content License: commercial use, no credit needed. Human-made, not Content ID registered. File: <code>WanderBuddy_Ad/b2b-reels/assets/music</code>.</span></div></div>
+      <div class="row"><div class="k">The keys</div><div class="v">Real Steinway notes from the University of Iowa Musical Instrument Samples (free for any use), in G major pentatonic so every note sits in the song's key.<span class="s">A quick run up the keys when the screen scrolls. One bright note per card that lands, climbing. A low G chord under the key word. A G chord as the end card settles.</span></div></div>
+      <div class="row"><div class="k">The voices</div><div class="v">Hannah speaks for us to agencies. Austin plays an agency owner in skits. Troy narrates the founder's story.<span class="s">Groq Orpheus, free tier. Offer a sample before recording a new voice. Never pitch a voice down.</span></div></div>
+      <div class="row"><div class="k">The mix</div><div class="v">Voice first, music second, keys third.<span class="s">Bed about -26.5 dB and dipped by almost half under every spoken line; keys about -31 dB; the whole reel at -14 LUFS. Recipe: <code>WanderBuddy_Ad/b2b-reels/build/audio.py</code>.</span></div></div>
+      <div class="row"><div class="k">The words</div><div class="v">Full sentences, the way a person talks to an agency owner. Not ad fragments.<span class="s">Draft three takes, have a sceptical owner read them cold, then settle. Every recorded line is checked with Whisper.</span></div></div>
+      <div class="row"><div class="k">Where it plays</div><div class="v">Every reel, ad and promo film, and the end card. Product sounds in the app and the CRM come from the same piano, in G.<span class="s">The CRM's new-activity chime is still a synthesized two-note tone (<code>CRM/shared/chime.js</code>): due a swap to these notes.</span></div></div>
+      <div class="row"><div class="k">Never</div><div class="v">Synthesized chimes, whooshes or beds. AI-made music. Tracks registered with Content ID. Stock "corporate upbeat" ukulele. Robotic or pitched voices.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 PICTURES AND MOTION ============ -->
+<section id="pictures">
+  <div class="wrap">
+    <h2><span class="n">07</span><span>Pictures and motion</span></h2>
+    <div class="reading">
+      <p class="lead">The real product is the picture. <strong>We show our own screens, real places and real departures, and point at the thing that matters with one azure ring.</strong></p>
+    </div>
+    <div class="rows">
+      <div class="row"><div class="k">Screens</div><div class="v">Real app and CRM screens, never mock-ups dressed up as the product.<span class="s">Store frames and carousel cards: one headline, one real screen, nothing else.</span></div></div>
+      <div class="row"><div class="k">The ring</div><div class="v">One azure ring around the card, button or message we are talking about. One at a time.<span class="s">It is the only flourish. It replaces the old ripple and bullet-time freeze.</span></div></div>
+      <div class="row"><div class="k">Reels</div><div class="v">Animated from real screens, with captions burned in: white WbSans on a dark pill. A 0.3 second crossfade into the end card.<span class="s">The demo agency is always Lantern Trips. Agency screens shown: Inbox and Home.</span></div></div>
+      <div class="row"><div class="k">End card</div><div class="v">White peaks rise from the sea, the wave forms, the wordmark lifts, on brand blue.</div></div>
+      <div class="row"><div class="k">Photos</div><div class="v">Real places from the region. On a listing, the host's photos from past departures, or none.<span class="s">No stock or generated image is ever shown as a trip someone can buy.</span></div></div>
+      <div class="row"><div class="k">In the app</div><div class="v">Every press gives a little weight back. Big moments (a trip created, everyone ready) get one short beat, then the screen settles.<span class="s">Reduced motion is honoured everywhere.</span></div></div>
+      <div class="row"><div class="k">Made-up names</div><div class="v">Lantern Trips and Kite Trips are ours to use. Never a real agency's name or trip in an example.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 TRAVELLERS ============ -->
+<section id="travellers">
+  <div class="wrap">
+    <h2><span class="n">08</span><span>Talking to travellers</span></h2>
+    <div class="reading">
+      <p class="lead">We write like the friend who has already been and would never let you get stranded. <strong>Specific over scenic. A verb doing real work. One idea per line.</strong></p>
+    </div>
+    <div class="pair">
+      <div class="vcard say">
+        <div class="h"><span class="dot"></span>We say</div>
+        <ul>
+          <li><b>"Vote on dates. The plan follows the group."</b></li>
+          <li><b>"Send a reel to the trip on WhatsApp. It comes back as places on your map."</b></li>
+          <li><b>"Going alone? Start with Just me."</b></li>
+          <li><b>"Pickup is at 7:30, from the hotel lobby."</b></li>
+          <li class="rule">Lead with planning together, not with AI.</li>
+        </ul>
+      </div>
+      <div class="vcard never">
+        <div class="h"><span class="dot"></span>We never say</div>
+        <ul>
+          <li><b>"Revolutionary all-in-one travel ecosystem."</b></li>
+          <li><b>"AI plans your whole trip in seconds."</b></li>
+          <li><b>"Meet other solo travellers."</b></li>
+          <li><b>"Book on WanderBuddy"</b> before payments are live there.</li>
+          <li class="rule">No em dashes, no exclamation marks, no rupee prices.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><div class="k">Words</div><div class="v">Trip. Departure, for an agency's dated trip. Host, for the agency or captain. Travellers, never "users" or "pax". Hold my spot. The assistant, never "the bot".</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 AGENCIES ============ -->
+<section id="agencies">
+  <div class="wrap">
+    <h2><span class="n">09</span><span>Talking to agencies</span></h2>
+    <div class="reading">
+      <p class="lead">With agencies we sound like an operator who has run a departure, not like software. Their day is WhatsApp at 11 pm and a Canva itinerary at midnight. <strong>Open with the free listing, name their day, and put their brand in front of ours.</strong></p>
+    </div>
+    <div class="rows">
+      <div class="row"><div class="k">Open with</div><div class="v">"List your trips on WanderBuddy, free."<span class="s">Then the desk, as an option: "and if you want it, a CRM, so enquiries stop getting lost in chats".</span></div></div>
+      <div class="row"><div class="k">Their day first</div><div class="v">The job they do today, in their words from our calls: pickup questions, passport copies, the PDF nobody opens.</div></div>
+      <div class="row"><div class="k">Their brand on top</div><div class="v">Travellers see the agency's name, logo and colours on the join page, the itinerary and the WhatsApp assistant. WanderBuddy is the credit line.</div></div>
+      <div class="row"><div class="k">They set it up</div><div class="v">Each connection (Google Drive, WhatsApp, Instagram) is linked by the agency alone, with short numbered steps.<span class="s">One shared sign-in link for every agency; it opens their own workspace.</span></div></div>
+      <div class="row"><div class="k">Numbers</div><div class="v">USD, with what the setup buys: the import, their brand, their itinerary design, the WhatsApp hookup, training.<span class="s">Prices belong in calls and the deck, never in a reel. Hours saved come from a real departure; until then they are targets.</span></div></div>
+      <div class="row"><div class="k">A person sends it</div><div class="v">Founder to founder, from the founder's own Instagram and WhatsApp, or from Vaibhav by email. First name, their trips, one ask.<span class="s">No auto-DMs, no bulk tools, no cold messages from the WanderBuddy WhatsApp number.</span></div></div>
+    </div>
+    <div class="pair">
+      <div class="vcard say">
+        <div class="h"><span class="dot"></span>We say</div>
+        <ul>
+          <li><b>"Your trips can sit in front of travellers who are already planning one."</b></li>
+          <li><b>"Your travellers ask the assistant, not you. It answers from your trip plan, day and night."</b></li>
+          <li><b>"Give us your next departure."</b></li>
+          <li class="rule">One job per sentence. Their words, our fix.</li>
+        </ul>
+      </div>
+      <div class="vcard never">
+        <div class="h"><span class="dot"></span>We never say</div>
+        <ul>
+          <li><b>"Revolutionise your agency with AI."</b></li>
+          <li><b>"Get 3x more bookings."</b> No promised results or cost per booking.</li>
+          <li><b>"Join 200+ agencies."</b> No scale we do not have.</li>
+          <li class="rule">No feature grids, no "seamless", no "end-to-end platform".</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 LISTINGS ============ -->
+<section id="listings">
+  <div class="wrap">
+    <h2><span class="n">10</span><span>On trip listings</span></h2>
+    <div class="reading">
+      <p class="lead">A listing sells one departure for one host. <strong>Write it so a traveller can decide in thirty seconds on a phone.</strong></p>
+    </div>
+    <div class="lstrow">
+      <div class="lst" aria-label="Example listing with a made-up host">
+        <div class="lst-host"><span class="lst-logo">KT</span><b>Kite Trips</b><span class="lst-tick">Verified</span></div>
+        <div class="lst-title">Six days in Northern Thailand</div>
+        <div class="lst-facts"><span>14 to 19 Jan 2027</span><span>From $890</span><span class="seats">4 of 12 seats left</span></div>
+        <ul class="lst-days">
+          <li><b>Day 1</b>Chiang Mai old town on foot, khao soi at the market.</li>
+          <li><b>Day 3</b>5 am drive to Doi Inthanon for sunrise.</li>
+          <li><b>Day 5</b>Elephant sanctuary, no riding.</li>
+        </ul>
+        <p class="lst-inc"><b>Included:</b> 5 nights in twin rooms, breakfasts, transfers, a guide. <b>Not included:</b> flights, lunches, travel insurance.</p>
+        <div class="lst-cta"><span class="lst-btn">Hold my spot</span><p>Free. Held for 7 days while Kite Trips confirms.</p></div>
+      </div>
+      <div>
+        <h3>Why it works</h3>
+        <ol class="why">
+          <li><b>Host and tick before the title.</b> The traveller knows who they are buying from.</li>
+          <li><b>Dates, price and seats left</b> at the first glance, in USD.</li>
+          <li><b>A time or a place in every day line.</b> Nothing a brochure could say about anywhere.</li>
+          <li><b>What is not included,</b> said as plainly as what is.</li>
+          <li><b>The button says what it costs,</b> nothing, and how long the hold lasts.</li>
+        </ol>
+        <div class="pins" aria-label="Map pins">
+          <span class="pin-price">$890</span><span>Agency trip</span>
+          <span class="pin-people"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm7 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 19c0-3 3.1-5.5 7-5.5s7 2.5 7 5.5v1H2v-1zm15.5 1v-1c0-1.7-.7-3.2-1.9-4.4 3.2.3 6.4 2.1 6.4 4.4v1h-4.5z"/></svg></span><span>Traveller trip</span>
+        </div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><div class="k">Honest numbers</div><div class="v">Seats left is the real count. No countdown timers, no fake "Full", no review counts we do not have.</div></div>
+      <div class="row"><div class="k">Who it suits</div><div class="v">Pace, group size, rooms. Solo travellers book one seat like anyone else: "Going alone? Book one seat."</div></div>
+      <div class="row"><div class="k">Money words</div><div class="v">"Hold my spot" is free and says how long it holds. "Pay deposit" appears only where deposits are live, and says the money goes to the host. The cancellation policy is the host's, in their words.</div></div>
+      <div class="row"><div class="k">After the hold</div><div class="v">The next message comes from the host. Once booked, the listing becomes the trip: same name, same dates, now with the group in it.</div></div>
+    </div>
+    <div class="pair">
+      <div class="vcard say">
+        <div class="h"><span class="dot"></span>We say</div>
+        <ul>
+          <li><b>"Six days in Northern Thailand with Kite Trips. 14 to 19 Jan. From $890. 4 of 12 seats left."</b></li>
+          <li><b>"Hold my spot. Free, held for 7 days while the host confirms."</b></li>
+          <li class="rule">Every line answers a question a traveller would otherwise DM the host about.</li>
+        </ul>
+      </div>
+      <div class="vcard never">
+        <div class="h"><span class="dot"></span>We never say</div>
+        <ul>
+          <li><b>"Once in a lifetime! Only 2 spots left!!"</b></li>
+          <li><b>"Best price guaranteed"</b> or <b>"Fully refundable"</b>, unless the host's policy says so.</li>
+          <li><b>"Loved by 1,000+ travellers"</b> without the data behind it.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11 MARK ============ -->
+<section id="mark">
+  <div class="wrap">
+    <h2><span class="n">11</span><span>The mark</span></h2>
+    <div class="glyphrow">
+      <svg viewBox="0 0 1024 1024" role="img" aria-label="WanderBuddy mark">
+        <clipPath id="wb-round"><rect width="1024" height="1024" rx="200"/></clipPath>
+        <g clip-path="url(#wb-round)">
+          <rect width="1024" height="1024" fill="#2072B8"/>
+          <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#FFFFFF"/>
+          <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#FFFFFF"/>
+        </g>
+      </svg>
+      <div class="reading">
+        <p class="lead">Two white peaks over a white wave, on brand blue. <strong>That is the whole mark.</strong></p>
+        <div class="rows" style="margin-top:18px">
+          <div class="row"><div class="k">Colourway</div><div class="v">White on <span class="num">#2072B8</span>, always. A white-only knockout exists for photos and dark video.</div></div>
+          <div class="row"><div class="k">Space</div><div class="v">A full peak-height of air on every side. 24px minimum on screen.</div></div>
+          <div class="row"><div class="k">Never</div><div class="v">A sun, a third colour, a gradient, an outline, recoloured peaks or a stretched tile.</div></div>
+          <div class="row"><div class="k">Source</div><div class="v"><code>assets/icon-master.svg</code>, <code>website/src/components/Wordmark.tsx</code>.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12 FOUNDER ============ -->
+<section id="founder">
+  <div class="wrap">
+    <h2><span class="n">12</span><span>The founder channel</span></h2>
+    <div class="reading">
+      <p class="lead">The founder is a brand surface. When Atharva posts, it should sound like the same person who wrote this codex: sharp, generous, specific. Not a company account wearing a face.</p>
+    </div>
+    <div class="rows">
+      <div class="row"><div class="k">Build in public</div><div class="v">Show the work: what shipped, the numbers, the near-misses.</div></div>
+      <div class="row"><div class="k">Take positions</div><div class="v">Have opinions about travel and about how agencies work. A post any app founder could write is not worth posting.</div></div>
+      <div class="row"><div class="k">Pay people back</div><div class="v">Treat early travellers and founding agencies like insiders: name them, thank them, reward them.</div></div>
+      <div class="row"><div class="k">Honest receipts</div><div class="v">Real footage, real features, real numbers. Credibility is the whole account.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="mk">WanderBuddy Codex</div>
+    <div>Rev 03, 28 Oct 2026. Replaces Rev 02: marketplace first, the app's real type, no yellow in the app, and the sound.</div>
+    <div>Travel together, perfectly in sync.</div>
+  </div>
+</footer>
+<script src="brand-codex.js"></script>
+</body>
+</html>

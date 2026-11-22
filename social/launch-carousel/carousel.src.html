@@ -1,0 +1,268 @@
+<title>WanderBuddy Launch Carousel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#0B141F; --ink2:#12202E; --ink3:#0d1826;
+    --surface:#17293B; --surface2:#1c3247;
+    --azure:#3FA7E6; --azure-bright:#67C4F7; --amber:#F0A431; --teal:#35C9BC;
+    --text:#E7F1FA; --muted:#8DA7BC; --border:#25394C;
+    --hair:rgba(231,241,250,.09);
+    --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+    --body:'IBM Plex Sans',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:#080f17; color:var(--text); font-family:var(--body);
+    -webkit-font-smoothing:antialiased;
+    padding:clamp(16px,4vw,48px) clamp(12px,3vw,40px) 80px;
+  }
+  .page-head{
+    max-width:1080px; margin:0 auto clamp(20px,3vw,36px);
+    font-family:var(--mono); color:var(--muted); font-size:clamp(11px,1.4vw,13px);
+    letter-spacing:.12em; text-transform:uppercase; display:flex; flex-wrap:wrap;
+    gap:.4em 1.2em; align-items:baseline; border-bottom:1px solid var(--hair); padding-bottom:14px;
+  }
+  .page-head b{color:var(--text); letter-spacing:.02em;} .page-head .dot{color:var(--azure);}
+  .deck{max-width:1080px; margin:0 auto; display:flex; flex-direction:column; gap:clamp(28px,4vw,52px);}
+  .slide-wrap{display:flex; flex-direction:column; gap:10px;}
+  .chrome{font-family:var(--mono); font-size:clamp(10px,1.3vw,12px); letter-spacing:.16em; text-transform:uppercase; color:var(--muted); display:flex; gap:.7em; align-items:center;}
+  .chrome .idx{color:var(--azure);} .chrome .bar{flex:1; height:1px; background:var(--hair);}
+
+  .slide{
+    container-type:inline-size; position:relative; width:100%; aspect-ratio:4/5; overflow:hidden;
+    border-radius:2cqw;
+    background:
+      radial-gradient(120% 85% at 82% -8%, rgba(63,167,230,.18), transparent 55%),
+      radial-gradient(90% 70% at -10% 108%, rgba(240,164,49,.10), transparent 55%),
+      linear-gradient(158deg, var(--ink) 0%, var(--ink2) 58%, var(--ink3) 100%);
+    box-shadow:0 24px 60px -24px rgba(0,0,0,.7), inset 0 0 0 1px var(--hair); color:var(--text);
+  }
+  .slide::before{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background:
+      radial-gradient(circle at 86% 12%, transparent 15.4cqw, rgba(63,167,230,.07) 15.5cqw, transparent 16cqw),
+      radial-gradient(circle at 86% 12%, transparent 21.4cqw, rgba(63,167,230,.05) 21.5cqw, transparent 22cqw),
+      radial-gradient(circle at 86% 12%, transparent 27.4cqw, rgba(63,167,230,.04) 27.5cqw, transparent 28cqw);
+  }
+  .inner{position:relative; z-index:2; height:100%; padding:7cqw; display:flex; flex-direction:column;}
+  .top{display:flex; justify-content:space-between; align-items:baseline; gap:2cqw;}
+  .eyebrow{font-family:var(--mono); font-size:1.75cqw; letter-spacing:.34em; text-transform:uppercase; color:var(--azure); font-weight:500;}
+  .count{font-family:var(--mono); font-size:1.75cqw; letter-spacing:.18em; color:var(--muted);} .count b{color:var(--text);}
+  .body{flex:1; display:flex; flex-direction:column; justify-content:center; gap:3cqw; padding:2.5cqw 0;}
+  h2.head{font-family:var(--display); font-weight:800; margin:0; font-size:8.2cqw; line-height:.98; letter-spacing:-.02em; text-wrap:balance;}
+  h2.head.sm{font-size:6.2cqw;}
+  .azure{color:var(--azure-bright);} .amberc{color:var(--amber);}
+  .lede{font-size:2.5cqw; line-height:1.5; color:var(--muted); max-width:46ch; margin:0;} .lede b{color:var(--text); font-weight:600;}
+
+  .bottom{display:flex; justify-content:space-between; align-items:center; gap:2cqw;}
+  .wordmark{display:flex; align-items:center; gap:1.4cqw;}
+  .mark{width:5cqw; height:5cqw; border-radius:1.3cqw; display:block; box-shadow:0 1cqw 2cqw -.6cqw rgba(63,167,230,.5);}
+  .wordmark .wm-t{display:flex; flex-direction:column; line-height:1;}
+  .wordmark .wm-t b{font-family:var(--display); font-weight:700; font-size:2.4cqw; letter-spacing:-.01em;}
+  .wordmark .wm-t small{font-family:var(--mono); font-size:1.35cqw; letter-spacing:.12em; color:var(--muted); text-transform:uppercase; margin-top:.4cqw;}
+  .route{display:flex; align-items:center;}
+  .route .node{width:1.7cqw; height:1.7cqw; border-radius:50%; background:var(--surface2); box-shadow:inset 0 0 0 .3cqw var(--border);}
+  .route .seg{width:3cqw; height:.3cqw; background:var(--border);}
+  .route .node.on{background:var(--azure); box-shadow:0 0 0 .8cqw rgba(63,167,230,.18);}
+  .route .node.done{background:var(--muted); box-shadow:none;}
+
+  /* image shots */
+  .shot{position:relative; border-radius:1.8cqw; overflow:hidden; border:.26cqw solid var(--border); background:var(--ink3); box-shadow:0 2cqw 5cqw -1.5cqw rgba(0,0,0,.65);}
+  .shot img{width:100%; height:100%; object-fit:cover; display:block;}
+  .shot.doc{background:#f4f6f8;} .shot.doc img{object-fit:contain;}
+  .shot.dark img{object-fit:contain;}
+  .shot .cap{position:absolute; left:0; right:0; bottom:0; z-index:2; font-family:var(--mono); font-size:1.4cqw; letter-spacing:.04em; color:var(--text); background:linear-gradient(transparent, rgba(6,12,20,.9) 55%); padding:4cqw 1.8cqw 1.4cqw;}
+  .shot .stamp{position:absolute; top:1.3cqw; right:1.3cqw; z-index:2; font-family:var(--mono); font-size:1.3cqw; letter-spacing:.12em; text-transform:uppercase; padding:.55cqw 1.3cqw; border-radius:8cqw; font-weight:600;}
+  .stamp.red{background:#e5484d; color:#fff;} .stamp.green{background:#2f9e63; color:#fff;} .stamp.amber{background:var(--amber); color:#3A2606;}
+
+  .notes{display:grid; grid-template-columns:repeat(3,1fr); gap:2cqw;}
+  .notes .shot{aspect-ratio:9/15;}
+  .rej{display:grid; gap:1.8cqw;}
+  .rej .wide{aspect-ratio:16/5.6;}
+  .rej .pair{display:grid; grid-template-columns:1fr 1fr; gap:1.8cqw;}
+  .rej .pair .shot{aspect-ratio:4/4.4;}
+  .brk{display:grid; grid-template-columns:1fr 1fr; gap:1.8cqw; align-items:stretch;}
+  .brk .chat-shot{aspect-ratio:27/32;}
+  .brk-col{display:flex; flex-direction:column; gap:1.8cqw;}
+  .brk-col .shot{flex:1; min-height:0;}
+
+  .chips{display:flex; flex-wrap:wrap; gap:1.4cqw;}
+  .chip{font-family:var(--mono); font-size:1.6cqw; letter-spacing:.02em; color:var(--text); border:1px solid var(--border); background:var(--surface); border-radius:10cqw; padding:1cqw 1.9cqw;}
+  .chip .d{color:var(--azure);} .chip b{color:var(--azure);}
+
+  .badges{display:flex; gap:1.8cqw; flex-wrap:wrap;}
+  .badge{display:inline-flex; align-items:center; gap:1.6cqw; padding:1.7cqw 2.6cqw; border-radius:2cqw; border:1px solid var(--border); background:rgba(23,41,59,.7); color:var(--text); text-decoration:none;}
+  .badge svg{width:4.6cqw; height:4.6cqw; fill:currentColor; flex:none;}
+  .badge .bt{display:flex; flex-direction:column; line-height:1.05; text-align:left;}
+  .badge .bt small{font-size:1.4cqw; letter-spacing:.05em; color:var(--muted); text-transform:uppercase;}
+  .badge .bt b{font-family:var(--display); font-weight:700; font-size:2.6cqw; letter-spacing:-.01em;}
+  .live{display:inline-flex; align-items:center; gap:1.4cqw; font-family:var(--mono); font-weight:600; letter-spacing:.28em; text-transform:uppercase; font-size:2cqw; color:var(--amber);}
+  .live .pulse{width:1.8cqw; height:1.8cqw; border-radius:50%; background:var(--amber); box-shadow:0 0 0 0 rgba(240,164,49,.55); animation:pulse 2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(240,164,49,.5);}70%{box-shadow:0 0 0 2.6cqw rgba(240,164,49,0);}100%{box-shadow:0 0 0 0 rgba(240,164,49,0);}}
+  @media (prefers-reduced-motion:reduce){.live .pulse{animation:none;}}
+  .hero-icon{width:19cqw; height:19cqw; border-radius:5cqw; box-shadow:0 4cqw 8cqw -2cqw rgba(63,167,230,.45), inset 0 0 0 1px var(--hair);}
+  .approved-chip{display:inline-flex; align-items:center; gap:1cqw; font-family:var(--mono); font-size:1.7cqw; color:var(--teal); letter-spacing:.04em;}
+  .approved-chip svg{width:2.4cqw; height:2.4cqw;}
+
+  .note{max-width:1080px; margin:36px auto 0; font-family:var(--mono); font-size:12px; line-height:1.7; color:var(--muted); border-top:1px solid var(--hair); padding-top:18px;}
+  .note b{color:var(--text);} .note .a{color:var(--azure);} .note .w{color:var(--amber);}
+
+  /* ---- Print → PDF: one 1080×1350 page per slide (Chrome: Save as PDF) ---- */
+  @media print {
+    @page { size: 1080px 1350px; margin: 0; }
+    html, body { background:#fff; padding:0; margin:0; }
+    .page-head, .chrome, .note { display:none !important; }
+    .deck { gap:0; max-width:none; margin:0; }
+    .deck, .deck * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .slide{
+      width:1080px; height:1350px; aspect-ratio:auto;
+      border-radius:0; box-shadow:none;
+      break-after:page; break-inside:avoid;
+    }
+    .slide-wrap:last-child .slide{ break-after:auto; }
+  }
+</style>
+
+<div class="page-head">
+  <b>WanderBuddy — Launch Carousel</b>
+  <span><span class="dot">◆</span> 5 slides</span>
+  <span><span class="dot">◆</span> 1080 × 1350 (4:5)</span>
+  <span><span class="dot">◆</span> for LinkedIn</span>
+  <span><span class="dot">◆</span> real receipts, wired in</span>
+</div>
+
+<div class="deck">
+
+  <!-- ===== SLIDE 1 · LIVE ===== -->
+  <div class="slide-wrap">
+    <div class="chrome"><span class="idx">01</span> LIVE <span class="bar"></span></div>
+    <div class="slide" id="s1">
+      <div class="inner">
+        <div class="top"><span class="eyebrow">WanderBuddy // Now Shipping</span><span class="count"><b>01</b> / 05</span></div>
+        <div class="body">
+          <svg class="hero-icon" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="26" fill="#2E86D6"/><path d="M16 70 L41 30 L54 50 L64 35 L86 70 Z" fill="#fff"/><path d="M13 79c7-6 14-6 21 0s14 6 21 0 14-6 21 0" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg>
+          <span class="live"><span class="pulse"></span> It's live</span>
+          <h2 class="head">WanderBuddy is<br><span class="azure">on the App Store</span><br>&amp; Google Play.</h2>
+          <p class="lede">The group-trip app that plans, chats, splits, and actually gets everyone there — <b>built in 2 months, live on both stores.</b></p>
+          <div class="badges">
+            <span class="badge"><svg viewBox="0 0 24 24"><path d="M16.5 12.6c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.7-3.2.7-.6 0-1.7-.7-2.8-.7-1.4 0-2.7.8-3.5 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.5 2.1 2.6 2.1s1.5-.7 2.8-.7 1.6.7 2.7.7 1.9-1 2.6-2a9 9 0 001.2-2.3c-.1 0-2.3-.9-2.3-3.5zM14.6 5.9c.6-.7 1-1.7.9-2.7-.9 0-2 .6-2.6 1.3-.6.6-1 1.6-.9 2.6 1 .1 2-.5 2.6-1.2z"/></svg><span class="bt"><small>Download on the</small><b>App Store</b></span></span>
+            <span class="badge"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9z"/></svg><span class="bt"><small>Get it on</small><b>Google Play</b></span></span>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="wordmark"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="26" fill="#2E86D6"/><path d="M16 70 L41 30 L54 50 L64 35 L86 70 Z" fill="#fff"/><path d="M13 79c7-6 14-6 21 0s14 6 21 0 14-6 21 0" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg><span class="wm-t"><b>WanderBuddy</b><small>Travel together</small></span></div>
+          <div class="route"><span class="node on"></span><span class="seg"></span><span class="node"></span><span class="seg"></span><span class="node"></span><span class="seg"></span><span class="node"></span><span class="seg"></span><span class="node"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 2 · ORIGIN ===== -->
+  <div class="slide-wrap">
+    <div class="chrome"><span class="idx">02</span> Origin <span class="bar"></span></div>
+    <div class="slide" id="s2">
+      <div class="inner">
+        <div class="top"><span class="eyebrow">02 // Origin Story</span><span class="count"><b>02</b> / 05</span></div>
+        <div class="body">
+          <h2 class="head sm">It started as<br><span class="azure">notes on my phone.</span></h2>
+          <div class="notes">
+            <div class="shot"><span class="stamp amber">Day 0</span><img data-photo="note1" alt="Handwritten note: location, comms, photos, AI friend"></div>
+            <div class="shot"><img data-photo="note2" alt="Handwritten note: live translate, price comparisons, itinerary"></div>
+            <div class="shot"><img data-photo="note3" alt="Handwritten note: translate feature, up to 5 members"></div>
+          </div>
+          <p class="lede">Features scribbled on my Samsung at midnight — live location, a translate room, itineraries, an AI friend. <b>Sixty days later they're a real product on two app stores.</b></p>
+        </div>
+        <div class="bottom">
+          <div class="wordmark"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="26" fill="#2E86D6"/><path d="M16 70 L41 30 L54 50 L64 35 L86 70 Z" fill="#fff"/><path d="M13 79c7-6 14-6 21 0s14 6 21 0 14-6 21 0" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg><span class="wm-t"><b>WanderBuddy</b><small>Travel together</small></span></div>
+          <div class="route"><span class="node done"></span><span class="seg"></span><span class="node on"></span><span class="seg"></span><span class="node"></span><span class="seg"></span><span class="node"></span><span class="seg"></span><span class="node"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 3 · THE WALL ===== -->
+  <div class="slide-wrap">
+    <div class="chrome"><span class="idx">03</span> The gatekeepers <span class="bar"></span></div>
+    <div class="slide" id="s3">
+      <div class="inner">
+        <div class="top"><span class="eyebrow">03 // The Gatekeepers</span><span class="count"><b>03</b> / 05</span></div>
+        <div class="body">
+          <h2 class="head sm">Then Google and<br>Apple said <span class="amberc">no.</span></h2>
+          <div class="rej">
+            <div class="shot doc wide"><span class="stamp red">Rejected</span><img data-photo="rej-google" alt="Google Play Console policy rejection"></div>
+            <div class="pair">
+              <div class="shot doc"><span class="stamp red">Blocked</span><img data-photo="rej-apple1" alt="App Store Connect: unable to submit for review"></div>
+              <div class="shot doc"><span class="stamp red">Rejected</span><img data-photo="rej-apple2" alt="App Store Connect: submission items rejected"></div>
+            </div>
+          </div>
+          <p class="lede">Photo-permissions policy. Billing library. Subscription groups. <b>Rejection after rejection</b> — the walls that make most people quietly quit. I didn't.</p>
+        </div>
+        <div class="bottom">
+          <div class="wordmark"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="26" fill="#2E86D6"/><path d="M16 70 L41 30 L54 50 L64 35 L86 70 Z" fill="#fff"/><path d="M13 79c7-6 14-6 21 0s14 6 21 0 14-6 21 0" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg><span class="wm-t"><b>WanderBuddy</b><small>Travel together</small></span></div>
+          <div class="route"><span class="node done"></span><span class="seg"></span><span class="node done"></span><span class="seg"></span><span class="node on"></span><span class="seg"></span><span class="node"></span><span class="seg"></span><span class="node"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 4 · THE BREAKTHROUGH ===== -->
+  <div class="slide-wrap">
+    <div class="chrome"><span class="idx">04</span> The breakthrough <span class="bar"></span></div>
+    <div class="slide" id="s4">
+      <div class="inner">
+        <div class="top"><span class="eyebrow">04 // The Breakthrough</span><span class="count"><b>04</b> / 05</span></div>
+        <div class="body">
+          <h2 class="head sm">3 AM. A borrowed<br>Mac. <span class="azure">Real friends.</span></h2>
+          <div class="brk">
+            <div class="shot dark chat-shot"><span class="stamp amber">3:00 AM</span><img data-photo="chat" alt="Group chat asking Kartik for Mac access before the investor pitch"><span class="cap">"kartik darling i need you" — the group chat</span></div>
+            <div class="brk-col">
+              <div class="shot dark"><img data-photo="mac" alt="Remote access to Kartik's Mac mini"><span class="cap">Kartik's Mac mini · remote, at 3 AM</span></div>
+              <div class="shot doc"><span class="stamp green">Approved</span><img data-photo="approved" alt="App Store Connect approval email"><span class="cap">…then: approved for distribution</span></div>
+            </div>
+          </div>
+          <p class="lede">I didn't own a Mac. My brother handed me his — remote access, his own keychain wiped so mine would build. That's how iOS shipped.</p>
+          <div class="chips">
+            <span class="chip"><span class="d">›</span> lent me his Mac — <b>@Kartik&nbsp;Upadhyay</b></span>
+            <span class="chip"><span class="d">›</span> in the trenches — <b>@Swapnil&nbsp;Garg</b></span>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="wordmark"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="26" fill="#2E86D6"/><path d="M16 70 L41 30 L54 50 L64 35 L86 70 Z" fill="#fff"/><path d="M13 79c7-6 14-6 21 0s14 6 21 0 14-6 21 0" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg><span class="wm-t"><b>WanderBuddy</b><small>Travel together</small></span></div>
+          <div class="route"><span class="node done"></span><span class="seg"></span><span class="node done"></span><span class="seg"></span><span class="node done"></span><span class="seg"></span><span class="node on"></span><span class="seg"></span><span class="node"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 5 · BANGKOK ===== -->
+  <div class="slide-wrap">
+    <div class="chrome"><span class="idx">05</span> Battle-tested <span class="bar"></span></div>
+    <div class="slide" id="s5">
+      <div class="inner">
+        <div class="top"><span class="eyebrow">05 // Battle-Tested</span><span class="count"><b>05</b> / 05</span></div>
+        <div class="body">
+          <h2 class="head sm">Built for travel.<br>Tested in <span class="amberc">Bangkok.</span></h2>
+          <div class="shot" style="aspect-ratio:16/10"><span class="stamp amber">Bangkok · 07/2026</span><img data-photo="bangkok" alt="Filing a police report on a Bangkok street after the phone theft"><span class="cap">Phone stolen at 3 AM. Report filed. Recovered.</span></div>
+          <p class="lede">When my phone got stolen in Bangkok, the <b>live location and safety features I built myself</b> are how the story ended well. Now let's build the rest. 🌍</p>
+          <div class="bottom" style="border-top:1px solid var(--hair); padding-top:2.6cqw;">
+            <span class="approved-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> download on iOS &amp; Android today</span>
+            <div class="wordmark"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="26" fill="#2E86D6"/><path d="M16 70 L41 30 L54 50 L64 35 L86 70 Z" fill="#fff"/><path d="M13 79c7-6 14-6 21 0s14 6 21 0 14-6 21 0" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg></div>
+          </div>
+        </div>
+        <div class="bottom">
+          <span class="wm-t" style="font-family:var(--mono); font-size:1.6cqw; letter-spacing:.1em; color:var(--muted);">wanderbuddyapp.com</span>
+          <div class="route"><span class="node done"></span><span class="seg"></span><span class="node done"></span><span class="seg"></span><span class="node done"></span><span class="seg"></span><span class="node done"></span><span class="seg"></span><span class="node on"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="note">
+  <b>BUILD</b> — generated from <span class="a">carousel.src.html</span> by <span class="a">build.mjs</span>; photos embedded as data URIs (self-contained). Bangkok image is auto-redacted (police-report text blurred). The thief's face and the armed-recovery shots are deliberately not used.
+</div>

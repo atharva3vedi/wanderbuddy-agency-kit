@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root{ --amber:#F2A93B; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1080px;height:1080px;}
+  body{
+    background:radial-gradient(130% 100% at 25% 8%, #1c3a5c 0%, #10233c 46%, #0a1622 100%);
+    font-family:Arial, Helvetica, sans-serif;
+    color:#fff; position:relative; overflow:hidden;
+  }
+  .ghost{ position:absolute; right:-150px; bottom:-130px; width:780px; opacity:.07; transform:rotate(-4deg); }
+  .frame{ position:absolute; inset:34px; border:2px solid rgba(255,255,255,.42); }
+  .pad{
+    position:absolute; inset:34px; padding:46px 66px 52px 68px;
+    display:flex; flex-direction:column; height:calc(1080px - 68px);
+  }
+  .toprow{ display:flex; justify-content:space-between; align-items:center; }
+  .pill{
+    font-weight:900; letter-spacing:.15em; font-size:38px;
+    background:var(--amber); color:#241503; padding:12px 26px 11px; border-radius:4px;
+  }
+  .ref{
+    font-family:Consolas,"Courier New",monospace; font-size:22px;
+    letter-spacing:.04em; color:rgba(255,255,255,.6);
+  }
+  .band{
+    height:38px; margin-top:26px;
+    background:repeating-linear-gradient(-45deg, var(--amber) 0 28px, #12263c 28px 56px);
+  }
+  .center{ flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
+  .tri{ width:150px; }
+  .head{
+    margin-top:26px; font-weight:900; font-size:118px; line-height:.92;
+    letter-spacing:-.02em; text-transform:uppercase;
+  }
+  .body{
+    margin-top:22px; font-size:38px; line-height:1.28; max-width:820px;
+    color:rgba(255,255,255,.9);
+  }
+  .amber{ margin-top:20px; font-weight:900; font-size:46px; color:var(--amber); }
+  .foot{
+    display:flex; justify-content:space-between; align-items:center;
+    border-top:2px solid rgba(255,255,255,.3); padding-top:18px;
+  }
+  .brand{ display:flex; align-items:center; gap:18px; }
+  .wordmark{ font-weight:800; font-size:40px; }
+  .tag{ font-size:24px; color:rgba(255,255,255,.82); text-align:right; white-space:nowrap; }
+</style>
+</head>
+<body>
+  <svg class="ghost" viewBox="217 180 590 520" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#fff"/>
+    <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#fff"/>
+  </svg>
+  <div class="frame"></div>
+  <div class="pad">
+    <div class="toprow">
+      <div class="pill">WARNING</div>
+      <div class="ref">GROUP SAFETY NOTICE</div>
+    </div>
+    <div class="band"></div>
+
+    <div class="center">
+      <svg class="tri" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 6 L96 84 L4 84 Z" fill="none" stroke="#F2A93B" stroke-width="8" stroke-linejoin="round"/>
+        <rect x="46" y="32" width="8" height="28" rx="3" fill="#F2A93B"/>
+        <rect x="46" y="66" width="8" height="9" rx="3" fill="#F2A93B"/>
+      </svg>
+      <div class="head">Handle<br>with care</div>
+      <div class="body">this friend group contains exactly one (1) person who actually plans the trips.</div>
+      <div class="amber">if lost, the trip does not happen.</div>
+    </div>
+
+    <div class="foot">
+      <div class="brand">
+        <svg width="72" height="66" viewBox="200 180 620 520" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#fff"/>
+          <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#fff"/>
+        </svg>
+        <span class="wordmark">WanderBuddy</span>
+      </div>
+      <div class="tag">backup for the one who does everything.</div>
+    </div>
+  </div>
+</body>
+</html>

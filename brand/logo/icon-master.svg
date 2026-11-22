@@ -1,0 +1,24 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- WanderBuddy master app icon. Sky-blue brand background, white mountain
+       range + wave mark, wordmark below. The launcher PNGs are generated from
+       this design by tool/gen_brand_assets.py (launcher icons omit the wordmark
+       for legibility at small sizes). -->
+  <defs>
+    <clipPath id="round"><rect x="0" y="0" width="1024" height="1024" rx="200" ry="200"/></clipPath>
+  </defs>
+  <g clip-path="url(#round)">
+    <rect x="0" y="0" width="1024" height="1024" fill="#2072B8"/>
+    <!-- Mountain range (two peaks) -->
+    <polygon points="224,404 404,188 494,314 602,116 800,404"
+             fill="#FFFFFF"/>
+    <!-- restated lower so it reads as a centred mark -->
+    <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#FFFFFF"/>
+    <!-- Wave band -->
+    <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620
+             L 807 692 L 217 692 Z" fill="#FFFFFF"/>
+    <!-- Wordmark -->
+    <text x="512" y="836" text-anchor="middle"
+          font-family="Arial, Helvetica, sans-serif" font-weight="bold"
+          font-size="96" fill="#FFFFFF">WanderBuddy</text>
+  </g>
+</svg>

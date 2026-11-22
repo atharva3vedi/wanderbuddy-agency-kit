@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root{ --amber:#F2A93B; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1080px;height:1080px;}
+  body{
+    background:radial-gradient(130% 100% at 25% 8%, #1c3a5c 0%, #10233c 46%, #0a1622 100%);
+    font-family:Arial, Helvetica, sans-serif;
+    color:#fff; position:relative; overflow:hidden;
+  }
+  .ghost{ position:absolute; right:-150px; bottom:-130px; width:780px; opacity:.07; transform:rotate(-4deg); }
+  .frame{ position:absolute; inset:34px; border:2px solid rgba(255,255,255,.42); }
+  .pad{
+    position:absolute; inset:34px; padding:50px 66px 52px 68px;
+    display:flex; flex-direction:column; height:calc(1080px - 68px);
+  }
+  .toprow{ display:flex; justify-content:space-between; align-items:center; }
+  .pill{
+    font-weight:900; letter-spacing:.15em; font-size:38px;
+    background:#fff; color:#0f2740; padding:12px 26px 11px; border-radius:4px;
+  }
+  .ref{
+    font-family:Consolas,"Courier New",monospace; font-size:22px;
+    letter-spacing:.04em; color:rgba(255,255,255,.6); text-align:right;
+  }
+  .head{
+    margin-top:30px; font-weight:900; font-size:96px; line-height:.94;
+    letter-spacing:-.02em; text-transform:uppercase;
+  }
+  .head .amber{ color:var(--amber); }
+  .ledger{ margin-top:30px; font-family:Consolas,"Courier New",monospace; font-size:31px; }
+  .row{
+    display:flex; align-items:baseline; padding:12px 0;
+    border-bottom:2px dotted rgba(255,255,255,.34);
+  }
+  .row .k{ color:rgba(255,255,255,.72); }
+  .row .fill{ flex:1; }
+  .row .v{ color:#fff; text-align:right; }
+  .punch{ margin-top:auto; padding-top:26px; }
+  .punch .big{ font-weight:900; font-size:62px; color:var(--amber); line-height:1; letter-spacing:-.01em; }
+  .punch .small{ margin-top:8px; font-size:32px; color:rgba(255,255,255,.85); }
+  .foot{
+    margin-top:24px;
+    display:flex; justify-content:space-between; align-items:center;
+    border-top:2px solid rgba(255,255,255,.3); padding-top:18px;
+  }
+  .brand{ display:flex; align-items:center; gap:18px; }
+  .wordmark{ font-weight:800; font-size:40px; }
+  .tag{ font-size:24px; color:rgba(255,255,255,.82); text-align:right; white-space:nowrap; }
+</style>
+</head>
+<body>
+  <svg class="ghost" viewBox="217 180 590 520" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#fff"/>
+    <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#fff"/>
+  </svg>
+  <div class="frame"></div>
+  <div class="pad">
+    <div class="toprow">
+      <div class="pill">SUPPORT GROUP</div>
+      <div class="ref">EVERY&nbsp;FRIDAY&nbsp;*&nbsp;PROBABLY</div>
+    </div>
+
+    <div class="head">for the friend<br>who plans<br><span class="amber">everything</span></div>
+
+    <div class="ledger">
+      <div class="row"><span class="k">meets</span><span class="fill"></span><span class="v">never, you're busy planning</span></div>
+      <div class="row"><span class="k">attendance</span><span class="fill"></span><span class="v">you. alone. again.</span></div>
+      <div class="row"><span class="k">snacks</span><span class="fill"></span><span class="v">you organized those too</span></div>
+    </div>
+
+    <div class="punch">
+      <div class="big">you're allowed to rest.</div>
+      <div class="small">we'll watch the trip.</div>
+    </div>
+
+    <div class="foot">
+      <div class="brand">
+        <svg width="72" height="66" viewBox="200 180 620 520" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#fff"/>
+          <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#fff"/>
+        </svg>
+        <span class="wordmark">WanderBuddy</span>
+      </div>
+      <div class="tag">we plan the trip. you sit down.</div>
+    </div>
+  </div>
+</body>
+</html>

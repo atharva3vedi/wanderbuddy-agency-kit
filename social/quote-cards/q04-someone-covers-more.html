@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+  :root{ --amber:#F2A93B; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1080px;height:1080px;}
+  body{
+    background:radial-gradient(130% 100% at 25% 8%, #1c3a5c 0%, #10233c 46%, #0a1622 100%);
+    font-family:Arial, Helvetica, sans-serif; color:#fff; position:relative; overflow:hidden;
+  }
+  .ghost{ position:absolute; right:-150px; bottom:-130px; width:760px; opacity:.06; transform:rotate(-4deg); }
+  .frame{ position:absolute; inset:34px; border:2px solid rgba(255,255,255,.42); }
+  .pad{ position:absolute; inset:34px; padding:64px 70px 54px; display:flex; flex-direction:column; height:calc(1080px - 68px); }
+  .kicker{ font-family:Consolas,"Courier New",monospace; font-size:26px; letter-spacing:.18em;
+    color:rgba(255,255,255,.62); text-transform:uppercase; }
+  .head{ margin-top:auto; margin-bottom:22px; font-weight:900; font-size:104px; line-height:.98;
+    letter-spacing:-.02em; }
+  .head .amber{ color:var(--amber); }
+  .rule{ width:132px; height:5px; background:var(--amber); border-radius:3px; margin:6px 0 26px; }
+  .sub{ font-size:37px; line-height:1.3; color:rgba(255,255,255,.9); max-width:900px; }
+  .foot{ margin-top:44px; display:flex; justify-content:space-between; align-items:center;
+    border-top:2px solid rgba(255,255,255,.3); padding-top:20px; }
+  .brand{ display:flex; align-items:center; gap:18px; }
+  .wordmark{ font-weight:800; font-size:38px; }
+  .tag{ font-size:23px; color:rgba(255,255,255,.82); text-align:right; white-space:nowrap; }
+</style></head>
+<body>
+  <div class="ghost"><svg width="760" height="672" viewBox="200 180 620 520" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#fff"/>
+  <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#fff"/></svg></div>
+  <div class="frame"></div>
+  <div class="pad">
+    <div class="kicker">WHO PAID FOR THE TAXI</div>
+    <div class="head">someone always<br><span class="amber">covers more.</span></div>
+    <div class="rule"></div>
+    <div class="sub">Split expenses that sit right next to the plan, so people actually log them.</div>
+    <div class="foot">
+      <div class="brand"><svg width="72" height="66" viewBox="200 180 620 520" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#fff"/>
+  <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#fff"/></svg><span class="wordmark">WanderBuddy</span></div>
+      <div class="tag">we plan the trip. you sit down.</div>
+    </div>
+  </div>
+</body></html>

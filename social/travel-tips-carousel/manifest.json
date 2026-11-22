@@ -1,0 +1,198 @@
+[
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/01-cover.html",
+    "png": "out/ig/01-cover.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/02-transit.html",
+    "png": "out/ig/02-transit.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/03-passport.html",
+    "png": "out/ig/03-passport.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/04-onward.html",
+    "png": "out/ig/04-onward.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/05-currency.html",
+    "png": "out/ig/05-currency.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/06-atm.html",
+    "png": "out/ig/06-atm.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/07-delay.html",
+    "png": "out/ig/07-delay.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/08-bagtag.html",
+    "png": "out/ig/08-bagtag.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/09-esim.html",
+    "png": "out/ig/09-esim.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/10-offline.html",
+    "png": "out/ig/10-offline.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/11-emergency.html",
+    "png": "out/ig/11-emergency.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/12-insurance.html",
+    "png": "out/ig/12-insurance.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/13-split.html",
+    "png": "out/ig/13-split.png"
+  },
+  {
+    "variant": "ig",
+    "w": 1080,
+    "h": 1350,
+    "html": "build/ig/14-outro.html",
+    "png": "out/ig/14-outro.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/01-cover.html",
+    "png": "out/tiktok/01-cover.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/02-transit.html",
+    "png": "out/tiktok/02-transit.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/03-passport.html",
+    "png": "out/tiktok/03-passport.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/04-onward.html",
+    "png": "out/tiktok/04-onward.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/05-currency.html",
+    "png": "out/tiktok/05-currency.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/06-atm.html",
+    "png": "out/tiktok/06-atm.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/07-delay.html",
+    "png": "out/tiktok/07-delay.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/08-bagtag.html",
+    "png": "out/tiktok/08-bagtag.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/09-esim.html",
+    "png": "out/tiktok/09-esim.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/10-offline.html",
+    "png": "out/tiktok/10-offline.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/11-emergency.html",
+    "png": "out/tiktok/11-emergency.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/12-insurance.html",
+    "png": "out/tiktok/12-insurance.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/13-split.html",
+    "png": "out/tiktok/13-split.png"
+  },
+  {
+    "variant": "tiktok",
+    "w": 1080,
+    "h": 1920,
+    "html": "build/tiktok/14-outro.html",
+    "png": "out/tiktok/14-outro.png"
+  }
+]

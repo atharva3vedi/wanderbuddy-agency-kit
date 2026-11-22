@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root{ --amber:#F2A93B; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1080px;height:1080px;}
+  body{
+    background:radial-gradient(130% 100% at 25% 8%, #1c3a5c 0%, #10233c 46%, #0a1622 100%);
+    font-family:Arial, Helvetica, sans-serif;
+    color:#fff; position:relative; overflow:hidden;
+  }
+  .ghost{ position:absolute; right:-150px; bottom:-130px; width:780px; opacity:.07; transform:rotate(-4deg); }
+  .frame{ position:absolute; inset:34px; border:2px solid rgba(255,255,255,.42); }
+  .pad{
+    position:absolute; inset:34px; padding:52px 66px 52px 68px;
+    display:flex; flex-direction:column; height:calc(1080px - 68px);
+  }
+  .toprow{ display:flex; justify-content:space-between; align-items:center; }
+  .pill{
+    font-weight:900; letter-spacing:.15em; font-size:38px;
+    background:#fff; color:#0f2740; padding:12px 26px 11px; border-radius:4px;
+  }
+  .ref{
+    font-family:Consolas,"Courier New",monospace; font-size:24px;
+    letter-spacing:.04em; color:rgba(255,255,255,.6);
+  }
+  .center{ flex:1; display:flex; flex-direction:column; justify-content:center; }
+  .item{ display:flex; align-items:baseline; gap:34px; padding:8px 0; }
+  .num{ font-weight:900; font-size:66px; color:rgba(255,255,255,.34); width:66px; flex:none; }
+  .txt{ font-weight:900; font-size:88px; line-height:1; letter-spacing:-.02em; }
+  .item.hero .num{ color:var(--amber); }
+  .item.hero .txt{ color:var(--amber); letter-spacing:.08em; }
+  .punch{ margin-top:40px; font-size:46px; font-weight:700; color:rgba(255,255,255,.92); }
+  .punch b{ color:var(--amber); font-weight:900; }
+  .foot{
+    display:flex; justify-content:space-between; align-items:center;
+    border-top:2px solid rgba(255,255,255,.3); padding-top:18px;
+  }
+  .brand{ display:flex; align-items:center; gap:18px; }
+  .wordmark{ font-weight:800; font-size:40px; }
+  .tag{ font-size:24px; color:rgba(255,255,255,.82); text-align:right; white-space:nowrap; }
+</style>
+</head>
+<body>
+  <svg class="ghost" viewBox="217 180 590 520" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#fff"/>
+    <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#fff"/>
+  </svg>
+  <div class="frame"></div>
+  <div class="pad">
+    <div class="toprow">
+      <div class="pill">OUR FULL ITINERARY</div>
+      <div class="ref">JAPAN&nbsp;&middot;&nbsp;9&nbsp;DAYS</div>
+    </div>
+
+    <div class="center">
+      <div class="item"><span class="num">1</span><span class="txt">land</span></div>
+      <div class="item hero"><span class="num">2</span><span class="txt">??????</span></div>
+      <div class="item"><span class="num">3</span><span class="txt">somehow it works out</span></div>
+      <div class="punch">we built <b>step 2.</b></div>
+    </div>
+
+    <div class="foot">
+      <div class="brand">
+        <svg width="72" height="66" viewBox="200 180 620 520" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="224,512 404,296 494,422 602,224 800,512" fill="#fff"/>
+          <path d="M 217 620 Q 290 584 364 620 T 512 620 T 660 620 T 807 620 L 807 692 L 217 692 Z" fill="#fff"/>
+        </svg>
+        <span class="wordmark">WanderBuddy</span>
+      </div>
+      <div class="tag">the ?????? part is handled.</div>
+    </div>
+  </div>
+</body>
+</html>
