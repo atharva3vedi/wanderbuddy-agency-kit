@@ -1,0 +1,22 @@
+[
+  {
+    "file": "layer-word.html",
+    "png": "layer-word.png",
+    "transparent": true
+  },
+  {
+    "file": "layer-dlnow.html",
+    "png": "layer-dlnow.png",
+    "transparent": true
+  },
+  {
+    "file": "layer-badges.html",
+    "png": "layer-badges.png",
+    "transparent": true
+  },
+  {
+    "file": "card-ref.html",
+    "png": "card-ref.png",
+    "transparent": false
+  }
+]
