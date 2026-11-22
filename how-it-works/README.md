@@ -4,11 +4,11 @@ WanderBuddy is three products that feed each other: an **app** for travellers, a
 
 ```mermaid
 flowchart LR
-  A["Agency"] -- "lists a trip, free" --> M["Marketplace<br/>wanderbuddyapp.com"]
+  A["Agency"] -- "lists trips" --> M["Marketplace"]
   T["Traveller"] -- "finds a trip" --> M
-  M -- "question or booking" --> C["Agency CRM"]
-  C -- "itinerary, payment, guests" --> P["Trip app"]
-  T -- "travels with the group" --> P
+  M -- "books" --> C["CRM"]
+  C -- "itinerary" --> P["Trip app"]
+  T -- "travels" --> P
 ```
 
 ## The loop

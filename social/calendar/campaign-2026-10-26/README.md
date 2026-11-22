@@ -10,11 +10,11 @@ in different voices. Nothing in this folder posts, sends or spends anything.
 | File | What it is | Who acts |
 |---|---|---|
 | [CALENDAR.md](CALENDAR.md) | Every post, week by week, per audience and platform: what to film, the caption, the YouTube title | Judy queues, founder films and publishes |
-| [drafts.sql](drafts.sql) | The same 28 posts as drafts for the dashboard's Channels tab (`social_posts`, status `draft`, source `claude`) | Founder runs it once |
-| [build_drafts.py](build_drafts.py) | The one list both files come from, with the brand-rule checks. Edit captions here | Anyone, then rerun |
+| `drafts.sql` | The same 28 posts as drafts for the dashboard's Channels tab (`social_posts`, status `draft`, source `claude`) | Founder runs it once |
+| `build_drafts.py` | The one list both files come from, with the brand-rule checks. Edit captions here | Anyone, then rerun |
 | [META_ADS_PLAN.md](META_ADS_PLAN.md) | Meta ads for both audiences: structure, USD budgets, targeting, events, pause rules | Founder approves each dollar line |
-| [../../business/b2b/outreach/SEQUENCES_V2.md](../../business/b2b/outreach/SEQUENCES_V2.md) | Agency outreach run from `/crm`: messages, cadence, replies | Atharva (DMs, WhatsApp), Vaibhav (email) |
-| [../../business/b2b/outreach/crm_import.csv](../../business/b2b/outreach/crm_import.csv) | 80 ICP prospects ready for `/crm` > Import, 11 marked This week | Vaibhav imports once |
+| `../../business/b2b/outreach/SEQUENCES_V2.md` | Agency outreach run from `/crm`: messages, cadence, replies | Atharva (DMs, WhatsApp), Vaibhav (email) |
+| `../../business/b2b/outreach/crm_import.csv` | 80 ICP prospects ready for `/crm` > Import, 11 marked This week | Vaibhav imports once |
 
 ## Load the drafts
 
