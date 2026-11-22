@@ -1,0 +1,38 @@
+[
+  {
+    "created_at": "2026-08-27T10:24:38.57461Z",
+    "display_name": "Soul Cinematic",
+    "id": "3f8c06e9-3621-4679-92f3-c8137129e904",
+    "job_type": "soul_cinematic",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_102438_3f8c06e9-3621-4679-92f3-c8137129e904_min.webp",
+    "params": {
+      "batch_size": 1,
+      "enhance_prompt": true,
+      "height": 2048,
+      "medias": [
+        {
+          "data": {
+            "id": "86b5c1e6-1d12-4a5b-b6dd-d06499a35bee",
+            "type": "media_input",
+            "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/86b5c1e6-1d12-4a5b-b6dd-d06499a35bee.png"
+          },
+          "role": "image"
+        }
+      ],
+      "prompt": "",
+      "quality": "1080p",
+      "seed": 333696,
+      "style": {
+        "id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+        "name": "General",
+        "strength": 1,
+        "url": "https://cdn.higgsfield.ai/soul-cinematic-style/5f42a585-8ddb-4a06-96c6-682afce0afa1.webp"
+      },
+      "style_id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+      "style_strength": null,
+      "width": 1152
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_102438_3f8c06e9-3621-4679-92f3-c8137129e904.png",
+    "status": "completed"
+  }
+]

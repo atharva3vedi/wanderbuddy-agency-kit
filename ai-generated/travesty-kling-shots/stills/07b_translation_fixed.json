@@ -1,0 +1,28 @@
+[
+  {
+    "created_at": "2026-08-27T05:43:40.330313Z",
+    "display_name": "Soul Cinematic",
+    "id": "cd9b37dc-61d1-49d5-85d0-37c0e65776ac",
+    "job_type": "soul_cinematic",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_054340_cd9b37dc-61d1-49d5-85d0-37c0e65776ac_min.webp",
+    "params": {
+      "batch_size": 1,
+      "enhance_prompt": false,
+      "height": 2048,
+      "prompt": "A young tourist in their twenties and a street food vendor frozen mid warm handshake, both smiling with real understanding, a phone with a blank glowing azure screen held between them, market glowing behind. cinematic still, 35mm, shallow depth of field, volumetric golden-hour light, teal-and-amber cinema grade, soft film grain, photoreal, azure #1E88D6 rim light, ink-navy shadows, bullet-time frozen moment with fine dust and debris suspended in mid-air, 9:16 vertical",
+      "quality": "1080p",
+      "seed": 779764,
+      "style": {
+        "id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+        "name": "General",
+        "strength": 1,
+        "url": "https://cdn.higgsfield.ai/soul-cinematic-style/5f42a585-8ddb-4a06-96c6-682afce0afa1.webp"
+      },
+      "style_id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+      "style_strength": null,
+      "width": 1152
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_054340_cd9b37dc-61d1-49d5-85d0-37c0e65776ac.png",
+    "status": "completed"
+  }
+]

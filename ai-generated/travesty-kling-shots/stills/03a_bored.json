@@ -1,0 +1,28 @@
+[
+  {
+    "created_at": "2026-08-27T05:37:06.870322Z",
+    "display_name": "Soul Cinematic",
+    "id": "b5fecca2-86ec-4eac-91ab-7214baea7eb4",
+    "job_type": "soul_cinematic",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_053706_b5fecca2-86ec-4eac-91ab-7214baea7eb4_min.webp",
+    "params": {
+      "batch_size": 1,
+      "enhance_prompt": false,
+      "height": 2048,
+      "prompt": "A bored young man in his twenties slumped on a museum bench mid-yawn, dead-eyed, while three excited young friends in casual travel clothing gesture at a painting, his boredom sharp against their delight, cold gallery light. cinematic still, 35mm, shallow depth of field, volumetric golden-hour light, teal-and-amber cinema grade, soft film grain, photoreal, azure #1E88D6 rim light, ink-navy shadows, bullet-time frozen moment with fine dust and debris suspended in mid-air, 9:16 vertical",
+      "quality": "1080p",
+      "seed": 928115,
+      "style": {
+        "id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+        "name": "General",
+        "strength": 1,
+        "url": "https://cdn.higgsfield.ai/soul-cinematic-style/5f42a585-8ddb-4a06-96c6-682afce0afa1.webp"
+      },
+      "style_id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+      "style_strength": null,
+      "width": 1152
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_053706_b5fecca2-86ec-4eac-91ab-7214baea7eb4.png",
+    "status": "completed"
+  }
+]

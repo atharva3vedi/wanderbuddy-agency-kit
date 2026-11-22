@@ -1,0 +1,28 @@
+[
+  {
+    "created_at": "2026-08-27T05:37:45.272051Z",
+    "display_name": "Soul Cinematic",
+    "id": "404defb6-5317-4e55-9079-3b3466d5828d",
+    "job_type": "soul_cinematic",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_053745_404defb6-5317-4e55-9079-3b3466d5828d_min.webp",
+    "params": {
+      "batch_size": 1,
+      "enhance_prompt": false,
+      "height": 2048,
+      "prompt": "Two young friends in their twenties at a scenic mountain overlook at golden hour, one holds a glossy pale phone showing a beautiful group photo, the other holds a dark slate phone and is frozen mid-cry with a single teardrop suspended on the cheek, the photo unable to cross between the two phones. cinematic still, 35mm, shallow depth of field, volumetric golden-hour light, teal-and-amber cinema grade, soft film grain, photoreal, azure #1E88D6 rim light, ink-navy shadows, bullet-time frozen moment with fine dust and debris suspended in mid-air, 9:16 vertical",
+      "quality": "1080p",
+      "seed": 594139,
+      "style": {
+        "id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+        "name": "General",
+        "strength": 1,
+        "url": "https://cdn.higgsfield.ai/soul-cinematic-style/5f42a585-8ddb-4a06-96c6-682afce0afa1.webp"
+      },
+      "style_id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+      "style_strength": null,
+      "width": 1152
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_053745_404defb6-5317-4e55-9079-3b3466d5828d.png",
+    "status": "completed"
+  }
+]

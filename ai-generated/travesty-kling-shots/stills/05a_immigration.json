@@ -1,0 +1,28 @@
+[
+  {
+    "created_at": "2026-08-27T05:40:32.904243Z",
+    "display_name": "Soul Cinematic",
+    "id": "af08f8be-c856-4864-ae07-66d0dcfdde42",
+    "job_type": "soul_cinematic",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_054032_af08f8be-c856-4864-ae07-66d0dcfdde42_min.webp",
+    "params": {
+      "batch_size": 1,
+      "enhance_prompt": false,
+      "height": 2048,
+      "prompt": "An airport immigration desk, a stern officer's hand frozen sliding a passport back across the counter, a young traveler in their twenties with a backpack, face falling in disbelief, cold overhead light, a small paper airplane suspended in the hall behind. cinematic still, 35mm, shallow depth of field, volumetric golden-hour light, teal-and-amber cinema grade, soft film grain, photoreal, azure #1E88D6 rim light, ink-navy shadows, bullet-time frozen moment with fine dust and debris suspended in mid-air, 9:16 vertical",
+      "quality": "1080p",
+      "seed": 912415,
+      "style": {
+        "id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+        "name": "General",
+        "strength": 1,
+        "url": "https://cdn.higgsfield.ai/soul-cinematic-style/5f42a585-8ddb-4a06-96c6-682afce0afa1.webp"
+      },
+      "style_id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+      "style_strength": null,
+      "width": 1152
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_054032_af08f8be-c856-4864-ae07-66d0dcfdde42.png",
+    "status": "completed"
+  }
+]

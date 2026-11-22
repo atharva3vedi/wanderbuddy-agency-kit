@@ -1,0 +1,28 @@
+[
+  {
+    "created_at": "2026-08-27T09:51:26.887475Z",
+    "display_name": "Soul Cinematic",
+    "id": "44685f13-7a1b-4968-8768-3d23fb0b1e12",
+    "job_type": "soul_cinematic",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_095126_44685f13-7a1b-4968-8768-3d23fb0b1e12_min.webp",
+    "params": {
+      "batch_size": 1,
+      "enhance_prompt": false,
+      "height": 2048,
+      "prompt": "A vast ancient island temple of tall weathered stone columns and labyrinthine courtyards, sea horizon beyond, shafts of golden light. Two young travelers in their twenties stand a little apart among the pillars, quietly searching, one glancing at a phone with a faint worried frown, calm and uncertain, not panicked. An orange cat sits frozen mid-step between two columns. understated naturalistic acting, restrained subtle expression, quiet authentic emotion, mouth closed, no shouting, no exaggerated gestures, candid documentary realism. cinematic still, 35mm, shallow depth of field, volumetric golden-hour light, teal-and-amber cinema grade, soft film grain, photoreal, azure #1E88D6 rim light, ink-navy shadows, bullet-time frozen moment with fine dust and debris suspended in mid-air, 9:16 vertical",
+      "quality": "1080p",
+      "seed": 724847,
+      "style": {
+        "id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+        "name": "General",
+        "strength": 1,
+        "url": "https://cdn.higgsfield.ai/soul-cinematic-style/5f42a585-8ddb-4a06-96c6-682afce0afa1.webp"
+      },
+      "style_id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+      "style_strength": null,
+      "width": 1152
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_095126_44685f13-7a1b-4968-8768-3d23fb0b1e12.png",
+    "status": "completed"
+  }
+]

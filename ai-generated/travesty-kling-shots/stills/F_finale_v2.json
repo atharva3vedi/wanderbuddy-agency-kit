@@ -1,0 +1,28 @@
+[
+  {
+    "created_at": "2026-08-27T10:00:30.20636Z",
+    "display_name": "Soul Cinematic",
+    "id": "f8d3e1ef-c4b5-49c9-b99c-0250e72fd944",
+    "job_type": "soul_cinematic",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_100030_f8d3e1ef-c4b5-49c9-b99c-0250e72fd944_min.webp",
+    "params": {
+      "batch_size": 1,
+      "enhance_prompt": false,
+      "height": 2048,
+      "prompt": "A wide eye-level photograph of five young friends in their twenties standing shoulder to shoulder in a row on a clifftop path at golden hour, full body, standing upright, facing the camera with relaxed natural smiles, arms around each other, plain solid-color clothing with no text or logos, level horizon and calm sea behind them. cinematic, 35mm, warm golden-hour light, teal-and-amber cinema grade, soft film grain, photoreal, natural real-time moment, no frozen debris, 9:16 vertical",
+      "quality": "1080p",
+      "seed": 803428,
+      "style": {
+        "id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+        "name": "General",
+        "strength": 1,
+        "url": "https://cdn.higgsfield.ai/soul-cinematic-style/5f42a585-8ddb-4a06-96c6-682afce0afa1.webp"
+      },
+      "style_id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+      "style_strength": null,
+      "width": 1152
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_100030_f8d3e1ef-c4b5-49c9-b99c-0250e72fd944.png",
+    "status": "completed"
+  }
+]

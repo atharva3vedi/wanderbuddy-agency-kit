@@ -1,0 +1,28 @@
+[
+  {
+    "created_at": "2026-08-27T05:43:20.65207Z",
+    "display_name": "Soul Cinematic",
+    "id": "ab43c357-efe5-4044-803a-991408e71b0d",
+    "job_type": "soul_cinematic",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_054320_ab43c357-efe5-4044-803a-991408e71b0d_min.webp",
+    "params": {
+      "batch_size": 1,
+      "enhance_prompt": false,
+      "height": 2048,
+      "prompt": "Two young friends in their twenties at a golden-hour mountain overlook, the one who was crying now frozen mid-laugh with joy, both holding phones with blank glowing azure screens showing the same group photo, warm light. cinematic still, 35mm, shallow depth of field, volumetric golden-hour light, teal-and-amber cinema grade, soft film grain, photoreal, azure #1E88D6 rim light, ink-navy shadows, bullet-time frozen moment with fine dust and debris suspended in mid-air, 9:16 vertical",
+      "quality": "1080p",
+      "seed": 505722,
+      "style": {
+        "id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+        "name": "General",
+        "strength": 1,
+        "url": "https://cdn.higgsfield.ai/soul-cinematic-style/5f42a585-8ddb-4a06-96c6-682afce0afa1.webp"
+      },
+      "style_id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+      "style_strength": null,
+      "width": 1152
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_054320_ab43c357-efe5-4044-803a-991408e71b0d.png",
+    "status": "completed"
+  }
+]

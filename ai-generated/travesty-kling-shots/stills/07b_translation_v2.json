@@ -1,0 +1,28 @@
+[
+  {
+    "created_at": "2026-08-27T09:59:29.005347Z",
+    "display_name": "Soul Cinematic",
+    "id": "258d6558-9a3d-4464-aef6-2f5cb57687e0",
+    "job_type": "soul_cinematic",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_095929_258d6558-9a3d-4464-aef6-2f5cb57687e0_min.webp",
+    "params": {
+      "batch_size": 1,
+      "enhance_prompt": false,
+      "height": 2048,
+      "prompt": "A young traveler in their twenties and a friendly older local street vendor sharing a warm moment of mutual understanding at a golden-hour market, both with gentle genuine calm smiles, a phone with a blank glowing azure screen held between them. Connected and warm. understated naturalistic acting, restrained subtle expression, quiet authentic emotion, mouth closed, no shouting, no exaggerated gestures, candid documentary realism. cinematic still, 35mm, shallow depth of field, volumetric golden-hour light, teal-and-amber cinema grade, soft film grain, photoreal, azure #1E88D6 rim light, ink-navy shadows, bullet-time frozen moment with fine dust and debris suspended in mid-air, 9:16 vertical",
+      "quality": "1080p",
+      "seed": 872152,
+      "style": {
+        "id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+        "name": "General",
+        "strength": 1,
+        "url": "https://cdn.higgsfield.ai/soul-cinematic-style/5f42a585-8ddb-4a06-96c6-682afce0afa1.webp"
+      },
+      "style_id": "5fbabfac-d27b-4751-b550-fea356ed55ac",
+      "style_strength": null,
+      "width": 1152
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HHAKNy4fuNRHN2yTgjpt6TqiyC/hf_20260827_095929_258d6558-9a3d-4464-aef6-2f5cb57687e0.png",
+    "status": "completed"
+  }
+]
